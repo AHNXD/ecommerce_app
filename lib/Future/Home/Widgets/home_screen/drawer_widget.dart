@@ -1,0 +1,103 @@
+import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/compair_screen.dart';
+import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
+import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/Utils/images.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../Pages/bbbbb.dart';
+
+class DrawerWidget extends StatelessWidget {
+  const DrawerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 60.sp,
+            backgroundImage: const AssetImage(
+              AppImagesAssets.logo,
+            ),
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          MyButtonWidget(
+              text: "About Us",
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const AboutUsScreen()));
+              },
+              verticalHieght: 1.h,
+              horizontalWidth: 2.w,
+              color: AppColors.buttonCategoryColor),
+          MyButtonWidget(
+              text: "Comapair Pruducts",
+              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const CompairScreen(),));},
+              verticalHieght: 1.h,
+              horizontalWidth: 2.w,
+              color: AppColors.buttonCategoryColor),
+          MyButtonWidget(
+              text: "Barcode",
+              onPressed: ()async {
+                String res;
+                try {
+                  res = await FlutterBarcodeScanner.scanBarcode(
+                      "#ff6666", "Cancel", true, ScanMode.BARCODE);
+                  if (res != "-1") {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (builder) {
+                      return BarcodeSereen(resault: res);
+                    }));
+                  }
+                } on PlatformException {
+                  res = "this PlatForm was not support barcode Scanner";
+                }
+                print("=================================$res");
+                if (res != "this PlatForm was not support barcode Scanner" ||
+                    res != "-1") {}
+              },
+              verticalHieght: 1.h,
+              horizontalWidth: 2.w,
+              color: AppColors.buttonCategoryColor),
+          const Spacer(),
+          !AppSharedPreferences.hasToken
+              ? Column(
+                  children: [
+                    MyButtonWidget( 
+                        text: "LogIn",
+                        onPressed: () {},
+                        verticalHieght: 1.h,
+                        horizontalWidth: 2.w,
+                        color: AppColors.offersContainerColor),
+                    MyButtonWidget(
+                        text: "SignUp",
+                        onPressed: () {},
+                        verticalHieght: 1.h,
+                        horizontalWidth: 2.w,
+                        color: AppColors.offersContainerColor),
+                  ],
+                )
+              : MyButtonWidget(
+                  text: "Log Out",
+                  onPressed: () {},
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.textTitleAppBarColor),
+          MyButtonWidget(
+              text: "Language",
+              onPressed: () {},
+              verticalHieght: 1.h,
+              horizontalWidth: 2.w,
+              color: AppColors.textTitleAppBarColor)
+        ],
+      ),
+    );
+  }
+}
