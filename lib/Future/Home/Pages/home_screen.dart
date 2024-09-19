@@ -29,7 +29,13 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         controller: controller,
         children: [
-          Text(AppSharedPreferences.getLang == "en" ? "Offers" : "العروض"),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Text(
+          //     AppSharedPreferences.getLang == "en" ? "Offers" : "العروض",
+          //     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30,color: AppColors.textTitleAppBarColor),
+          //   ),
+          // ),
           // BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
           //   builder: (context, state) {
           //     final model = context.read<GetCatigoriesOffersCubit>();
@@ -52,9 +58,31 @@ class HomeScreen extends StatelessWidget {
           //   },
           // ),
           SizedBox(height: 1.h),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              AppSharedPreferences.getLang == "en" ? "Categories" : "الأصناف",
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: AppColors.textTitleAppBarColor),
+            ),
+          ),
           SizedBox(
             height: 8.h,
             child: const HomePageCategoriesButtonWidget(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              AppSharedPreferences.getLang == "en"
+                  ? "Latest Products"
+                  : "اخر المنتجات",
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: AppColors.textTitleAppBarColor),
+            ),
           ),
           LastestProductAndTitle(controller: controller),
           SizedBox(
