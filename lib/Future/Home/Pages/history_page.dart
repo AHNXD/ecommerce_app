@@ -1,4 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/order_details_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/historyScreen/historyOrderCard.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -134,51 +135,7 @@ class HistoryScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: myOrders.length,
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(8),
-            child: Container(
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                  color: Color.fromARGB(255, 220, 249, 247)),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (builder) {
-                    return OrderDetailsScreen(
-                        isNotHome: false, order: myOrders[index]);
-                  }));
-                },
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: AppColors.buttonCategoryColor,
-                    child: Text((index + 1).toString()),
-                  ),
-                  trailing: CircleAvatar(
-                      child: Text(""),
-                      backgroundColor: index % 3 == 0
-                          ? Colors.green
-                          : index % 3 == 1
-                              ? Colors.yellow
-                              : Colors.red),
-                  title: Text(
-                      textAlign: TextAlign.center,
-                      "${myOrders[index].firstName} ${myOrders[index].lastName}"),
-                  subtitle: Column(
-                    children: [
-                      Text(myOrders[index].phone.toString()),
-                      Text(myOrders[index].email.toString()),
-                      Text(
-                          "${myOrders[index].country} ${myOrders[index].city}"),
-                      Text(myOrders[index].address1.toString()),
-                      Text(myOrders[index].address2.toString()),
-                      Text(myOrders[index].code.toString()),
-                      Text(myOrders[index].note.toString()),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
+          return HistoryCardItem(index: index, order: myOrders[index]);
         },
       ),
     );

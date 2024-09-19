@@ -4,10 +4,8 @@ import '../../Cubits/cartCubit/cart.bloc.dart';
 import '/Future/Home/Pages/product_details.dart';
 import '/Future/Home/models/product_model.dart';
 import '/Utils/colors.dart';
-import '/Utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../cached_network_image.dart';

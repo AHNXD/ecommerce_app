@@ -1,6 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
-import 'package:ecommerce_app_qr/Future/Home/Pages/compair_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/contact_us_screen.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
