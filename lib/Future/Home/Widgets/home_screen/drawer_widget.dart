@@ -1,11 +1,13 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
-import 'package:ecommerce_app_qr/Future/Home/Pages/compair_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../Pages/contact_us_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -41,6 +43,15 @@ class DrawerWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const AboutUsScreen()));
+                  },
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.buttonCategoryColor),
+              MyButtonWidget(
+                  text: "Sell Product",
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SellProdact()));
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
