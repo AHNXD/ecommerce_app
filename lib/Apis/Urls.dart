@@ -1,7 +1,11 @@
 // ignore_for_file: file_names
 
 class Urls {
+<<<<<<< HEAD
   static const String ip = "10.0.2.2:8000";
+=======
+  static const String ip = "192.168.1.3:8000";
+>>>>>>> 974272a340d66bad2d1832593948a5f2704f5d69
   static const String baseUrl = "http://$ip/api/";
   static const String storageProducts =
       "http://$ip/BaseDashboard/public//uploads//products/";

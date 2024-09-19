@@ -24,7 +24,7 @@ class TopOvalWidget extends StatelessWidget {
         height: 35.h,
         child: Column(
           children: [
-              BackWidget(
+            BackWidget(
               canPop: isNotHome,
               hasBackButton: true,
               hasStyle: false,

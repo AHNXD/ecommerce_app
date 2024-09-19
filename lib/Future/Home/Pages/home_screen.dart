@@ -1,3 +1,6 @@
+import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
+import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
+
 import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import '../Cubits/getCatigories/get_catigories_cubit.dart';
 import '/Future/Home/Widgets/home_screen/appbar_widget.dart';
@@ -27,6 +30,13 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         controller: controller,
         children: [
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Text(
+          //     AppSharedPreferences.getLang == "en" ? "Offers" : "العروض",
+          //     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30,color: AppColors.textTitleAppBarColor),
+          //   ),
+          // ),
           // BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
           //   builder: (context, state) {
           //     final model = context.read<GetCatigoriesOffersCubit>();
@@ -49,9 +59,31 @@ class HomeScreen extends StatelessWidget {
           //   },
           // ),
           SizedBox(height: 1.h),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              AppSharedPreferences.getLang == "en" ? "Categories" : "الأصناف",
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: AppColors.textTitleAppBarColor),
+            ),
+          ),
           SizedBox(
             height: 8.h,
             child: const HomePageCategoriesButtonWidget(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              AppSharedPreferences.getLang == "en"
+                  ? "Latest Products"
+                  : "اخر المنتجات",
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: AppColors.textTitleAppBarColor),
+            ),
           ),
           LastestProductAndTitle(controller: controller),
           SizedBox(
@@ -99,7 +131,15 @@ class LastestProductAndTitle extends StatelessWidget {
                       .catigoriesModel!
                       .data![index]
                       .name!;
-//
+                  int id = context
+                      .read<GetCatigoriesCubit>()
+                      .catigoriesModel!
+                      .data![index]
+                      .id!;
+                  CatigoriesData cData = context
+                      .read<GetCatigoriesCubit>()
+                      .catigoriesModel!
+                      .data![index];
                   int len =
                       context.read<GetProductsCubit>().model!.data!.length;
                   List<MainProduct> l = <MainProduct>[];
@@ -118,7 +158,7 @@ class LastestProductAndTitle extends StatelessWidget {
 
                   return Column(
                     children: [
-                      TitleCardWidget(title: name),
+                      TitleCardWidget(title: name, id: id, cData: cData),
                       CarouselSliderWidget(
                         list: productCardList(true, l),
                         height: 45.h,
