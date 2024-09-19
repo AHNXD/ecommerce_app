@@ -4,11 +4,8 @@ import '../Widgets/home_screen/drawer_widget.dart';
 import '/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../Utils/enums.dart';
-import '../../../Utils/images.dart';
 
 class NavBarPage extends StatefulWidget {
   const NavBarPage({super.key});
@@ -41,9 +38,8 @@ class _NavBarPageState extends State<NavBarPage> {
       bottomNavigationBar: BlocBuilder<PagesScreenCubit, PageScreenState>(
         builder: (context, state) {
           return Container(
-            height: 7.5.h,
             clipBehavior: Clip.hardEdge,
-            margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+            margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(9.w)),
             child: NavigationBar(
               indicatorColor: Colors.transparent,
@@ -51,77 +47,59 @@ class _NavBarPageState extends State<NavBarPage> {
               backgroundColor: Colors.white,
               destinations: [
                 NavigationDestination(
-                  icon: Center(
-                    child: SvgPicture.asset(
-                      AppImagesAssets.home,
-                    ),
+                  icon: const Center(
+                    child: Icon(Icons.home_outlined),
                   ),
-                  label: "",
+                  label: "Home",
                   selectedIcon: Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 1.7.h, horizontal: 1.w),
-                    height: 6.h,
-                    width: 12.w,
-                    decoration: const BoxDecoration(
-                      color: AppColors.buttonCategoryColor,
-                      shape: BoxShape.circle,
-                      // gradient: LinearGradient(colors: grediant),
-                    ),
-                    child: SvgPicture.asset(
-                      AppImagesAssets.home,
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                ),
-                NavigationDestination(
-                  icon: SvgPicture.asset(
-                    AppImagesAssets.cart,
-                  ),
-                  label: "",
-                  selectedIcon: Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 1.7.h, horizontal: 1.w),
-                    height: 6.h,
-                    width: 12.w,
-                    decoration: const BoxDecoration(
-                      color: AppColors.buttonCategoryColor,
-                      shape: BoxShape.circle,
-                      // gradient: LinearGradient(colors: grediant),
-                    ),
-                    child: SvgPicture.asset(
-                      AppImagesAssets.cart,
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                ),
-                NavigationDestination(
-                  icon: SvgPicture.asset(
-                    AppImagesAssets.call,
-                  ),
-                  label: "",
-                  selectedIcon: Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 1.7.h, horizontal: 1.w),
-                    height: 6.h,
-                    width: 12.w,
-                    decoration: const BoxDecoration(
-                      color: AppColors.buttonCategoryColor,
-                      shape: BoxShape.circle,
-                      // gradient: LinearGradient(colors: grediant),
-                    ),
-                    child: SvgPicture.asset(
-                      AppImagesAssets.call,
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                ),
-                NavigationDestination(
-                    icon: Center(
-                      child: SvgPicture.asset(
-                        AppImagesAssets.favorite,
+                      padding: EdgeInsets.symmetric(
+                          vertical: 1.7.h, horizontal: 1.w),
+                      height: 6.h,
+                      width: 12.w,
+                      decoration: const BoxDecoration(
+                        color: AppColors.buttonCategoryColor,
+                        shape: BoxShape.circle,
+                        // gradient: LinearGradient(colors: grediant),
                       ),
+                      child: const Icon(Icons.home_filled)),
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.shopping_bag_outlined),
+                  label: "Cart",
+                  selectedIcon: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 1.7.h, horizontal: 1.w),
+                    height: 6.h,
+                    width: 12.w,
+                    decoration: const BoxDecoration(
+                      color: AppColors.buttonCategoryColor,
+                      shape: BoxShape.circle,
+                      // gradient: LinearGradient(colors: grediant),
                     ),
-                    label: "",
+                    child: const Icon(Icons.shopping_bag),
+                  ),
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.history_outlined),
+                  label: "History",
+                  selectedIcon: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 1.7.h, horizontal: 1.w),
+                    height: 6.h,
+                    width: 12.w,
+                    decoration: const BoxDecoration(
+                      color: AppColors.buttonCategoryColor,
+                      shape: BoxShape.circle,
+                      // gradient: LinearGradient(colors: grediant),
+                    ),
+                    child: const Icon(Icons.history),
+                  ),
+                ),
+                NavigationDestination(
+                    icon: const Center(
+                      child: Icon(Icons.favorite_outline),
+                    ),
+                    label: "Fav",
                     selectedIcon: Container(
                       padding: EdgeInsets.symmetric(
                           vertical: 1.7.h, horizontal: 1.w),
@@ -132,10 +110,7 @@ class _NavBarPageState extends State<NavBarPage> {
                         shape: BoxShape.circle,
                         // gradient: LinearGradient(colors: grediant),
                       ),
-                      child: SvgPicture.asset(
-                        AppImagesAssets.favorite,
-                        alignment: Alignment.center,
-                      ),
+                      child: const Icon(Icons.favorite),
                     )),
               ],
               selectedIndex: state is PageScreenInitialState

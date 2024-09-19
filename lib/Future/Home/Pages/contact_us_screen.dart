@@ -1,6 +1,7 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/text_field_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
+import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,10 +16,10 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff42b583),
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 44, 114, 85),
+        backgroundColor: AppColors.primaryColors,
         title: Text(
           "Contact Us",
           style: TextStyle(
@@ -58,7 +59,7 @@ class ContactUsScreen extends StatelessWidget {
             ),
           ),
           MyButtonWidget(
-            color: const Color.fromARGB(255, 28, 78, 57),
+            color: AppColors.buttonCategoryColor,
             verticalHieght: 2.h,
             text: "Submit",
             onPressed: () {},

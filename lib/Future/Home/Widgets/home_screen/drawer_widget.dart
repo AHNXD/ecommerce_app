@@ -1,7 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/compair_screen.dart';
-import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
@@ -29,6 +28,15 @@ class DrawerWidget extends StatelessWidget {
                 height: 2.h,
               ),
               MyButtonWidget(
+                  text: "Contact Us",
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ContactUsScreen()));
+                  },
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.buttonCategoryColor),
+              MyButtonWidget(
                   text: "About Us",
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -37,30 +45,6 @@ class DrawerWidget extends StatelessWidget {
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
                   color: AppColors.buttonCategoryColor),
-              MyButtonWidget(
-                  text: "Comapair Pruducts",
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CompairScreen(),
-                        ));
-                  },
-                  verticalHieght: 1.h,
-                  horizontalWidth: 2.w,
-                  color: AppColors.buttonCategoryColor),
-              MyButtonWidget(
-                  text: "Sell product",
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SellProdact(),
-                        ));
-                  },
-                  verticalHieght: 1.h,
-                  horizontalWidth: 2.w,
-                  color: AppColors.textTitleAppBarColor),
               const Spacer(),
               !AppSharedPreferences.hasToken
                   ? Column(

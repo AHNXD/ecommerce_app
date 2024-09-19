@@ -264,7 +264,7 @@ class _DetailPageState extends State<DetailPage> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.green[400]!,
+                        color: AppColors.primaryColors[400]!,
                         blurRadius: 15,
                         offset: const Offset(0, 8))
                   ],
