@@ -1,6 +1,7 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
+import 'package:ecommerce_app_qr/Utils/colors.dart';
 import '/Apis/Network.dart';
 import '/Future/Auth/cubit/auth_cubit.dart';
 import '/Future/Home/Pages/navbar_screen.dart';
@@ -59,7 +60,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: AppColors.primaryColors),
             // useMaterial3: true,
           ),
           home:

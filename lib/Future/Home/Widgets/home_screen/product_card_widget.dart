@@ -1,4 +1,3 @@
-
 import '/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import '/Apis/Urls.dart';
 import '../../Cubits/cartCubit/cart.bloc.dart';
@@ -149,18 +148,18 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   color: AppColors.backgroundColor,
                   borderRadius: BorderRadius.circular(5.w)),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // if (widget.product.userQuantity > 0)
                   IconButton(
-                    icon: SvgPicture.asset(
-                      AppImagesAssets.plus,
-                      height: 2.5.h,
+                    icon: const Icon(
+                      Icons.add,
+                      color: AppColors.buttonCategoryColor,
                     ),
                     onPressed: () {
-                        if (widget.product.userQuantity == 0) {
-                          context.read<CartCubit>().addToCart(widget.product);
-                        }
+                      if (widget.product.userQuantity == 0) {
+                        context.read<CartCubit>().addToCart(widget.product);
+                      }
                       setState(() {
                         if (widget.product.userQuantity <
                             widget.product.quantity!) {
@@ -182,7 +181,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                           "${widget.product.userQuantity < 10 && widget.product.userQuantity != 0 ? "0" : ""}${widget.product.userQuantity}",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              color: AppColors.textButtonColors,
+                              color: Colors.black,
                               fontSize: widget.isHomeScreen ? 13.sp : 9.sp,
                               fontWeight: FontWeight.w400),
                         );
@@ -191,7 +190,8 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   ),
                   // if (widget.product.userQuantity > 0)
                   IconButton(
-                    icon: SvgPicture.asset(AppImagesAssets.minus),
+                    icon: const Icon(Icons.remove,
+                        color: AppColors.buttonCategoryColor),
                     onPressed: () {
                       setState(() {
                         if (widget.product.userQuantity == 1) {

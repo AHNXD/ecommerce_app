@@ -46,18 +46,18 @@ class DrawerWidget extends StatelessWidget {
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
                   color: AppColors.buttonCategoryColor),
-              MyButtonWidget(
-                  text: "Comapair Pruducts",
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CompairScreen(),
-                        ));
-                  },
-                  verticalHieght: 1.h,
-                  horizontalWidth: 2.w,
-                  color: AppColors.buttonCategoryColor),
+              // MyButtonWidget(
+              //     text: "Comapair Pruducts",
+              //     onPressed: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => const CompairScreen(),
+              //           ));
+              //     },
+              //     verticalHieght: 1.h,
+              //     horizontalWidth: 2.w,
+              //     color: AppColors.buttonCategoryColor),
               const Spacer(),
               !AppSharedPreferences.hasToken
                   ? Column(
