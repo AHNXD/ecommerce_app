@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 
 import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
@@ -130,7 +131,15 @@ class LastestProductAndTitle extends StatelessWidget {
                       .catigoriesModel!
                       .data![index]
                       .name!;
-//
+                  int id = context
+                      .read<GetCatigoriesCubit>()
+                      .catigoriesModel!
+                      .data![index]
+                      .id!;
+                  CatigoriesData cData = context
+                      .read<GetCatigoriesCubit>()
+                      .catigoriesModel!
+                      .data![index];
                   int len =
                       context.read<GetProductsCubit>().model!.data!.length;
                   List<MainProduct> l = <MainProduct>[];
@@ -149,7 +158,7 @@ class LastestProductAndTitle extends StatelessWidget {
 
                   return Column(
                     children: [
-                      TitleCardWidget(title: name),
+                      TitleCardWidget(title: name, id: id, cData: cData),
                       CarouselSliderWidget(
                         list: productCardList(true, l),
                         height: 45.h,

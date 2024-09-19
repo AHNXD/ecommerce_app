@@ -11,7 +11,6 @@ import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-
 import '../Future/Auth/Widgets/text_field_widget.dart';
 import '../Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import '../Future/Home/Cubits/getProducts/get_products_cubit.dart';
