@@ -1,6 +1,7 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/compair_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
@@ -48,6 +49,18 @@ class DrawerWidget extends StatelessWidget {
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
                   color: AppColors.buttonCategoryColor),
+              MyButtonWidget(
+                  text: "Sell product",
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SellProdact(),
+                        ));
+                  },
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.textTitleAppBarColor),
               const Spacer(),
               !AppSharedPreferences.hasToken
                   ? Column(
@@ -77,7 +90,7 @@ class DrawerWidget extends StatelessWidget {
                   onPressed: () {},
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
-                  color: AppColors.textTitleAppBarColor)
+                  color: AppColors.textTitleAppBarColor),
             ],
           ),
         ),
