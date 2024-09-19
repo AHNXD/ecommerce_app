@@ -1,6 +1,7 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/compair_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/contact_us_screen.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
@@ -27,6 +28,15 @@ class DrawerWidget extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
+              MyButtonWidget(
+                  text: "Contact Us",
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ContactUsScreen()));
+                  },
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.buttonCategoryColor),
               MyButtonWidget(
                   text: "About Us",
                   onPressed: () {

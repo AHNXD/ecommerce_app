@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:ecommerce_app_qr/Future/Home/Pages/history_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ecommerce_app_qr/Future/Home/Pages/contact_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/favorite_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -34,9 +34,9 @@ class PagesScreenCubit extends Cubit<PageScreenState> {
         type = AppScreen.cart;
 
         break;
-      case AppScreen.contactUs:
-        currentScreen = ContactUsScreen();
-        type = AppScreen.contactUs;
+      case AppScreen.history:
+        currentScreen = HistoryScreen();
+        type = AppScreen.history;
 
         break;
 
@@ -45,8 +45,7 @@ class PagesScreenCubit extends Cubit<PageScreenState> {
         type = AppScreen.favorite;
 
         break;
-
-      }
+    }
 
     emit(PagesScreenChange(page: currentScreen, pageType: type));
   }
