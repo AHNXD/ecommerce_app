@@ -1,7 +1,5 @@
-import 'package:ecommerce_app_qr/Future/Home/Pages/order_details_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/historyScreen/historyOrderCard.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
-import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatelessWidget {
