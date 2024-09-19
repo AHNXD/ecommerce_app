@@ -1,3 +1,5 @@
+import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
+
 import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import '../Cubits/getCatigories/get_catigories_cubit.dart';
 import '/Future/Home/Widgets/home_screen/appbar_widget.dart';
@@ -27,6 +29,7 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         controller: controller,
         children: [
+          Text(AppSharedPreferences.getLang == "en" ? "Offers" : "العروض"),
           // BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
           //   builder: (context, state) {
           //     final model = context.read<GetCatigoriesOffersCubit>();
