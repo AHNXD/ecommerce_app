@@ -1,7 +1,5 @@
-import '/Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import '../Cubits/getCatigories/get_catigories_cubit.dart';
-import '/Future/Home/Widgets/error_widget.dart';
 import '/Future/Home/Widgets/home_screen/appbar_widget.dart';
 import '/Future/Home/Widgets/home_screen/carousel_slider_widget.dart';
 import '../Widgets/home_screen/home_page_categories_button_widget.dart';

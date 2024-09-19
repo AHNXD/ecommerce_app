@@ -53,7 +53,5 @@ String? validation(String? text, ValidationState v) {
 
       return null;
 
-    default:
-      return null;
-  }
+    }
 }

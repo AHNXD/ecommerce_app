@@ -5,12 +5,7 @@ import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../Pages/bbbbb.dart';
-
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
 
@@ -31,37 +26,20 @@ class DrawerWidget extends StatelessWidget {
           MyButtonWidget(
               text: "About Us",
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const AboutUsScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AboutUsScreen()));
               },
               verticalHieght: 1.h,
               horizontalWidth: 2.w,
               color: AppColors.buttonCategoryColor),
           MyButtonWidget(
               text: "Comapair Pruducts",
-              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const CompairScreen(),));},
-              verticalHieght: 1.h,
-              horizontalWidth: 2.w,
-              color: AppColors.buttonCategoryColor),
-          MyButtonWidget(
-              text: "Barcode",
-              onPressed: ()async {
-                String res;
-                try {
-                  res = await FlutterBarcodeScanner.scanBarcode(
-                      "#ff6666", "Cancel", true, ScanMode.BARCODE);
-                  if (res != "-1") {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (builder) {
-                      return BarcodeSereen(resault: res);
-                    }));
-                  }
-                } on PlatformException {
-                  res = "this PlatForm was not support barcode Scanner";
-                }
-                print("=================================$res");
-                if (res != "this PlatForm was not support barcode Scanner" ||
-                    res != "-1") {}
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CompairScreen(),
+                    ));
               },
               verticalHieght: 1.h,
               horizontalWidth: 2.w,
@@ -70,7 +48,7 @@ class DrawerWidget extends StatelessWidget {
           !AppSharedPreferences.hasToken
               ? Column(
                   children: [
-                    MyButtonWidget( 
+                    MyButtonWidget(
                         text: "LogIn",
                         onPressed: () {},
                         verticalHieght: 1.h,

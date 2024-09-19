@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/contact_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/favorite_screen.dart';
 
@@ -46,16 +46,14 @@ class PagesScreenCubit extends Cubit<PageScreenState> {
 
         break;
 
-      default:
-    }
+      }
 
     emit(PagesScreenChange(page: currentScreen, pageType: type));
   }
 
   void initContext(BuildContext context) {
     mycontext = context;
-   
-    
+
     emit(PageScreenInitState());
   }
 }

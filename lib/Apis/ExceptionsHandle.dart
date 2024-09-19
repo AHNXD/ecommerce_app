@@ -41,9 +41,5 @@ String exceptionsHandle({required DioException error}) {
     case DioExceptionType.connectionError:
       message = 'تحقق من الاتصال بالانترنت';
       return message;
-    default:
-      return message!;
   }
-
-  // return message!;
 }

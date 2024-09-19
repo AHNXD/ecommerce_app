@@ -3,17 +3,13 @@ import 'package:ecommerce_app_qr/Utils/enums.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:ecommerce_app_qr/Utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../Utils/colors.dart';
 import '../../../Utils/functions.dart';
 import '../../../Utils/test_lists.dart';
 import '../Cubits/searchProductsCubit/search_products_cubit.dart';
-import 'bbbbb.dart';
 
 class SearchProductScreen extends StatelessWidget {
   SearchProductScreen({super.key});
@@ -51,28 +47,6 @@ class SearchProductScreen extends StatelessWidget {
               fontSize: 15.sp),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                String res;
-                try {
-                  res = await FlutterBarcodeScanner.scanBarcode(
-                      "#ff6666", "Cancel", true, ScanMode.BARCODE);
-                  if (res != "-1") {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (builder) {
-                      return BarcodeSereen(resault: res);
-                    }));
-                  }
-                } on PlatformException {
-                  res = "this PlatForm was not support barcode Scanner";
-                }
-
-                if (res != "this PlatForm was not support barcode Scanner" ||
-                    res != "-1") {}
-              },
-              icon: const Icon(Icons.qr_code_scanner))
-        ],
       ),
       body: Column(
         children: [
