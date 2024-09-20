@@ -1,5 +1,4 @@
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
-import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 
 import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
