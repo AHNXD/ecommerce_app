@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
                 return supportedLocales.first;
               },
               debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
+              title: 'E-Commerce',
               theme: ThemeData(
                 fontFamily: "cocon-next-arabic",
                 colorScheme:
