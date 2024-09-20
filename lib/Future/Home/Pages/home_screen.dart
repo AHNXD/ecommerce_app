@@ -1,3 +1,5 @@
+import 'package:ecommerce_app_qr/Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 
@@ -30,34 +32,37 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         controller: controller,
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Text(
-          //     "offers".tr(context),
-          //     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30,color: AppColors.textTitleAppBarColor),
-          //   ),
-          // ),
-          // BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
-          //   builder: (context, state) {
-          //     final model = context.read<GetCatigoriesOffersCubit>();
-          //     if (state is GetCatigoriesOffersLoadingState) {
-          //       return const Center(
-          //         child: CircularProgressIndicator(),
-          //       );
-          //     } else if (state is GetCatigoriesOffersErrorState) {
-          //       return MyErrorWidget(
-          //         msg: state.msg,
-          //         onPressed: () {
-          //           model.getOffersCatigories();
-          //         },
-          //       );
-          //     }
-          //     return CarouselSliderWidget(
-          //       list: offersList(model.offersCatigoriesModel!.data!),
-          //       height: 15.h,
-          //     );
-          //   },
-          // ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "offers".tr(context),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: AppColors.textTitleAppBarColor),
+            ),
+          ),
+          BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
+            builder: (context, state) {
+              final model = context.read<GetCatigoriesOffersCubit>();
+              if (state is GetCatigoriesOffersLoadingState) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is GetCatigoriesOffersErrorState) {
+                return MyErrorWidget(
+                  msg: state.msg,
+                  onPressed: () {
+                    model.getOffersCatigories();
+                  },
+                );
+              }
+              return CarouselSliderWidget(
+                list: offersList(model.offersCatigoriesModel!.data!),
+                height: 15.h,
+              );
+            },
+          ),
           SizedBox(height: 1.h),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -106,6 +111,13 @@ class LastestProductAndTitle extends StatelessWidget {
         if (catigoryState is GetCatigoriesLoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
+          );
+        } else if (catigoryState is GetCatigoriesErrorState) {
+          return MyErrorWidget(
+            msg: catigoryState.msg,
+            onPressed: () {
+              context.read<GetCatigoriesCubit>().getCatigories();
+            },
           );
         }
         return BlocBuilder<GetProductsCubit, GetProductsState>(
