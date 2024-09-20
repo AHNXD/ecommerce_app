@@ -1,6 +1,6 @@
+import '../../Cubits/cartCubit/cart.bloc.dart';
 import '/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import '/Apis/Urls.dart';
-import '../../Cubits/cartCubit/cart.bloc.dart';
 import '/Future/Home/Pages/product_details.dart';
 import '/Future/Home/models/product_model.dart';
 import '/Utils/colors.dart';
@@ -38,7 +38,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
         }));
       },
       child: Container(
-        // width: 70.w,
+        width: 70.w,
         margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.w), color: Colors.white),
@@ -139,73 +139,100 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w900),
               ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
-              padding: EdgeInsets.only(right: 1.w),
-              decoration: BoxDecoration(
-                  color: AppColors.backgroundColor,
-                  borderRadius: BorderRadius.circular(5.w)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // if (widget.product.userQuantity > 0)
-                  IconButton(
-                    icon: const Icon(
-                      Icons.add,
-                      color: AppColors.buttonCategoryColor,
-                    ),
-                    onPressed: () {
-                      if (widget.product.userQuantity == 0) {
-                        context.read<CartCubit>().addToCart(widget.product);
-                      }
-                      setState(() {
-                        if (widget.product.userQuantity <
-                            widget.product.quantity!) {
-                          widget.product.userQuantity++;
-                        }
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: widget.product.userQuantity < 0 ? 0 : 1.w,
-                    ),
-                    child: BlocBuilder<CartCubit, CartState>(
-                      builder: (context, state) {
-                        return Text(
-                          // widget.product.userQuantity == 0
-                          //     ? "Add To Cart"
-                          //     :
-                          "${widget.product.userQuantity < 10 && widget.product.userQuantity != 0 ? "0" : ""}${widget.product.userQuantity}",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: widget.isHomeScreen ? 13.sp : 9.sp,
-                              fontWeight: FontWeight.w400),
-                        );
-                      },
+            const SizedBox(
+              height: 10,
+            ),
+            Material(
+              color: AppColors.primaryColors,
+              borderRadius: BorderRadius.circular(15),
+              child: InkWell(
+                onTap: () {
+                  context.read<CartCubit>().addToCart(widget.product);
+                },
+                borderRadius: BorderRadius.circular(15),
+                child: Container(
+                  height: 60,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  padding: const EdgeInsets.symmetric(vertical: 21),
+                  child: const Text(
+                    "Add to Cart",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
                     ),
                   ),
-                  // if (widget.product.userQuantity > 0)
-                  IconButton(
-                    icon: const Icon(Icons.remove,
-                        color: AppColors.buttonCategoryColor),
-                    onPressed: () {
-                      setState(() {
-                        if (widget.product.userQuantity == 1) {
-                          context
-                              .read<CartCubit>()
-                              .removeformTheCart(widget.product);
-                          widget.product.userQuantity--;
-                        } else if (widget.product.userQuantity > 0) {
-                          widget.product.userQuantity--;
-                        }
-                      });
-                    },
-                  ),
-                ],
+                ),
               ),
-            )
+            ),
+            // Container(
+            //   margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
+            //   padding: EdgeInsets.only(right: 1.w),
+            //   decoration: BoxDecoration(
+            //       color: AppColors.backgroundColor,
+            //       borderRadius: BorderRadius.circular(5.w)),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       // if (widget.product.userQuantity > 0)
+            //       IconButton(
+            //         icon: const Icon(
+            //           Icons.add,
+            //           color: AppColors.buttonCategoryColor,
+            //         ),
+            //         onPressed: () {
+            //           if (widget.product.userQuantity == 0) {
+            //             context.read<CartCubit>().addToCart(widget.product);
+            //           }
+            //           setState(() {
+            //             if (widget.product.userQuantity <
+            //                 widget.product.quantity!) {
+            //               widget.product.userQuantity++;
+            //             }
+            //           });
+            //         },
+            //       ),
+            //       Padding(
+            //         padding: EdgeInsets.only(
+            //           right: widget.product.userQuantity < 0 ? 0 : 1.w,
+            //         ),
+            //         child: BlocBuilder<CartCubit, CartState>(
+            //           builder: (context, state) {
+            //             return Text(
+            //               // widget.product.userQuantity == 0
+            //               //     ? "Add To Cart"
+            //               //     :
+            //               "${widget.product.userQuantity < 10 && widget.product.userQuantity != 0 ? "0" : ""}${widget.product.userQuantity}",
+            //               textAlign: TextAlign.start,
+            //               style: TextStyle(
+            //                   color: Colors.black,
+            //                   fontSize: widget.isHomeScreen ? 13.sp : 9.sp,
+            //                   fontWeight: FontWeight.w400),
+            //             );
+            //           },
+            //         ),
+            //       ),
+            //       // if (widget.product.userQuantity > 0)
+            //       IconButton(
+            //         icon: const Icon(Icons.remove,
+            //             color: AppColors.buttonCategoryColor),
+            //         onPressed: () {
+            //           setState(() {
+            //             if (widget.product.userQuantity == 1) {
+            //               context
+            //                   .read<CartCubit>()
+            //                   .removeformTheCart(widget.product);
+            //               widget.product.userQuantity--;
+            //             } else if (widget.product.userQuantity > 0) {
+            //               widget.product.userQuantity--;
+            //             }
+            //           });
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),
