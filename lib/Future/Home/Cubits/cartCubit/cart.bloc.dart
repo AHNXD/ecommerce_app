@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-
+ 
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:meta/meta.dart';
 

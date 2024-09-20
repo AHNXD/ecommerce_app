@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class Network {
@@ -18,7 +19,7 @@ class Network {
           'Content-Type': 'application/json',
           // "Accept": 'application/json',
           "Accept-Charset": "application/json",
-          "Accept-Language": "ar",
+          "Accept-Language": lang,
         },
         connectTimeout: const Duration(minutes: 1),
         receiveTimeout: const Duration(minutes: 1)));
@@ -49,7 +50,7 @@ class Network {
       'Content-Type': 'application/json',
       "Accept": 'application/json',
       "Accept-Charset": "application/json",
-      "Accept-Language": "ar",
+      "Accept-Language": lang,
     };
     final response = await dio.get(url);
     return response;
@@ -64,7 +65,7 @@ class Network {
       'Content-Type': 'application/json',
       "Accept": 'application/json',
       "Accept-Charset": "application/json",
-      "Accept-Language": "ar",
+      "Accept-Language": lang,
     };
     return await dio.post(
       url,

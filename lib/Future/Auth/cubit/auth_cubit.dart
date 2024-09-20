@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, unnecessary_import, avoid_print
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/ExceptionsHandle.dart';
 import 'package:ecommerce_app_qr/Apis/Network.dart';

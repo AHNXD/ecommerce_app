@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 
 import '/Future/Home/models/product_model.dart';
@@ -23,14 +24,13 @@ class _CartScreenState extends State<CartScreen1> {
       appBar: AppBar(
         backgroundColor: kcontentColor,
         centerTitle: true,
-        title: const Text(
-          "My Cart",
-          style: TextStyle(
+        title: Text(
+          "cart_screen_title".tr(context),
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
         leadingWidth: 60,
-      
       ),
       bottomSheet: context.read<CartCubit>().pcw.isEmpty
           ? null
@@ -41,8 +41,8 @@ class _CartScreenState extends State<CartScreen1> {
         builder: (context, state) {
           List<MainProduct> l = context.read<CartCubit>().pcw;
           if (state is EmptyCartState || l.isEmpty) {
-            return const Center(
-              child: Text("Empty Cart Please Add product to Cart"),
+            return Center(
+              child: Text("empty_cart".tr(context)),
             );
           } else {
             return ListView.separated(
@@ -70,7 +70,7 @@ class _CartScreenState extends State<CartScreen1> {
                   });
                 },
               ),
-              separatorBuilder: (context, index) =>  SizedBox(height: 3.h),
+              separatorBuilder: (context, index) => SizedBox(height: 3.h),
               itemCount: l.length,
             );
           }

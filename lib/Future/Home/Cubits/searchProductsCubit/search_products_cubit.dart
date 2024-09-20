@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/Network.dart';
 import 'package:ecommerce_app_qr/Apis/Urls.dart';
@@ -19,7 +19,7 @@ class SearchProductsCubit extends Cubit<SearchProductsState> {
         "search": productName,
       }).then((value) {
         if (value.statusCode == 200 || value.statusCode == 201) {
-          resault =ProductsModel.fromJson(value.data);
+          resault = ProductsModel.fromJson(value.data);
           emit(SearchProductsSuccessfulState());
         }
       });

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/ExceptionsHandle.dart';
 import 'package:ecommerce_app_qr/Apis/Network.dart';
@@ -18,8 +18,6 @@ class ContactUsCubit extends Cubit<ContactUsState> {
         "email_or_phone": emailOrPhone,
         "message": message,
       }).then((value) {
-       
-
         if (value.statusCode == 200 || value.statusCode == 201) {
           emit(ContactUsSuccessfulState());
         }
@@ -59,8 +57,9 @@ class ContactUsCubit extends Cubit<ContactUsState> {
       }
     }
   }
-//status = 0 employee 
-//status = 1 public 
+
+//status = 0 employee
+//status = 1 public
   void employeeComplaiment(
       String causeProblem, String employeeName, int status) async {
     emit(ContactUsLoadingState());
@@ -70,8 +69,6 @@ class ContactUsCubit extends Cubit<ContactUsState> {
         "employee_name": employeeName,
         "status": status,
       }).then((value) {
-      
-
         if (value.statusCode == 200 || value.statusCode == 201) {
           emit(ContactUsSuccessfulState());
         }

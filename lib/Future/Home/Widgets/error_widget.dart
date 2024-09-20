@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -13,11 +14,11 @@ class MyErrorWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(msg),
+            Text(msg.tr(context) == "" ? msg : msg.tr(context)),
             TextButton(
                 onPressed: onPressed,
                 child: Text(
-                  'Try Again',
+                  'try_again'.tr(context),
                   style: TextStyle(color: Colors.black, fontSize: 12.sp),
                 ))
           ]),

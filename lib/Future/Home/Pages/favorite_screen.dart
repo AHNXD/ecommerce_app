@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -16,11 +17,11 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const BackWidget(
+        title: BackWidget(
           canPop: true,
           hasBackButton: false,
           hasStyle: true,
-          text: "Favorite Screen",
+          text: "fav_screen_title".tr(context),
           iconColor: Colors.white,
           textColor: Colors.black,
         ),
@@ -41,9 +42,9 @@ class FavoriteScreen extends StatelessWidget {
                 });
           } else {
             if (getFavoriteProduct(context).isEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
-                  "You Don't Have Any Product in The Favorite",
+                  "fav_body_msg".tr(context),
                 ),
               );
             }
