@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:ecommerce_app_qr/main.dart';
 
 import '/Utils/colors.dart';
@@ -34,7 +35,7 @@ class AppBarWidget extends StatelessWidget {
                 style: TextStyle(color: Colors.black38, fontSize: 9.sp),
               ),
               Text(
-                "Store Name",
+                companyName,
                 style: TextStyle(
                     color: AppColors.textTitleAppBarColor,
                     fontWeight: FontWeight.bold,

@@ -6,7 +6,8 @@ class LogoCircleAvatarWidget extends StatelessWidget {
   const LogoCircleAvatarWidget({
     super.key,
     required this.top,
-    required this.bottom, required this.radius,
+    required this.bottom,
+    required this.radius,
   });
   final double top;
   final double bottom;
