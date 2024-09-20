@@ -15,12 +15,6 @@ class AppSharedPreferences {
 
   //lang
 
-    static String get getLang => sharedPreferencesProvider!.read('language')??"en" ;
-  static saveLang(String value) =>
-      sharedPreferencesProvider!.save('language', value);
-  static bool get hasLang => sharedPreferencesProvider!.contains('language');
-  static removeLang() => sharedPreferencesProvider!.remove('language');
-
   // preference
 
   //theme

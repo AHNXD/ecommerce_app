@@ -28,7 +28,6 @@ void main() async {
   AppSharedPreferences.saveToken(
       "81|SCfJ2b1Mc8GlNjlzVRIrxslefGOuDGRnMEX0vwKl6b57a960");
   debugPrint("token is ${AppSharedPreferences.getToken}");
-  debugPrint("lang  is : ${AppSharedPreferences.getLang}");
 
   runApp(const MyApp());
 }
