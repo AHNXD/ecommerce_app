@@ -1,7 +1,7 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
-import 'package:ecommerce_app_qr/Future/cubit/locale_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

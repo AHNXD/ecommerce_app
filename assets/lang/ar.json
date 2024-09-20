@@ -1,6 +1,13 @@
 {
-    "hello_msg" : "مرحبا",
-    "home_title" : "الرئيسية",
-    "settings" : "الاعدادات",
-    "done" : "تم"
+    "hello_msg" : "مرحبا بك في",
+    "categoris" : "الأصناف",
+    "offers" : "العروض",
+    "latest_products" : "اخر المنتجات",
+    "contact_us": "اتصل بنا",
+    "about_us": "حول الشركة",
+    "sell_product" : "بيع منتج",
+    "logIn" : "تسجيل دخول",
+    "logOut" : "تسجيل خروج",
+    "signUp" : "انشاء حساب",
+    "language" : "اللغة"
 }

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:ecommerce_app_qr/main.dart';
 
@@ -31,7 +32,7 @@ class AppBarWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Welcome To",
+                "hello_msg".tr(context),
                 style: TextStyle(color: Colors.black38, fontSize: 9.sp),
               ),
               Text(

@@ -1,10 +1,14 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
+import 'package:ecommerce_app_qr/Utils/services/save.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Pages/contact_us_screen.dart';
@@ -30,7 +34,7 @@ class DrawerWidget extends StatelessWidget {
                 height: 2.h,
               ),
               MyButtonWidget(
-                  text: "Contact Us",
+                  text: "contact_us".tr(context),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ContactUsScreen()));
@@ -39,7 +43,7 @@ class DrawerWidget extends StatelessWidget {
                   horizontalWidth: 2.w,
                   color: AppColors.buttonCategoryColor),
               MyButtonWidget(
-                  text: "About Us",
+                  text: "about_us".tr(context),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const AboutUsScreen()));
@@ -48,7 +52,7 @@ class DrawerWidget extends StatelessWidget {
                   horizontalWidth: 2.w,
                   color: AppColors.buttonCategoryColor),
               MyButtonWidget(
-                  text: "Sell Product",
+                  text: "sell_product".tr(context),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const SellProdact()));
@@ -61,13 +65,13 @@ class DrawerWidget extends StatelessWidget {
                   ? Column(
                       children: [
                         MyButtonWidget(
-                            text: "LogIn",
+                            text: "logIn".tr(context),
                             onPressed: () {},
                             verticalHieght: 1.h,
                             horizontalWidth: 2.w,
                             color: AppColors.offersContainerColor),
                         MyButtonWidget(
-                            text: "SignUp",
+                            text: "signUp".tr(context),
                             onPressed: () {},
                             verticalHieght: 1.h,
                             horizontalWidth: 2.w,
@@ -75,14 +79,20 @@ class DrawerWidget extends StatelessWidget {
                       ],
                     )
                   : MyButtonWidget(
-                      text: "Log Out",
+                      text: "logOut".tr(context),
                       onPressed: () {},
                       verticalHieght: 1.h,
                       horizontalWidth: 2.w,
                       color: AppColors.textTitleAppBarColor),
               MyButtonWidget(
-                  text: "Language",
-                  onPressed: () {},
+                  text: "language".tr(context),
+                  onPressed: () async {
+                    String langCode =
+                        await SaveService.retrieve("LOCALE") ?? "en";
+                    context
+                        .read<LocaleCubit>()
+                        .changeLanguage(langCode == "en" ? "ar" : "en");
+                  },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
                   color: AppColors.textTitleAppBarColor),

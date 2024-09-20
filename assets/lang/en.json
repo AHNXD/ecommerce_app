@@ -1,6 +1,13 @@
 {
-    "hello_msg" : "Hello",
-    "home_title" : "Home",
-    "settings" : "Settings",
-    "done" : "Done"
+    "hello_msg" : "Welcome to",
+    "categoris" : "Categoris",
+    "offers" : "Offers",
+    "latest_products" : "Latest Products",
+    "contact_us": "Contatc Us",
+    "about_us": "About Us",
+    "sell_product" : "Sell Product",
+    "logIn" : "Log In",
+    "logOut" : "Log Out",
+    "signUp" : "Sign Up",
+    "language" : "Language"
 }

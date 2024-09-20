@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 
 import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import '../Cubits/getCatigories/get_catigories_cubit.dart';
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           // Padding(
           //   padding: const EdgeInsets.all(8.0),
           //   child: Text(
-          //     AppSharedPreferences.getLang == "en" ? "Offers" : "العروض",
+          //     "offers".tr(context),
           //     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30,color: AppColors.textTitleAppBarColor),
           //   ),
           // ),
@@ -62,7 +63,7 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              AppSharedPreferences.getLang == "en" ? "Categories" : "الأصناف",
+              "categoris".tr(context),
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
@@ -76,9 +77,7 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              AppSharedPreferences.getLang == "en"
-                  ? "Latest Products"
-                  : "اخر المنتجات",
+              "latest_products".tr(context),
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
