@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Apis/Urls.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/size_selector.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -201,6 +202,10 @@ class _DetailPageState extends State<DetailPage> {
                     style: const TextStyle(fontSize: 16, color: Colors.black54),
                   ),
                   // For add to cart button
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  SizeSelector(category: widget.product.category!.name!),
                   const SizedBox(
                     height: 25,
                   ),
