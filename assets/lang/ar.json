@@ -10,5 +10,12 @@
     "logOut" : "تسجيل خروج",
     "signUp" : "انشاء حساب",
     "language" : "اللغة",
-    "see_all" : "عرض الكل"
+    "see_all" : "عرض الكل",
+    "server_not_responding": "السيرفر لا يستجيب",
+    "request_timeout": "انتهى وقت الانتظار , يرجى إعادة المحاولة لاحقا",
+    "server_error": "خطأ في السيرفر",
+    "request_canceled": "الغاء الطلب",
+    "no_internet": "تحقق من وجود الانترنت",
+    "unknown_error": "حدث خطأ ما",
+    "try_again" : "اعد المحاولة"
 }

@@ -10,5 +10,12 @@
     "logOut" : "Log Out",
     "signUp" : "Sign Up",
     "language" : "Language",
-    "see_all":"See All"
+    "see_all":"See All",
+    "server_not_responding": "Server not responding",
+    "request_timeout": "Request timeout, please try again later",
+    "server_error": "Server error",
+    "request_canceled": "Request canceled",
+    "no_internet": "No internet connection",
+    "unknown_error": "Unknown error",
+    "try_again" : "Try Again"
 }
