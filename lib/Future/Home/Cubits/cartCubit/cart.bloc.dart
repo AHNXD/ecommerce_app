@@ -9,17 +9,16 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(EmptyCartState());
   List<MainProduct> pcw = <MainProduct>[];
   void addToCart(MainProduct p) {
-    for (var element in pcw) {
-      if (p == element) {
-        continue;
-      }
+    if (pcw.any((element) => element.id == p.id)) {
+      emit(AlreadyInCartState());
+    } else {
+      pcw.add(p);
+      emit(AddToCartState());
     }
-    pcw.add(p);
-    emit(AddToCartState());
   }
 
   void removeformTheCart(MainProduct p) {
     pcw.remove(p);
-    emit(AddToCartState());
+    emit(RemvoeFromCartState());
   }
 }
