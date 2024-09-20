@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 },
                 icon: const Icon(Icons.arrow_back_ios_new))
           ],
-          title: const Text("Order Details"),
+          title: Text("orderDetails_screen_title".tr(context)),
         ),
         body: Center(
           child: Column(

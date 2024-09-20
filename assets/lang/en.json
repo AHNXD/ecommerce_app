@@ -17,5 +17,11 @@
     "request_canceled": "Request canceled",
     "no_internet": "No internet connection",
     "unknown_error": "Unknown error",
-    "try_again" : "Try Again"
+    "try_again" : "Try Again",
+    "empty_cart": "Empty Cart, Please Add product to Cart",
+    "cart_screen_title" : "My Cart",
+    "myOrders_screen_title" : "My Order",
+    "orderDetails_screen_title" : "Order Details",
+    "fav_screen_title" : "Favorites",
+    "fav_body_msg" : "There is no product in Favorites, add product to favorites"
 }

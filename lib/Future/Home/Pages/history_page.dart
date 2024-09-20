@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/historyScreen/historyOrderCard.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -129,7 +130,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("My Orders")),
+      appBar: AppBar(title:  Text("myOrders_screen_title".tr(context)),),
       body: ListView.builder(
         itemCount: myOrders.length,
         itemBuilder: (BuildContext context, int index) {
