@@ -9,5 +9,6 @@
     "logIn" : "Log In",
     "logOut" : "Log Out",
     "signUp" : "Sign Up",
-    "language" : "Language"
+    "language" : "Language",
+    "see_all":"See All"
 }

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/product_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -26,7 +27,7 @@ class TitleCardWidget extends StatelessWidget {
           ),
           TextButton(
               child: Text(
-                "See All",
+                "see_all".tr(context),
                 style: TextStyle(
                     color: AppColors.seeAllTextButtonColor, fontSize: 12.sp),
               ),
