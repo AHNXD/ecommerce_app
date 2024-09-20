@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/favorite_model.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
@@ -22,7 +22,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       await Network.getData(url: Urls.getProductsFavorite).then((response) {
         if (response.statusCode == 200 || response.statusCode == 201) {
           fvModel = FavoriteModel.fromJson(response.data);
-          if(!isApi) {
+          if (!isApi) {
             getFavorite(scaffoldKey.currentState!.context);
           }
           emit(GetFavoriteProductsSuccessfulState());
