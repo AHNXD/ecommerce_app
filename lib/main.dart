@@ -1,7 +1,10 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
+import 'package:ecommerce_app_qr/Future/cubit/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import '/Apis/Network.dart';
 import '/Future/Auth/cubit/auth_cubit.dart';
 import '/Future/Home/Pages/navbar_screen.dart';
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) => MultiBlocProvider(
         providers: [
+          BlocProvider(create: (context) => LocaleCubit()..getSaveLanguage()),
           BlocProvider(
               create: (_) => GetCatigoriesOffersCubit()..getOffersCatigories()),
           BlocProvider(create: (_) => AuthCubit()),
@@ -56,17 +60,41 @@ class MyApp extends StatelessWidget {
               create: (_) =>
                   PagesScreenCubit()..changedScreen(AppScreen.home, context)),
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme:
-                ColorScheme.fromSeed(seedColor: AppColors.primaryColors),
-            // useMaterial3: true,
-          ),
-          home:
-              //  ProductScreen(clickIndex: 2,)
-              const NavBarPage(),
+        child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
+          builder: (context, state) {
+            return MaterialApp(
+              locale: state.locale,
+              supportedLocales: const [
+                Locale("en"),
+                Locale("ar"),
+              ],
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              localeResolutionCallback: (deviceLocal, supportedLocales) {
+                for (var locale in supportedLocales) {
+                  if (deviceLocal != null &&
+                      deviceLocal.languageCode == locale.languageCode) {
+                    return deviceLocal;
+                  }
+                }
+                return supportedLocales.first;
+              },
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                colorScheme:
+                    ColorScheme.fromSeed(seedColor: AppColors.primaryColors),
+                // useMaterial3: true,
+              ),
+              home:
+                  //  ProductScreen(clickIndex: 2,)
+                  const NavBarPage(),
+            );
+          },
         ),
       ),
     );

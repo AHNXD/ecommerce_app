@@ -1,0 +1,20 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ecommerce_app_qr/Utils/services/save.dart';
+import 'package:flutter/material.dart';
+
+part 'locale_state.dart';
+
+class LocaleCubit extends Cubit<ChangeLocaleState> {
+  LocaleCubit() : super(ChangeLocaleState(locale: const Locale("en")));
+
+  Future<void> getSaveLanguage() async {
+    final String? cachedLanguageCode = await SaveService.retrieve("LOCALE");
+
+    emit(ChangeLocaleState(locale: Locale(cachedLanguageCode ?? "en")));
+  }
+
+  Future<void> changeLanguage(String languageCode) async {
+    await SaveService.save("LOCALE", languageCode);
+    emit(ChangeLocaleState(locale: Locale(languageCode)));
+  }
+}
