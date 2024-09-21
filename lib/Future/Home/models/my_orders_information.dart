@@ -95,7 +95,7 @@ class OrderInformationData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['phone'] = phone;
     data['first_name'] = firstName;
@@ -158,7 +158,7 @@ class Details {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['order_id'] = orderId;
     data['product_id'] = productId;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../Apis/Urls.dart';
 import '../../models/product_model.dart';
 import '../cached_network_image.dart';
 import 'proudact_daitles_cart.dart';

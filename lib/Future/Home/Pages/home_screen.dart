@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               child: Text(
                 message,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
             ),
             duration: const Duration(seconds: 5)),

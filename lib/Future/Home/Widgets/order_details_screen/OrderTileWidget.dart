@@ -1,7 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../Apis/Urls.dart';
