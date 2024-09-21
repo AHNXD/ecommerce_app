@@ -34,7 +34,7 @@ class HistoryScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: myOrders.length,
               itemBuilder: (BuildContext context, int index) {
-                return HistoryCardItem(index: index, order: myOrders[index]);
+                return HistoryCardItem( order: myOrders[index]);
               },
             );
           },

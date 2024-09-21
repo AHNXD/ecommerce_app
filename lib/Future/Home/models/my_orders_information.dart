@@ -131,7 +131,7 @@ class Details {
   int? quantity;
   String? createdAt;
   String? updatedAt;
-  ProductsModel? product;
+  MainProduct? product;
 
   Details({
     this.id,
@@ -153,9 +153,8 @@ class Details {
     quantity = json['quantity'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    product = json['product'] != null
-        ? ProductsModel.fromJson(json['product'])
-        : null;
+    product =
+        json['product'] != null ? MainProduct.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {

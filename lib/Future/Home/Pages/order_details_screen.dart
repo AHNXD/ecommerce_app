@@ -1,4 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/cartScreen1/cart_tile.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/order_details_screen/OrderTileWidget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/my_orders_information.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
@@ -37,32 +39,71 @@ class OrderDetailsScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text(order.phone.toString()),
-            Text(order.email.toString()),
-            Text("${order.country} ${order.city}"),
-            Text(order.address1.toString()),
-            Text(order.address2.toString()),
-            // Text(order.code.toString()),
-            // Text(order.note.toString()),
-            // Expanded(
-            //   child: ListView.builder(
-            //     shrinkWrap: true,
-            //     itemCount: order.productId?.length,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       return ListTile(
-            //         leading: CircleAvatar(
-            //           backgroundColor: AppColors.buttonCategoryColor,
-            //           child: Text(order.quantity![index].toString()),
-            //         ),
-            //         title: Text(
-            //             "Product Name: ${order.productId![index].toString()}"),
-            //       );
-            //     },
-            //   ),
-            // ),
+            OrderInfoTextWidget(
+              title: "phone_number".tr(context),
+              body: order.phone?.toString() ?? "",
+            ),
+            OrderInfoTextWidget(
+              title: "email".tr(context),
+              body: order.email?.toString() ?? "",
+            ),
+            OrderInfoTextWidget(
+              title: "location".tr(context),
+              body:
+                  "${order.country?.toString() ?? ""},${order.city?.toString() ?? ""}",
+            ),
+            OrderInfoTextWidget(
+              title: "add1".tr(context),
+              body: order.address1?.toString() ?? "",
+            ),
+            OrderInfoTextWidget(
+              title: "add2".tr(context),
+              body: order.address2?.toString() ?? "",
+            ),
+            OrderInfoTextWidget(
+              title: "order_status".tr(context),
+              body: order.status?.toString() ?? "",
+            ),
+            OrderInfoTextWidget(
+              title: "order_total_status".tr(context),
+              body: order.total?.toString() ?? "",
+            ),
+            OrderInfoTextWidget(
+              title: "order_notes".tr(context),
+              body: order.notes?.toString() ?? "",
+            ),
+            const Divider(
+              color: AppColors.primaryColors,
+            ),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: order.details?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  return OrderTileWidget(
+                      product: order.details![index].product!);
+                },
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class OrderInfoTextWidget extends StatelessWidget {
+  const OrderInfoTextWidget(
+      {super.key, required this.title, required this.body});
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+          children: [Text("$title:"), const SizedBox(width: 8), Text(body)]),
     );
   }
 }

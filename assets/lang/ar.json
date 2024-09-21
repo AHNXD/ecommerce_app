@@ -46,5 +46,13 @@
     "sp" : "ل.س",
     "product_detail_screen_title" : "تفاصيل المنتج",
     "add_product_done" : "تم اضافة المنتج الى السلة",
-    "product_in_cart" : "المنتح موجود قي السلة"
+    "product_in_cart" : "المنتح موجود قي السلة",
+    "email": "البريد الإلكتروني", 
+    "location": "الموقع", 
+    "add1": "العنوان 1", 
+    "add2": "العنوان 2 (اختياري)", 
+    "order_status": "حالة الطلب", 
+    "order_total_status": "إجمالي السعر", 
+    "order_notes": "ملاحظات" ,
+    "order_date" : "تاريخ الطلب"
 }
