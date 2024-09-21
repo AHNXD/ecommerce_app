@@ -36,7 +36,7 @@ class MainProduct {
   int? newSellingPrice;
   int? quantity;
   String? descrption;
-  int userQuantity = 0;
+  int userQuantity = 1;
   bool isFavorite = false;
   List<Files>? files;
   WeightMeasurement? weightMeasurement;

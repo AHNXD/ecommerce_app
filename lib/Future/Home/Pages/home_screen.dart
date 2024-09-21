@@ -1,4 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/cartCubit/cart.bloc.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
@@ -22,77 +23,107 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
+        String message, Color color) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            content: Container(
+              padding: EdgeInsets.symmetric(vertical: 1.h),
+              decoration: BoxDecoration(
+                  color: color, borderRadius: BorderRadius.circular(2.w)),
+              margin: EdgeInsets.symmetric(horizontal: 0.1.w),
+              child: Text(
+                message,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            duration: const Duration(seconds: 5)),
+      );
+    }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 11.h),
         child: const AppBarWidget(),
       ),
       backgroundColor: AppColors.backgroundColor,
-      body: ListView(
-        shrinkWrap: true,
-        controller: controller,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "offers".tr(context),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: AppColors.textTitleAppBarColor),
+      body: BlocListener<CartCubit, CartState>(
+        listener: (context, state) {
+          if (state is AddToCartState) {
+            showMessage('add_product_done'.tr(context), Colors.green);
+          } else if (state is AlreadyInCartState) {
+            showMessage('product_in_cart'.tr(context), Colors.grey);
+          }
+        },
+        child: ListView(
+          shrinkWrap: true,
+          controller: controller,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "offers".tr(context),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: AppColors.textTitleAppBarColor),
+              ),
             ),
-          ),
-          BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
-            builder: (context, state) {
-              final model = context.read<GetCatigoriesOffersCubit>();
-              if (state is GetCatigoriesOffersLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator(),
+            BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
+              builder: (context, state) {
+                final model = context.read<GetCatigoriesOffersCubit>();
+                if (state is GetCatigoriesOffersLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is GetCatigoriesOffersErrorState) {
+                  return MyErrorWidget(
+                    msg: state.msg,
+                    onPressed: () {
+                      model.getOffersCatigories();
+                    },
+                  );
+                }
+                return CarouselSliderWidget(
+                  list: offersList(model.offersCatigoriesModel!.data!),
+                  height: 15.h,
                 );
-              } else if (state is GetCatigoriesOffersErrorState) {
-                return MyErrorWidget(
-                  msg: state.msg,
-                  onPressed: () {
-                    model.getOffersCatigories();
-                  },
-                );
-              }
-              return CarouselSliderWidget(
-                list: offersList(model.offersCatigoriesModel!.data!),
-                height: 15.h,
-              );
-            },
-          ),
-          SizedBox(height: 1.h),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "categoris".tr(context),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: AppColors.textTitleAppBarColor),
+              },
             ),
-          ),
-          SizedBox(
-            height: 8.h,
-            child: const HomePageCategoriesButtonWidget(),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "latest_products".tr(context),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: AppColors.textTitleAppBarColor),
+            SizedBox(height: 1.h),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "categoris".tr(context),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: AppColors.textTitleAppBarColor),
+              ),
             ),
-          ),
-          LastestProductAndTitle(controller: controller),
-          SizedBox(
-            height: 2.h,
-          )
-        ],
+            SizedBox(
+              height: 8.h,
+              child: const HomePageCategoriesButtonWidget(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "latest_products".tr(context),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: AppColors.textTitleAppBarColor),
+              ),
+            ),
+            LastestProductAndTitle(controller: controller),
+            SizedBox(
+              height: 2.h,
+            )
+          ],
+        ),
       ),
     );
   }
