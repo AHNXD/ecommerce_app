@@ -1,6 +1,8 @@
+import 'package:ecommerce_app_qr/Future/Home/Pages/order_details_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/product_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 
 import 'package:flutter/material.dart';
@@ -64,7 +66,7 @@ class _CategoriesButtonWidgetState
                   });
                 },
                 child: Text(
-                  index == 0 ? "All" : model[index - 1].name!,
+                  index == 0 ? "all".tr(context) : model[index - 1].name!,
                   style: TextStyle(
                       color: index == 0 ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold),

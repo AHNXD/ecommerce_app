@@ -1,10 +1,16 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:ecommerce_app_qr/Utils/services/save.dart';
 import 'package:flutter/material.dart';
@@ -89,9 +95,18 @@ class DrawerWidget extends StatelessWidget {
                   onPressed: () async {
                     String langCode =
                         await SaveService.retrieve("LOCALE") ?? "en";
+                    lang = langCode == "en" ? "ar" : "en";
+                    context.read<LocaleCubit>().changeLanguage(lang);
+                    context.read<GetCatigoriesCubit>().getCatigories();
                     context
-                        .read<LocaleCubit>()
-                        .changeLanguage(langCode == "en" ? "ar" : "en");
+                        .read<GetCatigoriesOffersCubit>()
+                        .getOffersCatigories();
+                    context.read<GetProductsCubit>().getProducts();
+                    context.read<FavoriteCubit>().getProductsFavorite(false);
+                    context.read<GetMyOrdersCubit>().getMyOrders();
+                    // context
+                    //     .read<PagesScreenCubit>()
+                    //     .changedScreen(AppScreen.home, context);
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,

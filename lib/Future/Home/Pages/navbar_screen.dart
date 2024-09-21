@@ -39,12 +39,12 @@ class _NavBarPageState extends State<NavBarPage> {
         builder: (context, state) {
           return Container(
             clipBehavior: Clip.hardEdge,
-            margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+            margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 1.5.h),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(9.w)),
             child: NavigationBar(
               indicatorColor: Colors.transparent,
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-              backgroundColor: Colors.white,
+              backgroundColor: const Color.fromARGB(255, 224, 245, 252),
               destinations: [
                 NavigationDestination(
                   icon: const Center(

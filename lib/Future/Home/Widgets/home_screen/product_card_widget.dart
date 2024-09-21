@@ -153,7 +153,6 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 },
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
-                  height: 60,
                   width: MediaQuery.of(context).size.width * 0.5,
                   padding: const EdgeInsets.symmetric(vertical: 21),
                   child: Text(

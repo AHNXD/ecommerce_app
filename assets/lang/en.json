@@ -47,5 +47,15 @@
     "product_detail_screen_title" : "Product Details",
     "add_product_done" : "Product Added Successfully",
     "product_in_cart" : "Product already in cart",
-    "total_price" : "Total Price"
+    "total_price" : "Total Price",
+    "email": "Email Address",
+    "location": "Location",
+    "add1": "Address 1",
+    "add2": "Address 2 (optional)",
+    "order_status": "Order Status",
+    "order_total_status": "Total Price",
+    "order_notes": "Notes",
+    "order_date" : "Order Date",
+    "all" : "All"
+
 }

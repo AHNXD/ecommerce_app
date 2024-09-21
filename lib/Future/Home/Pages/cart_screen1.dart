@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Cubits/cartCubit/cart.bloc.dart';
 import '../Widgets/cartScreen1/cart_tile.dart';
 import '../Widgets/cartScreen1/check_out_box.dart';
-import '../Widgets/cartScreen1/constants.dart';
 
 class CartScreen1 extends StatefulWidget {
   const CartScreen1({super.key});

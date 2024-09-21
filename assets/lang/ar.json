@@ -47,5 +47,15 @@
     "product_detail_screen_title" : "تفاصيل المنتج",
     "add_product_done" : "تم اضافة المنتج الى السلة",
     "product_in_cart" : "المنتح موجود قي السلة",
-    "total_price" : "المبلغ الكامل"
+    "total_price" : "المبلغ الكامل",
+    "email": "البريد الإلكتروني", 
+    "location": "الموقع", 
+    "add1": "العنوان 1", 
+    "add2": "العنوان 2 (اختياري)", 
+    "order_status": "حالة الطلب", 
+    "order_total_status": "إجمالي السعر", 
+    "order_notes": "ملاحظات" ,
+    "order_date" : "تاريخ الطلب",
+    "all" : "الكل"
+
 }

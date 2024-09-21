@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HistoryScreen extends StatelessWidget {
-  HistoryScreen({super.key});
+  const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class HistoryScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: myOrders.length,
               itemBuilder: (BuildContext context, int index) {
-                return HistoryCardItem(index: index, order: myOrders[index]);
+                return HistoryCardItem( order: myOrders[index]);
               },
             );
           },

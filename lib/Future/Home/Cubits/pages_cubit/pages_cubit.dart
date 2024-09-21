@@ -35,7 +35,7 @@ class PagesScreenCubit extends Cubit<PageScreenState> {
 
         break;
       case AppScreen.history:
-        currentScreen = HistoryScreen();
+        currentScreen = const HistoryScreen();
         type = AppScreen.history;
 
         break;
