@@ -1,134 +1,77 @@
-import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../Apis/Urls.dart';
+import '../../models/product_model.dart';
 import '../cached_network_image.dart';
-import 'constants.dart';
+import 'proudact_daitles_cart.dart';
+import 'qauntity_button.dart';
 
 class CartTile extends StatelessWidget {
   final MainProduct product;
   final Function() onRemove;
-  final Function() deleteProudct;
+  final Function() deleteProduct;
   final Function() onAdd;
-  const CartTile(
-      {super.key,
-      required this.product,
-      required this.onRemove,
-      required this.onAdd,
-      required this.deleteProudct});
+
+  const CartTile({
+    super.key,
+    required this.product,
+    required this.onRemove,
+    required this.onAdd,
+    required this.deleteProduct,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 1.h),
+      padding: EdgeInsets.all(2.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
           ),
-          padding: const EdgeInsets.all(10),
-          child: Row(
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
             children: [
+              // Product Image
               MyCachedNetworkImage(
                 height: 10.h,
                 width: 30.w,
-                imageUrl: product.files![0].path != null
-                    ? Urls.storageProducts + product.files![0].name!
-                    : product.files![0].name!,
+                imageUrl: '', // Placeholder for the product image
+                // Placeholder for the product image
+                // imageUrl: product.files![0].path != null
+                //     ? Urls.storageProducts + product.files![0].name!
+                //     : product.files![0].name!,
                 // height: 10.h,
               ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name!,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    product.category!.name!,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade400,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "${product.newSellingPrice != null ? product.newSellingPrice : product.sellingPrice} Sp",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(height: 1.h),
+              QauntityButton(
+                  onRemove: onRemove, product: product, onAdd: onAdd),
             ],
           ),
-        ),
-        Positioned(
-          top: 5,
-          right: 5,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              IconButton(
-                onPressed: deleteProudct,
-                icon: const Icon(
-                  Ionicons.trash_outline,
-                  color: Colors.red,
-                  size: 20,
-                ),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: kcontentColor,
-                  border: Border.all(
-                    color: Colors.grey.shade200,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: onRemove,
-                      iconSize: 18,
-                      icon: const Icon(
-                        Ionicons.remove_outline,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      product.userQuantity.toString(),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: onAdd,
-                      iconSize: 18,
-                      icon: const Icon(
-                        Ionicons.add_outline,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          SizedBox(width: 3.w),
+          PrudoctDaitlesCart(product: product),
+          IconButton(
+            onPressed: deleteProduct,
+            icon: const Icon(
+              Ionicons.trash_outline,
+              color: Colors.red,
+              size: 20,
+            ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

@@ -19,9 +19,15 @@ class _SizeSelectorState extends State<SizeSelector> {
     // Sizes for shoes
     List<int> shoeSizes = [39, 40, 41, 42, 44];
 
-    List<dynamic> sizes = widget.category == 'ملابس' ? clothSizes : shoeSizes;
+    List<dynamic> sizes =
+        widget.category == 'ملابس' || widget.category == 'Clothes'
+            ? clothSizes
+            : shoeSizes;
 
-    if (widget.category == 'ملابس' || widget.category == 'أحذية') {
+    if (widget.category == 'ملابس' ||
+        widget.category == 'أحذية' ||
+        widget.category == 'Clothes' ||
+        widget.category == 'Shoes') {
       return Row(
         children: [
           const Text(

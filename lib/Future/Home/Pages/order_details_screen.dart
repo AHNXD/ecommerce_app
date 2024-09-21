@@ -1,8 +1,10 @@
+<<<<<<< HEAD
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/cartScreen1/cart_tile.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/order_details_screen/OrderTileWidget.dart';
+=======
+>>>>>>> d1de878baf39cdb71b96f73310b9001e31035409
 import 'package:ecommerce_app_qr/Future/Home/models/my_orders_information.dart';
-import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';

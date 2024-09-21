@@ -1,5 +1,4 @@
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
-import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:sizer/sizer.dart';
