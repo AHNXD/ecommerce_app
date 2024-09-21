@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
             ),
-            duration: const Duration(seconds: 5)),
+            duration: const Duration(seconds: 3)),
       );
     }
 

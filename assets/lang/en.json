@@ -46,5 +46,6 @@
     "sp" : "SP",
     "product_detail_screen_title" : "Product Details",
     "add_product_done" : "Product Added Successfully",
-    "product_in_cart" : "Product already in cart"
+    "product_in_cart" : "Product already in cart",
+    "total_price" : "Total Price"
 }

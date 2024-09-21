@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/cart_information.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -31,19 +32,34 @@ class CheckOutBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Text(
-                "Total",
-                style: TextStyle(
+              Text(
+                "total_price".tr(context),
+                style: const TextStyle(
+                  color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
-                "\$${items.length > 1 ? items.map((e) => (e.userQuantity * (e.newSellingPrice == null ? e.sellingPrice : e.newSellingPrice)!)).reduce((value1, value2) => value1 + value2) : items[0].userQuantity * (items[0].newSellingPrice == null ? items[0].sellingPrice : items[0].newSellingPrice)!}",
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Text(
+                    "${items.length > 1 ? items.map((e) => (e.userQuantity * (e.newSellingPrice == null ? e.sellingPrice : e.newSellingPrice)!)).reduce((value1, value2) => value1 + value2) : items[0].userQuantity * (items[0].newSellingPrice == null ? items[0].sellingPrice : items[0].newSellingPrice)!}",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'sp'.tr(context),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               )
             ],
           ),
