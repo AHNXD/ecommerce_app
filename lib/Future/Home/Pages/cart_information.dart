@@ -1,4 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:restart_app/restart_app.dart';
 import '/Future/Auth/Widgets/my_button_widget.dart';
 import '/Future/Auth/Widgets/phone_field_widget.dart';
@@ -99,10 +100,22 @@ class _CartInformationState extends State<CartInformation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: AppColors.primaryColors,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(
+          "confirm_orders".tr(context),
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
       body: BlocConsumer<PostOrdersCubit, PostOrdersState>(
         listener: (context, state) {
           if (state is PostOrdersSuccessfulState) {
-            showSuccessSnackBar(message: "The Order Was Send Successfully");
+            showSuccessSnackBar(
+                message: "The_Order_Was_Send_Successfully".tr(context));
             Future.delayed(const Duration(seconds: 4)).then((onValue) {
               // context.read<CartCubit>().pcw = [];
               // context
@@ -134,8 +147,11 @@ class _CartInformationState extends State<CartInformation> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.h),
                   child: Text(
-                    "Please Enter Your Information to Check Order",
-                    style: TextStyle(fontSize: 12.sp, color: Colors.black),
+                    "please_enter_your_information_to_check_order".tr(context),
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
                 Padding(
@@ -147,50 +163,50 @@ class _CartInformationState extends State<CartInformation> {
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
-                            text: "First Name",
+                            text: "FN_info".tr(context),
                             isPassword: false,
                             controller: firstNameController),
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
-                            text: "last Name",
+                            text: "LN_info".tr(context),
                             isPassword: false,
                             controller: lastNameController),
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.email),
-                            text: "Email",
+                            text: "email".tr(context),
                             isPassword: false,
                             controller: emailController),
                         PhoneFieldWidget(controller: phoneController),
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
-                            text: "Address 1",
+                            text: "add1".tr(context),
                             isPassword: false,
                             controller: address1Controller),
                         TextFieldWidget(
-                            text: "Address 2",
+                            text: "add2".tr(context),
                             isPassword: false,
                             controller: address2Controller),
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
-                            text: "Country",
+                            text: "country".tr(context),
                             isPassword: false,
                             controller: countryController),
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
-                            text: "City",
+                            text: "city".tr(context),
                             isPassword: false,
                             controller: cityController),
                         TextFieldWidget(
-                            text: "Note",
+                            text: "note".tr(context),
                             isPassword: false,
                             controller: noteController),
                         MyButtonWidget(
-                            text: "Send Order",
+                            text: "send_order".tr(context),
                             onPressed: () async {
                               if (key1.currentState!.validate()) {
                                 showAwesomeDialogForAskCode(

@@ -56,6 +56,15 @@
     "order_total_status": "Total Price",
     "order_notes": "Notes",
     "order_date" : "Order Date",
-    "all" : "All"
+    "all" : "All",
+    "check_out" : "Check Out",
+    "the_order_was_send_successfully" : "The Order Was Send Successfully",
+    "please_enter_your_information_to_check_order": "Please Enter Your Information to Check Order",
+    "send_order":"Send Order",
+    "note" : "Note",
+    "city" : "City",
+    "country" : "Country",
+    "confirm_orders" : "Confirm orders"
+
 
 }

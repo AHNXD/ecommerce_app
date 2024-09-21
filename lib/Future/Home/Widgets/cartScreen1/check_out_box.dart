@@ -74,9 +74,9 @@ class CheckOutBox extends StatelessWidget {
               backgroundColor: AppColors.buttonCategoryColor,
               minimumSize: const Size(double.infinity, 55),
             ),
-            child: const Text(
-              "Check out",
-              style: TextStyle(
+            child: Text(
+              "check_out".tr(context),
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

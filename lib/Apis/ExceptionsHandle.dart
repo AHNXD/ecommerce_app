@@ -30,10 +30,16 @@ String exceptionsHandle({required DioException error}) {
 
       return message;
     case DioExceptionType.unknown:
-      error.message!.contains('SocketException')
-          ? message = "no_internet"
-          : message = error.message!;
-
+      // error.message!.contains('SocketException')
+      //     ? message = "no_internet"
+      //     : message = error.message!;
+      if (error.message != null) {
+        error.message!.contains('SocketException')
+            ? message = "no_internet"
+            : message = error.message!;
+      } else {
+        message = "unknown_error";
+      }
       return message;
     case DioExceptionType.badCertificate:
       message = 'unknown_error';
