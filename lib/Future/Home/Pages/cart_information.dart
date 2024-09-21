@@ -15,7 +15,6 @@ import 'package:sizer/sizer.dart';
 import '../../../Utils/app_lottie_assets_manager.dart';
 import '../../../Utils/functions.dart';
 import '../Cubits/postOrders/post_orders_cubit.dart';
-import '../models/my_orders_information.dart';
 
 class CartInformation extends StatefulWidget {
   const CartInformation({super.key});
@@ -116,7 +115,7 @@ class _CartInformationState extends State<CartInformation> {
               //     return const NavBarPage();
               //   }),
               //   (route) => false,
-              
+
               // );
               Restart.restartApp();
             });

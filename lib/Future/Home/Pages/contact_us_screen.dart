@@ -3,7 +3,6 @@ import 'package:ecommerce_app_qr/Future/Auth/Widgets/text_field_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
-import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

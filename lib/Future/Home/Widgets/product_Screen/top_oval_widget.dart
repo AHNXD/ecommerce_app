@@ -2,7 +2,6 @@ import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dar
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/categories_button_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
-import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
