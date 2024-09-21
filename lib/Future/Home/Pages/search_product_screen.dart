@@ -1,4 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/enums.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:ecommerce_app_qr/Utils/validation.dart';
@@ -40,7 +41,7 @@ class SearchProductScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         title: Text(
-          "Search Product",
+          "search_product_screen_title".tr(context),
           style: TextStyle(
               color: AppColors.textTitleAppBarColor,
               fontWeight: FontWeight.bold,
@@ -57,7 +58,7 @@ class SearchProductScreen extends StatelessWidget {
               validator: (s) => validation(s, ValidationState.normal),
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
-                  hintText: "Search Products",
+                  hintText: "search_product_hint".tr(context),
                   hintStyle: const TextStyle(
                     color: Colors.black54,
                   ),
@@ -87,8 +88,8 @@ class SearchProductScreen extends StatelessWidget {
             child: BlocBuilder<SearchProductsCubit, SearchProductsState>(
                 builder: (context, state) {
               if (state is SearchProductsInitial) {
-                return const Center(
-                  child: Text("search to any product to show resault..."),
+                return  Center(
+                  child: Text("search_product_screen_body".tr(context)),
                 );
               }
               if (state is SearchProductsLoadingState) {

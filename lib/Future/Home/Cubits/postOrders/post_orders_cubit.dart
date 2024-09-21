@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/ExceptionsHandle.dart';
@@ -5,7 +6,6 @@ import 'package:ecommerce_app_qr/Apis/Network.dart';
 import 'package:ecommerce_app_qr/Apis/Urls.dart';
 import 'package:meta/meta.dart';
 
-import '../../models/order_information.dart';
 
 part 'post_orders_state.dart';
 

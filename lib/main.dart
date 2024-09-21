@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (_) => FavoriteCubit()..getProductsFavorite(false)),
           BlocProvider(create: (_) => RangeSliderCubit()),
+          BlocProvider(create: (_) => GetMyOrdersCubit()..getMyOrders()),
           BlocProvider(create: (_) => CartCubit()),
           BlocProvider(create: (_) => CompairProductsCubit()),
           BlocProvider(create: (_) => SearchProductsCubit()),
@@ -83,7 +85,7 @@ class MyApp extends StatelessWidget {
                 return supportedLocales.first;
               },
               debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
+              title: 'E-Commerce',
               theme: ThemeData(
                 fontFamily: "cocon-next-arabic",
                 colorScheme:

@@ -1,5 +1,5 @@
- import 'package:restart_app/restart_app.dart';
-
+import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
+import 'package:restart_app/restart_app.dart';
 import '/Future/Auth/Widgets/my_button_widget.dart';
 import '/Future/Auth/Widgets/phone_field_widget.dart';
 import '/Future/Auth/Widgets/text_field_widget.dart';
@@ -15,7 +15,7 @@ import 'package:sizer/sizer.dart';
 import '../../../Utils/app_lottie_assets_manager.dart';
 import '../../../Utils/functions.dart';
 import '../Cubits/postOrders/post_orders_cubit.dart';
-import '../models/order_information.dart';
+import '../models/my_orders_information.dart';
 
 class CartInformation extends StatefulWidget {
   const CartInformation({super.key});

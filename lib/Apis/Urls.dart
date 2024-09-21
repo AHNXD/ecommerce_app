@@ -33,6 +33,6 @@ class Urls {
   static const String contactUs = "${baseUrl}store/contact";
   static const String logout = "${baseUrl}logout";
   static const String minMax = "${baseUrl}min_max";
-
+  static const String getMyOrders = "${baseUrl}my_orders";
   static const String changePassword = "${baseUrl}change-password";
 }
