@@ -5,7 +5,8 @@ import 'package:sizer/sizer.dart';
 import '../../../../Apis/Urls.dart';
 import '../../models/product_model.dart';
 import '../cached_network_image.dart';
-import 'constants.dart';
+import 'proudact_daitles_cart.dart';
+import 'qauntity_button.dart';
 
 class CartTile extends StatelessWidget {
   final MainProduct product;
@@ -55,78 +56,12 @@ class CartTile extends StatelessWidget {
                 // height: 10.h,
               ),
               SizedBox(height: 1.h),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: kcontentColor,
-                  border: Border.all(
-                    color: Colors.grey.shade200,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: onRemove,
-                      iconSize: 18,
-                      icon: const Icon(
-                        Ionicons.remove_outline,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      product.userQuantity.toString(),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: onAdd,
-                      iconSize: 18,
-                      icon: const Icon(
-                        Ionicons.add_outline,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              QauntityButton(
+                  onRemove: onRemove, product: product, onAdd: onAdd),
             ],
           ),
           SizedBox(width: 3.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product.name!,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 1.h),
-                Text(
-                  product.category!.name!,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Colors.grey.shade600,
-                  ),
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  "${product.newSellingPrice != null ? product.newSellingPrice : product.sellingPrice} Sp",
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          PrudoctDaitlesCart(product: product),
           IconButton(
             onPressed: deleteProduct,
             icon: const Icon(

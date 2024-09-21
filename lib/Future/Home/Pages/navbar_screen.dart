@@ -61,7 +61,8 @@ class _NavBarPageState extends State<NavBarPage> {
                         shape: BoxShape.circle,
                         // gradient: LinearGradient(colors: grediant),
                       ),
-                      child: const Icon(Icons.home_filled)),
+                      child:
+                          const Icon(Icons.home_filled, color: Colors.white)),
                 ),
                 NavigationDestination(
                   icon: const Icon(Icons.shopping_bag_outlined),
@@ -76,7 +77,7 @@ class _NavBarPageState extends State<NavBarPage> {
                       shape: BoxShape.circle,
                       // gradient: LinearGradient(colors: grediant),
                     ),
-                    child: const Icon(Icons.shopping_bag),
+                    child: const Icon(Icons.shopping_bag, color: Colors.white),
                   ),
                 ),
                 NavigationDestination(
@@ -92,7 +93,7 @@ class _NavBarPageState extends State<NavBarPage> {
                       shape: BoxShape.circle,
                       // gradient: LinearGradient(colors: grediant),
                     ),
-                    child: const Icon(Icons.history),
+                    child: const Icon(Icons.history, color: Colors.white),
                   ),
                 ),
                 NavigationDestination(
@@ -110,7 +111,10 @@ class _NavBarPageState extends State<NavBarPage> {
                         shape: BoxShape.circle,
                         // gradient: LinearGradient(colors: grediant),
                       ),
-                      child: const Icon(Icons.favorite),
+                      child: const Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
                     )),
               ],
               selectedIndex: state is PageScreenInitialState
