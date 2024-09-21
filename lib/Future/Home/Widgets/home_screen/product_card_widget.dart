@@ -1,3 +1,5 @@
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+
 import '../../Cubits/cartCubit/cart.bloc.dart';
 import '/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import '/Apis/Urls.dart';
@@ -110,7 +112,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   Padding(
                     padding: EdgeInsets.only(right: 17.w, top: 2.h, left: 4.w),
                     child: Text(
-                      "${widget.product.newSellingPrice} Sp",
+                      "${widget.product.newSellingPrice} ${"sp".tr(context)}",
                       style: TextStyle(
                           color: AppColors.textButtonColors,
                           fontSize: 10.sp,
@@ -121,7 +123,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                     bottom: 2.h,
                     left: 18.w,
                     child: Text(
-                      "${widget.product.sellingPrice} Sp",
+                      "${widget.product.sellingPrice} ${"sp".tr(context)}",
                       style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: AppColors.textButtonColors,
@@ -133,7 +135,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
               )
             else
               Text(
-                "${widget.product.sellingPrice} Sp",
+                "${widget.product.sellingPrice} ${"sp".tr(context)}",
                 style: TextStyle(
                     color: AppColors.textButtonColors,
                     fontSize: 10.sp,
@@ -154,10 +156,10 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   height: 60,
                   width: MediaQuery.of(context).size.width * 0.5,
                   padding: const EdgeInsets.symmetric(vertical: 21),
-                  child: const Text(
-                    "Add to Cart",
+                  child: Text(
+                    "add_to_cart".tr(context),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,

@@ -1,3 +1,5 @@
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:sizer/sizer.dart';
@@ -35,23 +37,23 @@ class SellProductForm extends StatelessWidget {
           children: [
             TextFieldWidget(
                 validatorFun: (p0) => validation(p0, ValidationState.normal),
-                text: "First Name",
+                text: "FN_info".tr(context),
                 isPassword: false,
                 controller: firstNameController),
             TextFieldWidget(
                 validatorFun: (p0) => validation(p0, ValidationState.normal),
-                text: "last Name",
+                text: "LN_info".tr(context),
                 isPassword: false,
                 controller: lastNameController),
             PhoneFieldWidget(controller: phoneController),
             TextFieldWidget(
                 validatorFun: (p0) => validation(p0, ValidationState.normal),
-                text: "Product  price",
+                text: "price_info".tr(context),
                 isPassword: false,
                 controller: priceController),
             TextFieldWidget(
               validatorFun: (p0) => validation(p0, ValidationState.normal),
-              text: "Product  Description",
+              text: "description_info".tr(context),
               isPassword: false,
               controller: descriptionController,
               maxLine: 3,

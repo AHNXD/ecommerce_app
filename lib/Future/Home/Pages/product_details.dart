@@ -2,6 +2,7 @@ import 'package:ecommerce_app_qr/Apis/Urls.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/size_selector.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,9 +57,9 @@ class _DetailPageState extends State<DetailPage> {
       child: BlocListener<CartCubit, CartState>(
         listener: (context, state) {
           if (state is AddToCartState) {
-            showMessage('Product Added Successfuly to Cart', Colors.green);
+            showMessage('add_product_done'.tr(context), Colors.green);
           } else if (state is AlreadyInCartState) {
-            showMessage('Product Aready in the Cart', Colors.grey);
+            showMessage('product_in_cart'.tr(context), Colors.grey);
           }
         },
         child: Scaffold(
@@ -98,7 +99,7 @@ class _DetailPageState extends State<DetailPage> {
                               // For price
                               Center(
                                 child: Text(
-                                  '${widget.product.newSellingPrice != null ? widget.product.newSellingPrice : widget.product.sellingPrice} Sp',
+                                  '${widget.product.newSellingPrice != null ? widget.product.newSellingPrice : widget.product.sellingPrice} ${"sp".tr(context)}',
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 24,
@@ -255,10 +256,10 @@ class _DetailPageState extends State<DetailPage> {
                           height: 65,
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(vertical: 21),
-                          child: const Text(
-                            "Add to Cart",
+                          child: Text(
+                            "add_to_cart".tr(context),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -351,9 +352,9 @@ class _DetailPageState extends State<DetailPage> {
           ),
           const Spacer(),
           // For detail food
-          const Text(
-            "Detail Food",
-            style: TextStyle(
+          Text(
+            "product_detail_screen_title".tr(context),
+            style: const TextStyle(
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const Spacer(),

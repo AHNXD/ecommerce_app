@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:phone_form_field/phone_form_field.dart';
@@ -99,14 +100,14 @@ class _SellProdactState extends State<SellProdact> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-        title: const Text('Sell Your Product '),
+        title: Text('sell_product_screen_title'.tr(context)),
       ),
       body: ListView(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.h),
             child: Text(
-              "Please Enter Your Information",
+              "sell_product_hint".tr(context),
               style: TextStyle(fontSize: 12.sp, color: Colors.black),
             ),
           ),
@@ -125,17 +126,17 @@ class _SellProdactState extends State<SellProdact> {
               decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 234, 240, 255),
                   borderRadius: BorderRadius.circular(15)),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'Upload the product image',
-                    style: TextStyle(
+                    'upload_photo_info'.tr(context),
+                    style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                         fontSize: 16),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.file_upload_outlined,
                     size: 27,
                     color: Colors.black,
@@ -153,9 +154,9 @@ class _SellProdactState extends State<SellProdact> {
             height: 75,
             child: TextButton(
               onPressed: submit,
-              child: const Text(
-                'Save',
-                style: TextStyle(
+              child: Text(
+                'send_info'.tr(context),
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                     fontSize: 20),

@@ -17,8 +17,7 @@ class HistoryCardItem extends StatelessWidget {
             color: Color.fromARGB(255, 220, 249, 247)),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (builder) {
+            Navigator.push(context, MaterialPageRoute(builder: (builder) {
               return OrderDetailsScreen(isNotHome: false, order: order);
             }));
           },

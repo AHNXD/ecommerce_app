@@ -1,5 +1,7 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,10 +13,10 @@ class AboutUsScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: AppBar().preferredSize,
-        child: const BackWidget(
+        child: BackWidget(
           canPop: false,
           hasBackButton: false,
-          text: "About Us",
+          text: "about_us".tr(context),
           hasStyle: false,
           iconColor: Colors.black,
           textColor: Colors.black,
@@ -30,7 +32,7 @@ class AboutUsScreen extends StatelessWidget {
             ),
             Center(
               child: Text(
-                "E-commerce App",
+                companyName,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 15.sp,
@@ -47,7 +49,7 @@ class AboutUsScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
               child: Center(
                 child: Text(
-                  'This is a description for any eccomerce app in flutter in the herckel Teach we develop the app android and ios and web (Back-end and fornt-end)',
+                  'development_description'.tr(context),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
@@ -62,10 +64,10 @@ class AboutUsScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: RichText(
                 text: TextSpan(
-                  text: "Phone Number\n",
+                  text: "phone_number".tr(context),
                   children: [
                     TextSpan(
-                      text: "+9639333333333",
+                      text: "\n+9639333333333",
                       style: TextStyle(
                           color: Colors.blueAccent,
                           fontWeight: FontWeight.bold,
@@ -88,14 +90,14 @@ class AboutUsScreen extends StatelessWidget {
                   RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: "Development By\n",
+                        text: "development_by".tr(context),
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 10.sp,
                             fontWeight: FontWeight.bold),
                         children: [
                           TextSpan(
-                              text: "Herckel Teach Comapany",
+                              text: "\nHerckel Teach Comapany",
                               style: TextStyle(
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.bold,

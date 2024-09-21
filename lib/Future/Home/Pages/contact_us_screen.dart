@@ -1,7 +1,9 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/text_field_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -21,7 +23,7 @@ class ContactUsScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColors.primaryColors,
         title: Text(
-          "Contact Us",
+          "contact_us".tr(context),
           style: TextStyle(
               fontSize: 15.sp,
               fontWeight: FontWeight.bold,
@@ -42,18 +44,18 @@ class ContactUsScreen extends StatelessWidget {
                 TextFieldWidget(
                   controller: nameController,
                   isPassword: false,
-                  text: "User Name",
+                  text: "user_name".tr(context),
                 ),
                 TextFieldWidget(
                   controller: phoneNumberController,
                   isPassword: false,
-                  text: "Phone Number",
+                  text: "phone_number".tr(context),
                 ),
                 TextFieldWidget(
                   controller: messageController,
                   maxLine: 5,
                   isPassword: false,
-                  text: "Description",
+                  text: "description".tr(context),
                 ),
               ],
             ),
@@ -61,7 +63,7 @@ class ContactUsScreen extends StatelessWidget {
           MyButtonWidget(
             color: AppColors.buttonCategoryColor,
             verticalHieght: 2.h,
-            text: "Submit",
+            text: "submit".tr(context),
             onPressed: () {},
             horizontalWidth: 8.w,
           )

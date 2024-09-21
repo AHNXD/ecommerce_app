@@ -1,6 +1,8 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/categories_button_widget.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,14 +32,14 @@ class TopOvalWidget extends StatelessWidget {
               hasStyle: false,
               iconColor: Colors.white,
               textColor: Colors.white,
-              text: "Fresh Fruits",
+              text: "products".tr(context),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
               child: TextFormField(
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
-                    hintText: "Search for \"Grocery\" ",
+                    hintText: "search_product_hint".tr(context),
                     hintStyle: const TextStyle(
                       color: Colors.black54,
                     ),
