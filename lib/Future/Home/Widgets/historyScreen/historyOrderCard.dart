@@ -1,11 +1,11 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/order_details_screen.dart';
-import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
+import 'package:ecommerce_app_qr/Future/Home/models/my_orders_information.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class HistoryCardItem extends StatelessWidget {
   const HistoryCardItem({super.key, required this.index, required this.order});
-  final OrderInformation order;
+  final OrderInformationData order;
   final int index;
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,8 @@ class HistoryCardItem extends StatelessWidget {
                 Text("${order.country} ${order.city}"),
                 Text(order.address1.toString()),
                 Text(order.address2.toString()),
-                Text(order.code.toString()),
-                Text(order.note.toString()),
+                // Text(order.code.toString()),
+                // Text(order.note.toString()),
               ],
             ),
           ),
