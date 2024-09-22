@@ -157,6 +157,13 @@ class LastestProductAndTitle extends StatelessWidget {
               return const Center(
                 child: CircularProgressIndicator(),
               );
+            } else if (productState is GetProductsErrorState) {
+              return MyErrorWidget(
+                msg: productState.msg,
+                onPressed: () {
+                  context.read<GetProductsCubit>().getProducts();
+                },
+              );
             } else {
               return ListView.builder(
                 shrinkWrap: true,

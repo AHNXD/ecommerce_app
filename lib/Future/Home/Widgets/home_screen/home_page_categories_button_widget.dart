@@ -1,4 +1,3 @@
-import 'package:ecommerce_app_qr/Future/Home/Pages/order_details_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/product_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
@@ -58,7 +57,8 @@ class _CategoriesButtonWidgetState
                     if (index != 0) {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (builder) {
-                        return ProductScreen(isNotHome: false,
+                        return ProductScreen(
+                          isNotHome: false,
                           cData: model[index - 1],
                         );
                       }));

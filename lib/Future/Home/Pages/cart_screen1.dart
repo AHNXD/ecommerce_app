@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:sizer/sizer.dart';
 import '../../../Utils/colors.dart';
@@ -34,7 +35,6 @@ class _CartScreenState extends State<CartScreen1> {
                   fontWeight: FontWeight.bold, color: AppColors.primaryColors),
             ),
           ),
-          leadingWidth: 60,
         ),
       ),
       bottomSheet: context.read<CartCubit>().pcw.isEmpty
@@ -49,48 +49,67 @@ class _CartScreenState extends State<CartScreen1> {
             return Center(
               child: Text("empty_cart".tr(context)),
             );
-          } else {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: l.length,
-                      itemBuilder: (context, index) => CartTile(
-                        deleteProduct: () {
-                          setState(() {
-                            l[index].userQuantity = 0;
-                            context
-                                .read<CartCubit>()
-                                .removeformTheCart(l[index]);
-                          });
-                        },
-                        product: l[index],
-                        onRemove: () {
-                          if (l[index].userQuantity > 1) {
-                            setState(() {
-                              l[index].userQuantity--;
-                            });
-                          }
-                        },
-                        onAdd: () {
-                          setState(() {
-                            if (l[index].userQuantity < l[index].quantity!) {
-                              l[index].userQuantity++;
-                            }
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+          } else if (state is CartRefreshState) {
+            return CartListViewItem(l: state.loadedporduct);
+          } else if (state is RemvoeFromCartState) {
+            return CartListViewItem(l: state.porducts);
+          } else if (state is CartLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
+          } else if (state is CartErrorState) {
+            return MyErrorWidget(
+                msg: state.errorMessage,
+                onPressed:
+                    context.read<CartCubit>().refreshCartOnLanguageChange);
+          } else {
+            return CartListViewItem(l: l);
           }
         },
+      ),
+    );
+  }
+}
+
+class CartListViewItem extends StatelessWidget {
+  const CartListViewItem({
+    super.key,
+    required this.l,
+  });
+
+  final List<MainProduct> l;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: l.length,
+              itemBuilder: (context, index) => CartTile(
+                deleteProduct: () {
+                  context.read<CartCubit>().pcw[index].userQuantity = 0;
+                  context.read<CartCubit>().removeformTheCart(l[index]);
+                },
+                product: l[index],
+                onRemove: () {
+                  if (l[index].userQuantity > 1) {
+                    context.read<CartCubit>().decreaseQuantity(l[index]);
+                  }
+                },
+                onAdd: () {
+                  if (l[index].userQuantity < l[index].quantity!) {
+                    context.read<CartCubit>().increaseQuantity(l[index]);
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

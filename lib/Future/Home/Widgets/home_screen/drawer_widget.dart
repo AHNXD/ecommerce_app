@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../Cubits/cartCubit/cart.bloc.dart';
 import '../../Pages/contact_us_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -104,6 +105,7 @@ class DrawerWidget extends StatelessWidget {
                     context.read<GetProductsCubit>().getProducts();
                     context.read<FavoriteCubit>().getProductsFavorite(false);
                     context.read<GetMyOrdersCubit>().getMyOrders();
+                    context.read<CartCubit>().refreshCartOnLanguageChange();
                     // context
                     //     .read<PagesScreenCubit>()
                     //     .changedScreen(AppScreen.home, context);
