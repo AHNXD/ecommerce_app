@@ -15,14 +15,11 @@ class CheckOutBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30.h,
+      height: 20.h,
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
       padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
       child: Column(

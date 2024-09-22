@@ -37,11 +37,6 @@ class _CartScreenState extends State<CartScreen1> {
           ),
         ),
       ),
-      bottomSheet: context.read<CartCubit>().pcw.isEmpty
-          ? null
-          : CheckOutBox(
-              items: context.read<CartCubit>().pcw,
-            ),
       body: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
           List<MainProduct> l = context.read<CartCubit>().pcw;
@@ -82,10 +77,17 @@ class CartListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            CheckOutBox(
+              items: context.read<CartCubit>().pcw,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
