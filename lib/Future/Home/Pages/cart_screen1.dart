@@ -76,21 +76,19 @@ class CartListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            CheckOutBox(
-              items: context.read<CartCubit>().pcw,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ListView.builder(
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          CheckOutBox(
+            items: context.read<CartCubit>().pcw,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: ListView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
               itemCount: l.length,
               itemBuilder: (context, index) => CartTile(
                 deleteProduct: () {
@@ -110,8 +108,8 @@ class CartListViewItem extends StatelessWidget {
                 },
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
