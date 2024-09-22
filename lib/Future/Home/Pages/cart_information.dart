@@ -115,7 +115,7 @@ class _CartInformationState extends State<CartInformation> {
         listener: (context, state) {
           if (state is PostOrdersSuccessfulState) {
             showSuccessSnackBar(
-                message: "The_Order_Was_Send_Successfully".tr(context));
+                message: "the_order_was_send_successfully".tr(context));
             Future.delayed(const Duration(seconds: 4)).then((onValue) {
               // context.read<CartCubit>().pcw = [];
               // context

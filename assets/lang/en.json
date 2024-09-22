@@ -64,7 +64,11 @@
     "note" : "Note",
     "city" : "City",
     "country" : "Country",
-    "confirm_orders" : "Confirm orders"
-
-
+    "confirm_orders" : "Confirm orders",
+    "yes" : "Yes",
+    "no" : "No",
+    "cobon_code_titles" : "Cobon Code",
+    "cobon_code_msg" : "Do you have a cobon code ?",
+    "enter_code" : "Enter code",
+    "confirm" : "Confirm"
 }

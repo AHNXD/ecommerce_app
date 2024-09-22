@@ -64,6 +64,11 @@
     "note" : "ملاحظة",
     "city" : "المدينة",
     "country" : "الدولة" ,
-    "confirm_orders" : "تاكيد الطلبات"
-
+    "confirm_orders" : "تاكيد الطلبات",
+    "yes" : "نعم",
+    "no" : "لا",
+    "cobon_code_titles" : "رومز الخصم",
+    "cobon_code_msg" : "هل تمتلك رومز للخصم ؟",
+    "enter_code" : "ادخل الرمز",
+    "confirm" : "تاكيد"
 }

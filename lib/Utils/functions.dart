@@ -8,6 +8,7 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/searchProductsCubit/search_p
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -145,30 +146,30 @@ void showAwesomeDialogForAskCode(
     required TextEditingController codeController}) async {
   await AwesomeDialog(
     descTextStyle: TextStyle(fontSize: 15.sp),
-    btnOkText: "YES",
-    btnCancelText: "NO",
+    btnOkText: "yes".tr(context),
+    btnCancelText: "no".tr(context),
     context: context,
     dialogType: DialogType.infoReverse,
     animType: AnimType.scale,
-    title: 'cobon Code',
-    desc: 'Do You Have a Cobon Code ?',
+    title: 'cobon_code_title'.tr(context),
+    desc: 'cobon_code_msg'.tr(context),
     btnCancelOnPress: () {
       context.read<PostOrdersCubit>().sendOrder(order);
     },
     btnOkOnPress: () async {
       await AwesomeDialog(
         body: TextFieldWidget(
-          text: "Enter Code",
+          text: "enter_code".tr(context),
           controller: codeController,
           isPassword: false,
         ),
         descTextStyle: TextStyle(fontSize: 15.sp, color: Colors.black),
-        btnOkText: "Confirm",
+        btnOkText: "confirm".tr(context),
         context: context,
         dialogType: DialogType.infoReverse,
         animType: AnimType.scale,
-        title: 'cobon Code',
-        desc: 'Do You Have a Cobon Code ?',
+        title: 'cobon_code_title'.tr(context),
+        desc: 'cobon_code_msg'.tr(context),
         btnOkOnPress: () {
           context.read<PostOrdersCubit>().sendOrder(order);
         },
