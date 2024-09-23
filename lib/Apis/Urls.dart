@@ -4,8 +4,7 @@ class Urls {
   static const String ip = "localhost:8000";
 
   static const String baseUrl = "http://$ip/api/";
-  static const String storageProducts =
-      "http://$ip/BaseDashboard/public//uploads//products/";
+  static const String storageProducts = "http://$ip/uploads/products/";
   static const String storageCategories =
       "http://$ip/BaseDashboard/public//uploads//categories/";
   static const String logInApi = "${baseUrl}login";
