@@ -70,5 +70,7 @@
     "cobon_code_titles" : "Cobon Code",
     "cobon_code_msg" : "Do you have a cobon code ?",
     "enter_code" : "Enter code",
-    "confirm" : "Confirm"
+    "confirm" : "Confirm",
+    "added_fav" : "Add To Favourite Successfully",
+    "removed_fav" : "Remove From Favourite Successfully"
 }

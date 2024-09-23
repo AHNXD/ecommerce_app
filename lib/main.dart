@@ -49,8 +49,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AuthCubit()),
           BlocProvider(create: (_) => GetCatigoriesCubit()..getCatigories()),
           BlocProvider(create: (_) => GetProductsCubit()..getProducts()),
-          BlocProvider(
-              create: (_) => FavoriteCubit()..getProductsFavorite(false)),
+          BlocProvider(create: (_) => FavoriteCubit()..getProductsFavorite()),
           BlocProvider(create: (_) => RangeSliderCubit()),
           BlocProvider(create: (_) => GetMyOrdersCubit()..getMyOrders()),
           BlocProvider(create: (_) => CartCubit()),

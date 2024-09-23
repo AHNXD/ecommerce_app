@@ -78,25 +78,25 @@ List<MainProduct> getSearchProduct(BuildContext context) {
   }).toList();
 }
 
-void getFavorite(BuildContext context) {
-  if (context.read<FavoriteCubit>().fvModel!.data!.isNotEmpty) {
-    final l = context.read<GetProductsCubit>().model!.data!;
-    context.read<FavoriteCubit>().fvModel!.data!.forEach((e) {
-      l[l.indexWhere((product) => product.id! == e.productId)].isFavorite =
-          true;
-      debugPrint("inside ============================================== ");
-    });
-  }
-}
+// void getFavorite(BuildContext context) {
+//   if (context.read<FavoriteCubit>().fvModel!.data!.isNotEmpty) {
+//     final l = context.read<GetProductsCubit>().model!.data!;
+//     context.read<FavoriteCubit>().fvModel!.data!.forEach((e) {
+//       l[l.indexWhere((product) => product.id! == e.productId)].isFavorite =
+//           true;
+//       debugPrint("inside ============================================== ");
+//     });
+//   }
+// }
 
-List<MainProduct> getFavoriteProduct(BuildContext context) {
-  return context
-      .read<GetProductsCubit>()
-      .model!
-      .data!
-      .where((product) => product.isFavorite)
-      .toList();
-}
+// List<MainProduct> getFavoriteProduct(BuildContext context) {
+//   return context
+//       .read<GetProductsCubit>()
+//       .model!
+//       .data!
+//       .where((product) => product.isFavorite)
+//       .toList();
+// }
 
 void showSuccessSnackBar({required String message}) {
   ScaffoldMessenger.of(scaffoldKey.currentState!.context).showSnackBar(SnackBar(
@@ -111,6 +111,13 @@ void showSuccessSnackBar({required String message}) {
   ));
 }
 
+  void massege(BuildContext context,String error, Color c) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: c,
+      content: Center(child: Text(error)),
+      duration: const Duration(seconds: 2),
+    ));
+  }
 void showErrorSnackBar({required String message}) {
   ScaffoldMessenger.of(scaffoldKey.currentState!.context).showSnackBar(SnackBar(
     behavior: SnackBarBehavior.floating,
@@ -182,5 +189,5 @@ void getAllApiInMainPage(BuildContext context) {
   BlocProvider.of<GetCatigoriesOffersCubit>(context).getOffersCatigories();
   BlocProvider.of<GetCatigoriesCubit>(context).getCatigories();
   BlocProvider.of<GetProductsCubit>(context).getProducts();
-  BlocProvider.of<FavoriteCubit>(context).getProductsFavorite(true);
+  BlocProvider.of<FavoriteCubit>(context).getProductsFavorite();
 }

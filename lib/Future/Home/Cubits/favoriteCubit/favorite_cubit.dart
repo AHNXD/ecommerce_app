@@ -1,31 +1,37 @@
+import 'package:ecommerce_app_qr/Utils/constants.dart';
+import 'package:ecommerce_app_qr/Utils/functions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/favorite_model.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
-import 'package:ecommerce_app_qr/main.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../Apis/ExceptionsHandle.dart';
 import '../../../../Apis/Network.dart';
 import '../../../../Apis/Urls.dart';
-import '../../../../Utils/functions.dart';
-
 part 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
-  FavoriteModel? fvModel;
-  List<MainProduct> favoriteProduct = <MainProduct>[];
-  void getProductsFavorite(bool isApi) async {
+
+  void getProductsFavorite() async {
+    FavoriteModel? fvModel;
     emit(GetFavoriteProductsLoadingState());
     try {
-      await Network.getData(url: Urls.getProductsFavorite).then((response) {
+      await Network.getData(url: Urls.getProductsFavorite)
+          .then((response) async {
         if (response.statusCode == 200 || response.statusCode == 201) {
           fvModel = FavoriteModel.fromJson(response.data);
-          if (!isApi) {
-            getFavorite(scaffoldKey.currentState!.context);
+          List<MainProduct> favProducts = [];
+          for (int i = 0; i < fvModel!.data!.length; i++) {
+            await Network.getData(
+                    url: "${Urls.getProduct}/${fvModel!.data![i].productId}")
+                .then((response) {
+              MainProduct product = MainProduct.fromJson(response.data["data"]);
+              product.isFavorite = true;
+              favProducts.add(product);
+            });
           }
-          emit(GetFavoriteProductsSuccessfulState());
+          emit(GetFavoriteProductsSuccessfulState(fvModel: favProducts));
         }
       });
     } catch (error) {
@@ -41,16 +47,20 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void addAndDelFavoriteProducts(int id) async {
+  Future<bool> addAndDelFavoriteProducts(int id) async {
+    bool isFave = false;
     try {
       await Network.postData(
           url: Urls.addAndDelProductsFavorite, data: {"id": id}).then((value) {
         if (value.statusCode == 200 || value.statusCode == 201) {
-          showSuccessSnackBar(message: value.data['msg']!);
+          print(value.data['fav']);
+          isFave = value.data['fav'] as bool;
+          //showSuccessSnackBar(message: value.data['msg']);
           emit(FavoriteProductSuccessfulState());
         }
       });
     } catch (error) {
+      isFave = false;
       if (error is DioException) {
         emit(
           FavoriteProductsErrorState(
@@ -58,8 +68,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           ),
         );
       } else {
-        FavoriteProductsErrorState(error.toString());
+        emit(FavoriteProductsErrorState(error.toString()));
       }
     }
+    return isFave;
   }
 }

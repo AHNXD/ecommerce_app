@@ -103,7 +103,7 @@ class DrawerWidget extends StatelessWidget {
                         .read<GetCatigoriesOffersCubit>()
                         .getOffersCatigories();
                     context.read<GetProductsCubit>().getProducts();
-                    context.read<FavoriteCubit>().getProductsFavorite(false);
+                    context.read<FavoriteCubit>().getProductsFavorite();
                     context.read<GetMyOrdersCubit>().getMyOrders();
                     context.read<CartCubit>().refreshCartOnLanguageChange();
                     // context

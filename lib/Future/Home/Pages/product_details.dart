@@ -4,6 +4,7 @@ import 'package:ecommerce_app_qr/Future/Home/Widgets/size_selector.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/Utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -187,7 +188,8 @@ class _DetailPageState extends State<DetailPage> {
                           width: 4,
                         ),
                         if (widget.product.ratings == null ||
-                            widget.product.ratings == [])
+                            widget.product.ratings == [] ||
+                            widget.product.ratings!.isEmpty)
                           const SizedBox()
                         else
                           Text(
@@ -359,20 +361,17 @@ class _DetailPageState extends State<DetailPage> {
           ),
           const Spacer(),
           InkWell(
-            onTap: () {
+            onTap: () async {
+              bool result = await context
+                  .read<FavoriteCubit>()
+                  .addAndDelFavoriteProducts(widget.product.id!);
               setState(() {
-                if (widget.product.isFavorite) {
-                  context
-                      .read<FavoriteCubit>()
-                      .addAndDelFavoriteProducts(widget.product.id!);
-                  widget.product.isFavorite = false;
-                } else {
-                  context
-                      .read<FavoriteCubit>()
-                      .addAndDelFavoriteProducts(widget.product.id!);
-                  widget.product.isFavorite = true;
-                }
+                widget.product.isFavorite = result;
               });
+              massege(
+                  context,
+                  result ? "added_fav".tr(context) : "removed_fav".tr(context),
+                  Colors.green);
             },
             child: Material(
               color: Colors.white.withOpacity(0.21),

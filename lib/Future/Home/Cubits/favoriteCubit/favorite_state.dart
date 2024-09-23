@@ -16,4 +16,8 @@ final class FavoriteProductsErrorState extends FavoriteState {
   FavoriteProductsErrorState(this.message);
 }
 
-final class GetFavoriteProductsSuccessfulState extends FavoriteState {}
+final class GetFavoriteProductsSuccessfulState extends FavoriteState {
+  final List<MainProduct>? fvModel;
+
+  GetFavoriteProductsSuccessfulState({required this.fvModel});
+}
