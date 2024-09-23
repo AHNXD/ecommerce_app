@@ -111,13 +111,19 @@ void showSuccessSnackBar({required String message}) {
   ));
 }
 
-  void massege(BuildContext context,String error, Color c) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      backgroundColor: c,
-      content: Center(child: Text(error)),
-      duration: const Duration(seconds: 2),
-    ));
-  }
+void massege(BuildContext context, String error, Color c) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    behavior: SnackBarBehavior.floating,
+    margin: EdgeInsets.symmetric(
+      horizontal: 3.w,
+    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.w)),
+    backgroundColor: c,
+    content: Center(child: Text(error)),
+    duration: const Duration(seconds: 2),
+  ));
+}
+
 void showErrorSnackBar({required String message}) {
   ScaffoldMessenger.of(scaffoldKey.currentState!.context).showSnackBar(SnackBar(
     behavior: SnackBarBehavior.floating,
@@ -131,21 +137,21 @@ void showErrorSnackBar({required String message}) {
   ));
 }
 
-List<int> getListOfProductsId(BuildContext context) {
-  List<int> ids = <int>[];
-  context.read<CartCubit>().pcw.forEach((product) {
-    ids.add(product.id!);
-  });
-  return ids;
-}
+// List<int> getListOfProductsId(BuildContext context) {
+//   List<int> ids = <int>[];
+//   context.read<CartCubit>().pcw.forEach((product) {
+//     ids.add(product.id!);
+//   });
+//   return ids;
+// }
 
-List<int> getListOfProductsQuantity(BuildContext context) {
-  List<int> quantity = <int>[];
-  context.read<CartCubit>().pcw.forEach((product) {
-    quantity.add(product.userQuantity);
-  });
-  return quantity;
-}
+// List<int> getListOfProductsQuantity(BuildContext context) {
+//   List<int> quantity = <int>[];
+//   context.read<CartCubit>().pcw.forEach((product) {
+//     quantity.add(product.userQuantity);
+//   });
+//   return quantity;
+// }
 
 void showAwesomeDialogForAskCode(
     {required BuildContext context,
