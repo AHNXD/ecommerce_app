@@ -12,7 +12,7 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<FavoriteCubit>()..getProductsFavorite();
+    context.read<FavoriteCubit>().getProductsFavorite();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

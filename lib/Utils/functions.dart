@@ -137,21 +137,21 @@ void showErrorSnackBar({required String message}) {
   ));
 }
 
-// List<int> getListOfProductsId(BuildContext context) {
-//   List<int> ids = <int>[];
-//   context.read<CartCubit>().pcw.forEach((product) {
-//     ids.add(product.id!);
-//   });
-//   return ids;
-// }
+List<int> getListOfProductsId(BuildContext context) {
+  List<int> ids = <int>[];
+  context.read<CartCubit>().pcw.forEach((product) {
+    ids.add(product.id!);
+  });
+  return ids;
+}
 
-// List<int> getListOfProductsQuantity(BuildContext context) {
-//   List<int> quantity = <int>[];
-//   context.read<CartCubit>().pcw.forEach((product) {
-//     quantity.add(product.userQuantity);
-//   });
-//   return quantity;
-// }
+List<int> getListOfProductsQuantity(BuildContext context) {
+  List<int> quantity = <int>[];
+  context.read<CartCubit>().pcw.forEach((product) {
+    quantity.add(product.userQuantity);
+  });
+  return quantity;
+}
 
 void showAwesomeDialogForAskCode(
     {required BuildContext context,

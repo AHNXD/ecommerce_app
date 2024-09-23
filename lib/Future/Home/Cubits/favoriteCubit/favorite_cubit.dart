@@ -1,5 +1,3 @@
-import 'package:ecommerce_app_qr/Utils/constants.dart';
-import 'package:ecommerce_app_qr/Utils/functions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/favorite_model.dart';

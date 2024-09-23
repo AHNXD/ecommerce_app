@@ -227,18 +227,9 @@ class _CartInformationState extends State<CartInformation> {
                                         note: noteController.text,
                                         phone:
                                             "00${phoneController.value.countryCode}${phoneController.value.nsn}",
-                                        productId: [
-                                          1,
-                                          2,
-                                          3
-                                        ] //getListOfProductsId(context)
-                                        ,
-                                        quantity: [
-                                          0,
-                                          0,
-                                          0,
-                                        ] //getListOfProductsQuantity(context)),
-                                        ),
+                                        productId: getListOfProductsId(context),
+                                        quantity:
+                                            getListOfProductsQuantity(context)),
                                     codeController: codeController);
                               }
                             },
