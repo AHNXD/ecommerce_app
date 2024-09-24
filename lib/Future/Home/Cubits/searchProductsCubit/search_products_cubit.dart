@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/Network.dart';
@@ -12,7 +13,7 @@ part 'search_products_state.dart';
 class SearchProductsCubit extends Cubit<SearchProductsState> {
   SearchProductsCubit() : super(SearchProductsInitial());
   late ProductsModel resault;
-  void searchProducts(String productName) async {
+  Future<void> searchProducts(String productName) async {
     emit(SearchProductsLoadingState());
     try {
       await Network.postData(url: Urls.filterProducts, data: {
@@ -20,7 +21,14 @@ class SearchProductsCubit extends Cubit<SearchProductsState> {
       }).then((value) {
         if (value.statusCode == 200 || value.statusCode == 201) {
           resault = ProductsModel.fromJson(value.data);
-          emit(SearchProductsSuccessfulState());
+
+          if (value.data['data'] != null &&
+              (value.data['data'] as List).isNotEmpty) {
+            resault = ProductsModel.fromJson(value.data);
+            emit(SearchProductsSuccessfulState(products: resault.data!));
+          } else {
+            emit(SearchProductsNotFoundfulState());
+          }
         }
       });
     } catch (error) {
@@ -34,5 +42,9 @@ class SearchProductsCubit extends Cubit<SearchProductsState> {
         SearchProductsErrorState(error.toString());
       }
     }
+  }
+
+  void reset() {
+    emit(SearchProductsInitial());
   }
 }

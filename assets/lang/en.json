@@ -72,5 +72,6 @@
     "enter_code" : "Enter code",
     "confirm" : "Confirm",
     "added_fav" : "Add To Favourite Successfully",
-    "removed_fav" : "Remove From Favourite Successfully"
+    "removed_fav" : "Remove From Favourite Successfully",
+    "there_are_no_results_found" : "There are No Results Found"
 }

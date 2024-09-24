@@ -2,6 +2,7 @@ import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/favScreen/fav_card_product.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -14,15 +15,19 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<FavoriteCubit>().getProductsFavorite();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: BackWidget(
-          canPop: true,
-          hasBackButton: false,
-          hasStyle: true,
-          text: "fav_screen_title".tr(context),
-          iconColor: Colors.white,
-          textColor: Colors.black,
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 8.h),
+        child: AppBar(
+          scrolledUnderElevation: 0,
+          backgroundColor: Colors.white,
+          title: BackWidget(
+            canPop: true,
+            hasBackButton: false,
+            hasStyle: true,
+            text: "fav_screen_title".tr(context),
+            iconColor: Colors.white,
+            textColor: AppColors.primaryColors,
+          ),
         ),
       ),
       body: BlocConsumer<FavoriteCubit, FavoriteState>(
@@ -40,10 +45,10 @@ class FavoriteScreen extends StatelessWidget {
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: state.fvModel!.length ?? 0,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.059.h,
+                    childAspectRatio: 0.074.h,
                     crossAxisCount: 2,
-                    crossAxisSpacing: 4.w,
-                    mainAxisSpacing: 2.h),
+                    crossAxisSpacing: 3.w,
+                    mainAxisSpacing: 1.h),
                 itemBuilder: (context, index) {
                   return FavCardProduct(
                       isHomeScreen: false, product: state.fvModel![index]);

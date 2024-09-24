@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Cubits/getCatigories/get_catigories_cubit.dart';
+import '../../Cubits/getProductById/get_porduct_by_id_cubit.dart';
 
 class HomePageCategoriesButtonWidget extends StatefulWidget {
   const HomePageCategoriesButtonWidget({
@@ -53,8 +54,11 @@ class _CategoriesButtonWidgetState
                 color:
                     index == 0 ? AppColors.buttonCategoryColor : Colors.white,
                 onPressed: () {
-                  setState(() {
-                    if (index != 0) {
+                  if (index != 0) {
+                    context
+                        .read<GetPorductByIdCubit>()
+                        .getProductsByCategory(model[index - 1].id!);
+                    setState(() {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (builder) {
                         return ProductScreen(
@@ -62,8 +66,8 @@ class _CategoriesButtonWidgetState
                           cData: model[index - 1],
                         );
                       }));
-                    }
-                  });
+                    });
+                  }
                 },
                 child: Text(
                   index == 0 ? "all".tr(context) : model[index - 1].name!,

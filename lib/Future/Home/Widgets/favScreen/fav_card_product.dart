@@ -133,8 +133,8 @@ class _ProductCardWidgetState extends State<FavCardProduct> {
                 },
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  padding: const EdgeInsets.symmetric(vertical: 21),
+                  width: MediaQuery.of(context).size.width * 0.37,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
                   child: Text(
                     "add_to_cart".tr(context),
                     textAlign: TextAlign.center,

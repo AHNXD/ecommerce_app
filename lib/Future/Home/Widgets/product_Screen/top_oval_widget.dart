@@ -3,9 +3,12 @@ import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/categories_butt
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-class TopOvalWidget extends StatelessWidget {
+import '../../Cubits/searchProductByCatId/search_product_by_category_id_cubit.dart';
+
+class TopOvalWidget extends StatefulWidget {
   const TopOvalWidget(
       {super.key,
       required this.firstText,
@@ -14,6 +17,25 @@ class TopOvalWidget extends StatelessWidget {
   final String firstText;
   final int parentId;
   final bool isNotHome;
+
+  @override
+  State<TopOvalWidget> createState() => _TopOvalWidgetState();
+}
+
+class _TopOvalWidgetState extends State<TopOvalWidget> {
+  late TextEditingController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -26,7 +48,7 @@ class TopOvalWidget extends StatelessWidget {
         child: Column(
           children: [
             BackWidget(
-              canPop: isNotHome,
+              canPop: widget.isNotHome,
               hasBackButton: true,
               hasStyle: false,
               iconColor: Colors.white,
@@ -36,6 +58,15 @@ class TopOvalWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
               child: TextFormField(
+                controller: controller,
+                onChanged: (value) {
+                  value = controller.text;
+                },
+                onFieldSubmitted: (value) {
+                  context
+                      .read<SearchProductByCategoryIdCubit>()
+                      .searchProductsByCategories(value, widget.parentId);
+                },
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                     hintText: "search_product_hint".tr(context),
@@ -43,9 +74,29 @@ class TopOvalWidget extends StatelessWidget {
                       color: Colors.black54,
                     ),
                     filled: true,
-                    prefixIcon: const Icon(
-                      textDirection: TextDirection.ltr,
-                      Icons.search,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        controller.clear();
+                        context
+                            .read<SearchProductByCategoryIdCubit>()
+                            .searchProductsByCategories('', widget.parentId);
+                      },
+                      icon: const Icon(
+                        textDirection: TextDirection.ltr,
+                        Icons.close,
+                      ),
+                    ),
+                    prefixIcon: IconButton(
+                      onPressed: () {
+                        context
+                            .read<SearchProductByCategoryIdCubit>()
+                            .searchProductsByCategories(
+                                controller.text, widget.parentId);
+                      },
+                      icon: const Icon(
+                        textDirection: TextDirection.ltr,
+                        Icons.search,
+                      ),
                     ),
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -56,8 +107,8 @@ class TopOvalWidget extends StatelessWidget {
             SizedBox(
               height: 8.h,
               child: CategoriesButtonWidget(
-                parentId: parentId,
-                firstText: firstText,
+                parentId: widget.parentId,
+                firstText: widget.firstText,
               ),
             ),
           ],

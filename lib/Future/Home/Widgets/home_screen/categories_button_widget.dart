@@ -33,9 +33,10 @@ class _CategoriesButtonWidgetState extends State<CategoriesButtonWidget> {
             animationDuration: const Duration(seconds: 2),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(9.w)),
-            color: index == 0 ? AppColors.buttonCategoryColor : null,
+            color: index == 0 ? const Color.fromARGB(255, 251, 254, 255) : null,
             onPressed: () {
               if (index != 0) {
+                //context.read<GetProductsCubit>().getProductsByCategory();
                 Navigator.push(context, MaterialPageRoute(builder: (builder) {
                   return ProductScreen(
                     cData: l[index - 1],

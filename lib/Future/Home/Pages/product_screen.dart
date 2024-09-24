@@ -1,10 +1,13 @@
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
-import '../Cubits/getCatigories/get_catigories_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/product_card_widget.dart';
+import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import '../Cubits/getProductById/get_porduct_by_id_cubit.dart';
+import '../Cubits/searchProductByCatId/search_product_by_category_id_cubit.dart';
 import '../models/catigories_model.dart';
 import '/Future/Home/Widgets/product_Screen/top_oval_widget.dart';
 import '/Utils/colors.dart';
 import '/Utils/functions.dart';
-import '/Utils/test_lists.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -34,38 +37,114 @@ class _ProductScreenState extends State<ProductScreen> {
           }));
         }
       },
-      child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        body: Column(
-          children: [
-            TopOvalWidget(
-              isNotHome: widget.isNotHome,
-              firstText: widget.cData.name!,
-              parentId: widget.cData.id!,
-            ),
-            BlocBuilder<GetCatigoriesCubit, GetCatigoriesState>(
-              builder: (context, state) {
-                return Expanded(
-                  // height: 58.h,
-                  child: GridView.builder(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemCount: getGridById(widget.cData.id!, context).length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.059.h,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 4.w,
-                        mainAxisSpacing: 2.h),
-                    itemBuilder: (context, index) {
-                      return productCardList(
-                          false, getGridById(widget.cData.id!, context))[index];
-                    },
-                  ),
-                );
-              },
-            )
-          ],
+      child: BlocProvider(
+        create: (context) => SearchProductByCategoryIdCubit(),
+        child: Scaffold(
+          backgroundColor: AppColors.backgroundColor,
+          body: Column(
+            children: [
+              TopOvalWidget(
+                isNotHome: widget.isNotHome,
+                firstText: widget.cData.name!,
+                parentId: widget.cData.id!,
+              ),
+              BlocBuilder<SearchProductByCategoryIdCubit,
+                  SearchProductByCategoryIdState>(
+                builder: (context, state) {
+                  print(state);
+                  if (state is SearchProductByCategoryIdError) {
+                    return MyErrorWidget(msg: state.message, onPressed: () {});
+                  } else if (state is SearchProductByCategoryIdLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is SearchProductByCategoryIdNotFound) {
+                    return Center(
+                      child: Text(
+                        "there_are_no_results_found".tr(context),
+                      ),
+                    );
+                  } else if (state is SearchProductByCategoryIdSuccess) {
+                    return Expanded(
+                      // height: 58.h,
+                      child: GridView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: state.products.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 0.074.h,
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 3.w,
+                            mainAxisSpacing: 1.h),
+                        itemBuilder: (context, index) {
+                          return ProductCardWidget(
+                            isHomeScreen: false,
+                            product: state.products[index],
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return CategoriesGrid(categoryId: widget.cData.id!);
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class CategoriesGrid extends StatelessWidget {
+  const CategoriesGrid({
+    super.key,
+    required this.categoryId,
+  });
+
+  final int categoryId;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GetPorductByIdCubit, GetPorductByIdState>(
+      builder: (context, state) {
+        print(state);
+        if (state is GetPorductByIdError) {
+          return MyErrorWidget(
+              msg: '',
+              onPressed: () {
+                context
+                    .read<GetPorductByIdCubit>()
+                    .getProductsByCategory(categoryId);
+              });
+        } else if (state is GetPorductByIdLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is GetPorductByIdSuccess) {
+          return Expanded(
+            // height: 58.h,
+            child: GridView.builder(
+              padding: EdgeInsets.zero,
+              physics: const BouncingScrollPhysics(),
+              itemCount: getGridById(categoryId, context).length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 0.074.h,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 3.w,
+                  mainAxisSpacing: 1.h),
+              itemBuilder: (context, index) {
+                return ProductCardWidget(
+                  isHomeScreen: false,
+                  product: state.products[index],
+                );
+              },
+            ),
+          );
+        }
+        return SizedBox();
+      },
     );
   }
 }

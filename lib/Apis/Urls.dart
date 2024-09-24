@@ -36,4 +36,6 @@ class Urls {
   static const String getMyOrders = "${baseUrl}my_orders";
   static const String changePassword = "${baseUrl}change-password";
   static const String getProduct = "${baseUrl}product";
+  static const String getProductsByGategoryId =
+      "${baseUrl}products/by/categoryId";
 }

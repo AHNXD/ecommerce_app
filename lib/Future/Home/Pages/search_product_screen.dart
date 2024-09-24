@@ -12,16 +12,33 @@ import '../../../Utils/functions.dart';
 import '../../../Utils/test_lists.dart';
 import '../Cubits/searchProductsCubit/search_products_cubit.dart';
 
-class SearchProductScreen extends StatelessWidget {
+class SearchProductScreen extends StatefulWidget {
   SearchProductScreen({super.key});
 
-  final TextEditingController controller = TextEditingController();
+  @override
+  State<SearchProductScreen> createState() => _SearchProductScreenState();
+}
+
+class _SearchProductScreenState extends State<SearchProductScreen> {
+  late TextEditingController controller;
+  @override
+  void initState() {
+    controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         leading: IconButton(
           style: ButtonStyle(
             backgroundColor: WidgetStateColor.resolveWith(
@@ -29,6 +46,7 @@ class SearchProductScreen extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.of(context).pop();
+            context.read<SearchProductsCubit>().reset();
           },
           icon: SvgPicture.asset(
             AppImagesAssets.back,
@@ -64,6 +82,16 @@ class SearchProductScreen extends StatelessWidget {
                   ),
                   filled: true,
                   suffixIcon: IconButton(
+                    onPressed: () {
+                      controller.clear();
+                      context.read<SearchProductsCubit>().reset();
+                    },
+                    icon: const Icon(
+                      textDirection: TextDirection.ltr,
+                      Icons.close,
+                    ),
+                  ),
+                  prefixIcon: IconButton(
                     icon: BlocBuilder<SearchProductsCubit, SearchProductsState>(
                       builder: (context, state) {
                         return const Icon(
@@ -88,7 +116,7 @@ class SearchProductScreen extends StatelessWidget {
             child: BlocBuilder<SearchProductsCubit, SearchProductsState>(
                 builder: (context, state) {
               if (state is SearchProductsInitial) {
-                return  Center(
+                return Center(
                   child: Text("search_product_screen_body".tr(context)),
                 );
               }
@@ -113,18 +141,20 @@ class SearchProductScreen extends StatelessWidget {
                   itemCount:
                       productCardList(false, getSearchProduct(context)).length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.059.h,
+                      childAspectRatio: 0.074.h,
                       crossAxisCount: 2,
-                      crossAxisSpacing: 0.w,
-                      mainAxisSpacing: 2.h),
+                      crossAxisSpacing: 3.w,
+                      mainAxisSpacing: 1.h),
                   itemBuilder: (context, index) {
                     return productCardList(
                         false, getSearchProduct(context))[index];
                   },
                 );
-              } else {
-                return const Text("Another state");
+              } else if (state is SearchProductsNotFoundfulState) {
+                return Center(
+                    child: Text("there_are_no_results_found".tr(context)));
               }
+              return SizedBox();
             }),
           )
         ],

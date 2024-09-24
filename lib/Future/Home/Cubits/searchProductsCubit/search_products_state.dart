@@ -8,8 +8,12 @@ final class SearchProductsInitial extends SearchProductsState {}
 final class SearchProductsLoadingState extends SearchProductsState {}
 
 final class SearchProductsSuccessfulState extends SearchProductsState {
-  SearchProductsSuccessfulState();
+  final List<MainProduct> products;
+
+  SearchProductsSuccessfulState({required this.products});
 }
+
+final class SearchProductsNotFoundfulState extends SearchProductsState {}
 
 final class SearchProductsErrorState extends SearchProductsState {
   final String message;
