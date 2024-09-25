@@ -62,16 +62,6 @@ class HomeScreen extends StatelessWidget {
           shrinkWrap: true,
           controller: controller,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "offers".tr(context),
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: AppColors.textTitleAppBarColor),
-              ),
-            ),
             BlocBuilder<GetCatigoriesOffersCubit, GetCatigoriesOffersState>(
               builder: (context, state) {
                 final model = context.read<GetCatigoriesOffersCubit>();
@@ -87,10 +77,31 @@ class HomeScreen extends StatelessWidget {
                     },
                   );
                 }
-                return CarouselSliderWidget(
-                  list: offersList(model.offersCatigoriesModel!.data!),
-                  height: 15.h,
-                );
+                return model.offersCatigoriesModel!.data!.isNotEmpty
+                    ? Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "offers".tr(context),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                      color: AppColors.textTitleAppBarColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                          CarouselSliderWidget(
+                            list:
+                                offersList(model.offersCatigoriesModel!.data!),
+                            height: 15.h,
+                          ),
+                        ],
+                      )
+                    : const SizedBox();
               },
             ),
             SizedBox(height: 1.h),

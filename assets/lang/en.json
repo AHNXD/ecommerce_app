@@ -76,6 +76,7 @@
     "there_are_no_results_found" : "There are No Results Found",
     "image_isn't_upoalded" : "Image isn't Upoalded,Pleas try agen" ,
     "failed_to_add_product" : "Failed to add Product, please check the form",
-    "please_upload_an_image_before_submitting" :"Please upload an image before submitting"
+    "please_upload_an_image_before_submitting" :"Please upload an image before submitting",
+    "change_lang" : "The language changed to English"
 
 }

@@ -4,6 +4,7 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/pages_cubit/pages_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
@@ -11,6 +12,8 @@ import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/constants.dart';
+import 'package:ecommerce_app_qr/Utils/enums.dart';
+import 'package:ecommerce_app_qr/Utils/functions.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:ecommerce_app_qr/Utils/services/save.dart';
 import 'package:flutter/material.dart';
@@ -106,9 +109,11 @@ class DrawerWidget extends StatelessWidget {
                     context.read<FavoriteCubit>().getProductsFavorite();
                     context.read<GetMyOrdersCubit>().getMyOrders();
                     context.read<CartCubit>().refreshCartOnLanguageChange();
-                    // context
-                    //     .read<PagesScreenCubit>()
-                    //     .changedScreen(AppScreen.home, context);
+
+                    await Future.delayed(const Duration(milliseconds: 500), () {
+                      Navigator.pop(context);
+                      massege(context, "change_lang".tr(context), Colors.green);
+                    });
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,

@@ -76,6 +76,6 @@
     "there_are_no_results_found" : "لاتوجد اي نتائج",
     "image_isn't_upoalded" : "لم يتم رفع الصورة،الرجاء اعادة المحاولة" ,
     "failed_to_add_product" : "فشل في إضافة المنتج، يرجى التحقق من الاستمارة",
-    "please_upload_an_image_before_submitting" :"يرجى تحميل صورة قبل الإرسال"
-
+    "please_upload_an_image_before_submitting" :"يرجى تحميل صورة قبل الإرسال",
+    "change_lang" : "تم تغيير اللغة الى العربية"
 }
