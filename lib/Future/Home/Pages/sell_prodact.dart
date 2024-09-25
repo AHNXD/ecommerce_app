@@ -46,10 +46,11 @@ class _SellProdactState extends State<SellProdact> {
     if (key1.currentState!.validate()) {
       if (imageUploaded) {
       } else {
-        showErrorMessage('Please upload an image before submitting');
+        showErrorMessage(
+            'please_upload_an_image_before_submitting'.tr(context));
       }
     } else {
-      showErrorMessage('Failed to add Product, please check the form');
+      showErrorMessage('failed_to_add_product'.tr(context));
     }
   }
 
@@ -60,7 +61,7 @@ class _SellProdactState extends State<SellProdact> {
       imageUploaded = true;
       productImage = File(pickedFile.path);
     } else {
-      showErrorMessage("Image isn't Upoalded,Pleas try agen");
+      showErrorMessage("image_isn't_upoalded".tr(context));
     }
   }
 

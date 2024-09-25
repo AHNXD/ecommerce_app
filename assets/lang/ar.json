@@ -73,6 +73,9 @@
     "confirm" : "تاكيد",
     "added_fav" : "تمت الإضافة إلى المفضلة بنجاح",
     "removed_fav" : "تمت  الإزالة من المفضلة بنجاح",
-    "there_are_no_results_found" : "لاتوجد اي نتائج"
+    "there_are_no_results_found" : "لاتوجد اي نتائج",
+    "image_isn't_upoalded" : "لم يتم رفع الصورة،الرجاء اعادة المحاولة" ,
+    "failed_to_add_product" : "فشل في إضافة المنتج، يرجى التحقق من الاستمارة",
+    "please_upload_an_image_before_submitting" :"يرجى تحميل صورة قبل الإرسال"
 
 }

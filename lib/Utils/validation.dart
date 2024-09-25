@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:ecommerce_app_qr/Utils/enums.dart';
 
 String? validation(String? text, ValidationState v) {
@@ -8,7 +9,9 @@ String? validation(String? text, ValidationState v) {
       if (emailRegex.hasMatch(text!)) {
         return null; // Email is valid
       } else {
-        return "Invalid email format"; // Or a more specific error message
+        return lang == 'en'
+            ? "Invalid email format"
+            : "تنسيق البريد الإلكتروني غير صالح"; // Or a more specific error message
       }
 
     case ValidationState.phoneNumber:
@@ -17,19 +20,23 @@ String? validation(String? text, ValidationState v) {
       if (phoneRegex.hasMatch(text!)) {
         return null; // Phone number is valid
       } else {
-        return "Invalid phone number format."; // Or a more specific message
+        return lang == 'en'
+            ? "Invalid phone number format"
+            : "تنسيق رقم الهاتف غير صالح"; // Or a more specific message
       }
 
     case ValidationState.normal:
       if (text!.isEmpty) {
-        return "This field is required";
+        return lang == 'en' ? "This field is required" : "هذا الحقل مطلوب";
       } else {
         return null;
       }
 
     case ValidationState.password:
       if (text!.length < 8) {
-        return "Password must be at least 8 characters long.";
+        return lang == 'en'
+            ? "Password must be at least 8 characters long"
+            : "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
       }
 
       // bool hasUppercase = text.contains(RegExp(r'[A-Z]'));
@@ -52,6 +59,5 @@ String? validation(String? text, ValidationState v) {
       // }
 
       return null;
-
-    }
+  }
 }

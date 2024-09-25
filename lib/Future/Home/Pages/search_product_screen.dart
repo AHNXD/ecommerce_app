@@ -89,6 +89,7 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                     icon: const Icon(
                       textDirection: TextDirection.ltr,
                       Icons.close,
+                      color: AppColors.buttonCategoryColor,
                     ),
                   ),
                   prefixIcon: IconButton(

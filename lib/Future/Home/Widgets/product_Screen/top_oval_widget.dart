@@ -84,6 +84,7 @@ class _TopOvalWidgetState extends State<TopOvalWidget> {
                       icon: const Icon(
                         textDirection: TextDirection.ltr,
                         Icons.close,
+                        color: AppColors.buttonCategoryColor,
                       ),
                     ),
                     prefixIcon: IconButton(
@@ -96,6 +97,7 @@ class _TopOvalWidgetState extends State<TopOvalWidget> {
                       icon: const Icon(
                         textDirection: TextDirection.ltr,
                         Icons.search,
+                        color: AppColors.buttonCategoryColor,
                       ),
                     ),
                     fillColor: Colors.white,
