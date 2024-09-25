@@ -50,7 +50,7 @@ class AppBarWidget extends StatelessWidget {
               icon: const Icon(Icons.search),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (builder) {
-                  return SearchProductScreen();
+                  return const SearchProductScreen();
                 }));
               },
             ),

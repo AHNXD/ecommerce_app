@@ -36,7 +36,6 @@ class AboutUsScreen extends StatelessWidget {
         child: Column(
           children: [
             LogoCircleAvatarWidget(
-              radius: 25.w,
               top: 2.h,
               bottom: 2.h,
             ),

@@ -53,7 +53,7 @@ class FavoriteScreen extends StatelessWidget {
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: state.fvModel!.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.074.h,
+                    childAspectRatio: 0.06.h,
                     crossAxisCount: 2,
                     crossAxisSpacing: 3.w,
                     mainAxisSpacing: 1.h),

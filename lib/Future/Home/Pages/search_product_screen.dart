@@ -13,7 +13,7 @@ import '../../../Utils/test_lists.dart';
 import '../Cubits/searchProductsCubit/search_products_cubit.dart';
 
 class SearchProductScreen extends StatefulWidget {
-  SearchProductScreen({super.key});
+  const SearchProductScreen({super.key});
 
   @override
   State<SearchProductScreen> createState() => _SearchProductScreenState();
@@ -155,7 +155,7 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                 return Center(
                     child: Text("there_are_no_results_found".tr(context)));
               }
-              return SizedBox();
+              return const SizedBox();
             }),
           )
         ],

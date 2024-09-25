@@ -107,31 +107,35 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
               height: 1.h,
             ),
             if (widget.product.newSellingPrice != null)
-              Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 17.w, top: 2.h, left: 4.w),
-                    child: Text(
-                      "${widget.product.newSellingPrice} ${"sp".tr(context)}",
-                      style: TextStyle(
-                          color: AppColors.textButtonColors,
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w900),
+              SizedBox(
+                height: 4.5.h,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.only(right: 17.w, top: 2.h, left: 4.w),
+                      child: Text(
+                        "${widget.product.newSellingPrice} ${"sp".tr(context)}",
+                        style: TextStyle(
+                            color: AppColors.textButtonColors,
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w900),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 2.h,
-                    left: 18.w,
-                    child: Text(
-                      "${widget.product.sellingPrice} ${"sp".tr(context)}",
-                      style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: AppColors.textButtonColors,
-                          fontSize: 6.sp,
-                          fontWeight: FontWeight.w600),
+                    Positioned(
+                      bottom: 2.h,
+                      left: 18.w,
+                      child: Text(
+                        "${widget.product.sellingPrice} ${"sp".tr(context)}",
+                        style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            color: AppColors.textButtonColors,
+                            fontSize: 6.sp,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             else
               Text(

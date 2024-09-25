@@ -70,7 +70,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         physics: const BouncingScrollPhysics(),
                         itemCount: state.products.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 0.074.h,
+                            childAspectRatio: 0.06.h,
                             crossAxisCount: 2,
                             crossAxisSpacing: 3.w,
                             mainAxisSpacing: 1.h),
@@ -127,7 +127,7 @@ class CategoriesGrid extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: state.products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.074.h,
+                  childAspectRatio: 0.06.h,
                   crossAxisCount: 2,
                   crossAxisSpacing: 3.w,
                   mainAxisSpacing: 1.h),
@@ -140,7 +140,7 @@ class CategoriesGrid extends StatelessWidget {
             ),
           );
         }
-        return SizedBox();
+        return const SizedBox();
       },
     );
   }

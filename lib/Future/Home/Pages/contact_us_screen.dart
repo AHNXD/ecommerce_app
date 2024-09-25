@@ -1,8 +1,8 @@
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/my_button_widget.dart';
 import 'package:ecommerce_app_qr/Future/Auth/Widgets/text_field_widget.dart';
-import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
+import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -31,10 +31,14 @@ class ContactUsScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          LogoCircleAvatarWidget(
-            radius: 30.w,
-            top: 6.h,
-            bottom: 2.h,
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Image.asset(
+              AppImagesAssets.logoNoBg,
+              width: 140.sp,
+              height: 140.sp,
+              // fit: BoxFit.cover,
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),

@@ -4,7 +4,6 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
-import 'package:ecommerce_app_qr/Future/Home/Cubits/pages_cubit/pages_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
@@ -12,7 +11,6 @@ import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/constants.dart';
-import 'package:ecommerce_app_qr/Utils/enums.dart';
 import 'package:ecommerce_app_qr/Utils/functions.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:ecommerce_app_qr/Utils/services/save.dart';
@@ -34,10 +32,20 @@ class DrawerWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 60.sp,
-                backgroundImage: const AssetImage(
-                  AppImagesAssets.logo,
+              Container(
+                height: 140.sp,
+                width: 140.sp,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 5),
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Image.asset(
+                    AppImagesAssets.logoNoBg,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               SizedBox(
