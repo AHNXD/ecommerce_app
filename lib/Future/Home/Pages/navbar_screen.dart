@@ -44,7 +44,7 @@ class _NavBarPageState extends State<NavBarPage> {
             child: NavigationBar(
               indicatorColor: Colors.transparent,
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-              backgroundColor: const Color.fromARGB(255, 224, 245, 252),
+              backgroundColor: AppColors.navBarColor,
               destinations: [
                 NavigationDestination(
                   icon: const Center(

@@ -3,6 +3,7 @@ import 'package:ecommerce_app_qr/Future/Home/models/my_orders_information.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class HistoryCardItem extends StatelessWidget {
   const HistoryCardItem({super.key, required this.order});
@@ -15,7 +16,7 @@ class HistoryCardItem extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(16)),
-            color: Color.fromARGB(255, 220, 236, 249)),
+            color: AppColors.orderInfoCardColor),
         child: GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (builder) {
@@ -34,6 +35,7 @@ class HistoryCardItem extends StatelessWidget {
                   child: const Text("")),
             ),
             title: Text(
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
                 "${order.firstName} ${order.lastName}"),
             subtitle: Column(

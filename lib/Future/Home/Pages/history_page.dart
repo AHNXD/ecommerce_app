@@ -6,6 +6,9 @@ import 'package:ecommerce_app_qr/Future/Home/models/my_orders_information.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../../Utils/colors.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -13,8 +16,22 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("myOrders_screen_title".tr(context)),
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 10.h),
+          child: AppBar(
+            scrolledUnderElevation: 0,
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            title: Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Text(
+                "myOrders_screen_title".tr(context),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryColors),
+              ),
+            ),
+          ),
         ),
         body: BlocBuilder<GetMyOrdersCubit, GetMyOrdersState>(
           builder: (context, state) {
@@ -34,7 +51,7 @@ class HistoryScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: myOrders.length,
               itemBuilder: (BuildContext context, int index) {
-                return HistoryCardItem( order: myOrders[index]);
+                return HistoryCardItem(order: myOrders[index]);
               },
             );
           },

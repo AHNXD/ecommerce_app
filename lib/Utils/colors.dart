@@ -14,4 +14,6 @@ class AppColors {
     Color(0xFFA2081F),
   ];
   static const primaryColors = Colors.blue;
+  static const navBarColor = Color.fromARGB(255, 224, 245, 252);
+  static const orderInfoCardColor = Color.fromARGB(255, 228, 244, 250);
 }

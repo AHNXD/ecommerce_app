@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../Utils/colors.dart';
 import '../Widgets/sellProduct/sell_product_from.dart';
 
 class SellProdact extends StatefulWidget {
@@ -98,9 +99,15 @@ class _SellProdactState extends State<SellProdact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-        title: Text('sell_product_screen_title'.tr(context)),
+        scrolledUnderElevation: 0,
+        backgroundColor: AppColors.primaryColors,
+        centerTitle: true,
+        title: Text(
+          'sell_product_screen_title'.tr(context),
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
       body: ListView(
         children: [
@@ -149,7 +156,7 @@ class _SellProdactState extends State<SellProdact> {
           Container(
             margin: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-                color: Colors.blue[600],
+                color: AppColors.primaryColors,
                 borderRadius: BorderRadius.circular(10)),
             height: 75,
             child: TextButton(

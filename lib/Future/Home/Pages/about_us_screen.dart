@@ -1,9 +1,10 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
-import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../Utils/colors.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -11,15 +12,24 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: AppBar().preferredSize,
-        child: BackWidget(
-          canPop: false,
-          hasBackButton: false,
-          text: "about_us".tr(context),
-          hasStyle: false,
-          iconColor: Colors.black,
-          textColor: Colors.black,
+      //     appBar: PreferredSize(
+      // preferredSize: AppBar().preferredSize,
+      // child: BackWidget(
+      //   canPop: false,
+      //   hasBackButton: false,
+      //   text: "about_us".tr(context),
+      //   hasStyle: false,
+      //   iconColor: Colors.black,
+      //   textColor: Colors.black,
+      appBar: AppBar(
+        foregroundColor: Colors.white,
+        scrolledUnderElevation: 0,
+        backgroundColor: AppColors.primaryColors,
+        centerTitle: true,
+        title: Text(
+          "about_us".tr(context),
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -39,7 +49,8 @@ class AboutUsScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            const Divider(),
+            const Spacer(),
+            //const Divider(),
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3.w),
@@ -52,14 +63,14 @@ class AboutUsScreen extends StatelessWidget {
                   'development_description'.tr(context),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 12.sp),
                 ),
               ),
             ),
-            const Divider(),
-            // const Spacer(),
+            //const Divider(),
+            const Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: RichText(

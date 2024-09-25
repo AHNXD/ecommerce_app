@@ -1,6 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/favScreen/fav_card_product.dart';
-import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/back_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +15,26 @@ class FavoriteScreen extends StatelessWidget {
     context.read<FavoriteCubit>().getProductsFavorite();
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 8.h),
+        preferredSize: Size(double.infinity, 10.h),
         child: AppBar(
           scrolledUnderElevation: 0,
           backgroundColor: Colors.white,
-          title: BackWidget(
-            canPop: true,
-            hasBackButton: false,
-            hasStyle: true,
-            text: "fav_screen_title".tr(context),
-            iconColor: Colors.white,
-            textColor: AppColors.primaryColors,
+          centerTitle: true,
+          title: Padding(
+            // title: BackWidget(
+            // canPop: true,
+            // hasBackButton: false,
+            // hasStyle: true,
+            // text: "fav_screen_title".tr(context),
+            // iconColor: Colors.white,
+            // textColor: AppColors.primaryColors,
+
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Text(
+              "fav_screen_title".tr(context),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: AppColors.primaryColors),
+            ),
           ),
         ),
       ),
@@ -43,7 +51,7 @@ class FavoriteScreen extends StatelessWidget {
             } else {
               return GridView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: state.fvModel!.length ?? 0,
+                itemCount: state.fvModel!.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.074.h,
                     crossAxisCount: 2,

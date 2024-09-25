@@ -18,20 +18,21 @@ class OrderTileWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        //color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(10),
       child: Row(
         children: [
-          MyCachedNetworkImage(
-            height: 10.h,
-            width: 30.w,
-            imageUrl: product.files![0].path != null
-                ? Urls.storageProducts + product.files![0].name!
-                : product.files![0].name!,
-            // height: 10.h,
-          ),
+          if (product.files != null)
+            MyCachedNetworkImage(
+              height: 10.h,
+              width: 30.w,
+              imageUrl: product.files![0].path != null
+                  ? Urls.storageProducts + product.files![0].name!
+                  : product.files![0].name!,
+              // height: 10.h,
+            ),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +66,10 @@ class OrderTileWidget extends StatelessWidget {
           const Spacer(),
           CircleAvatar(
             backgroundColor: AppColors.primaryColors,
-            child: Text(product.quantity.toString()),
+            child: Text(
+              product.userQuantity.toString(),
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
           const SizedBox(width: 10),
         ],

@@ -17,8 +17,8 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        foregroundColor: Colors.white,
         centerTitle: true,
         backgroundColor: AppColors.primaryColors,
         title: Text(
@@ -33,7 +33,7 @@ class ContactUsScreen extends StatelessWidget {
         children: [
           LogoCircleAvatarWidget(
             radius: 30.w,
-            top: 5.h,
+            top: 6.h,
             bottom: 2.h,
           ),
           Padding(
