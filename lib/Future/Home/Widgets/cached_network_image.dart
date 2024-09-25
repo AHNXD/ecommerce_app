@@ -9,7 +9,8 @@ class MyCachedNetworkImage extends StatelessWidget {
   const MyCachedNetworkImage({
     super.key,
     required this.imageUrl,
-    required this.width, required this.height,
+    required this.width,
+    required this.height,
   });
   final String imageUrl;
   final double width;
@@ -40,8 +41,8 @@ class MyCachedNetworkImage extends StatelessWidget {
                   // color: Colors.white,
                   // border: Border.all(width: 1, color: AppColors.borderColor),
                   borderRadius: BorderRadius.circular(5.w),
-                  image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.contain)),
+                  image:
+                      DecorationImage(image: imageProvider, fit: BoxFit.fill)),
               height: 10.h,
               width: width,
             ),

@@ -1,7 +1,9 @@
+import 'package:ecommerce_app_qr/Future/Home/Pages/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../Apis/Urls.dart';
 import '../../models/product_model.dart';
 import '../cached_network_image.dart';
 import 'proudact_daitles_cart.dart';
@@ -23,53 +25,59 @@ class CartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 1.h),
-      padding: EdgeInsets.all(2.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            children: [
-              // Product Image
-              MyCachedNetworkImage(
-                height: 10.h,
-                width: 30.w,
-                imageUrl: '', // Placeholder for the product image
-                // Placeholder for the product image
-                // imageUrl: product.files![0].path != null
-                //     ? Urls.storageProducts + product.files![0].name!
-                //     : product.files![0].name!,
-                // height: 10.h,
-              ),
-              SizedBox(height: 1.h),
-              QauntityButton(
-                  onRemove: onRemove, product: product, onAdd: onAdd),
-            ],
-          ),
-          SizedBox(width: 3.w),
-          PrudoctDaitlesCart(product: product),
-          IconButton(
-            onPressed: deleteProduct,
-            icon: const Icon(
-              Ionicons.trash_outline,
-              color: Colors.red,
-              size: 20,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (builder) {
+          return DetailPage(product: product);
+        }));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 1.h),
+        padding: EdgeInsets.all(2.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                // Product Image
+                MyCachedNetworkImage(
+                  height: 10.h,
+                  width: 30.w,
+                  imageUrl: product.files![0].path != null
+                      ? Urls.storageProducts + product.files![0].name!
+                      : product.files![0].name!,
+                  // height: 10.h,
+                ),
+                SizedBox(height: 1.h),
+                QauntityButton(
+                    onRemove: onRemove, product: product, onAdd: onAdd),
+              ],
+            ),
+            SizedBox(width: 3.w),
+            PrudoctDaitlesCart(product: product),
+            IconButton(
+              onPressed: deleteProduct,
+              icon: const Icon(
+                Ionicons.trash_outline,
+                color: Colors.red,
+                size: 20,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

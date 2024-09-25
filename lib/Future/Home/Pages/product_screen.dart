@@ -7,7 +7,6 @@ import '../Cubits/searchProductByCatId/search_product_by_category_id_cubit.dart'
 import '../models/catigories_model.dart';
 import '/Future/Home/Widgets/product_Screen/top_oval_widget.dart';
 import '/Utils/colors.dart';
-import '/Utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -51,7 +50,6 @@ class _ProductScreenState extends State<ProductScreen> {
               BlocBuilder<SearchProductByCategoryIdCubit,
                   SearchProductByCategoryIdState>(
                 builder: (context, state) {
-                  print(state);
                   if (state is SearchProductByCategoryIdError) {
                     return MyErrorWidget(msg: state.message, onPressed: () {});
                   } else if (state is SearchProductByCategoryIdLoading) {
@@ -109,10 +107,9 @@ class CategoriesGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GetPorductByIdCubit, GetPorductByIdState>(
       builder: (context, state) {
-        print(state);
         if (state is GetPorductByIdError) {
           return MyErrorWidget(
-              msg: '',
+              msg: state.msg,
               onPressed: () {
                 context
                     .read<GetPorductByIdCubit>()
@@ -128,7 +125,7 @@ class CategoriesGrid extends StatelessWidget {
             child: GridView.builder(
               padding: EdgeInsets.zero,
               physics: const BouncingScrollPhysics(),
-              itemCount: getGridById(categoryId, context).length,
+              itemCount: state.products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.074.h,
                   crossAxisCount: 2,

@@ -48,12 +48,8 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (builder) {
-          return const NavBarPage();
-        }));
+      onPopInvokedWithResult: (didPop, result) {
+        Navigator.pop(context);
       },
       child: BlocListener<CartCubit, CartState>(
         listener: (context, state) {
