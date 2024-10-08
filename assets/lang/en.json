@@ -88,5 +88,8 @@
     "province" : "Province",
     "region" : "Region",
     "address" : "Address",
-    "updated_at" : "Updated At"
+    "updated_at" : "Updated At",
+    "problem_info" : "Problem",
+    "confirm_info" : "Are you sure about your information?",
+    "error_msg" : "There was an error please try again"
 }

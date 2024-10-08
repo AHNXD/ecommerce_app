@@ -10,8 +10,8 @@ import 'package:sizer/sizer.dart';
 
 import '../../../Utils/colors.dart';
 
-class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({super.key});
+class MyOrdersScreen extends StatelessWidget {
+  const MyOrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,4 +59,3 @@ class HistoryScreen extends StatelessWidget {
         ));
   }
 }
-

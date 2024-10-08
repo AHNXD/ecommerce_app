@@ -1,4 +1,5 @@
-import 'package:ecommerce_app_qr/Future/Home/Cubits/AbouUs/about_us_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/Maintenance/maintenance_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/aboutUs/about_us_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => PostOrdersCubit()),
           BlocProvider(create: (_) => GetPorductByIdCubit()),
           BlocProvider(create: (_) => AboutUsCubit()),
+          BlocProvider(create: (_) => MaintenanceCubit()),
           BlocProvider(
               create: (_) =>
                   PagesScreenCubit()..changedScreen(AppScreen.home, context)),
