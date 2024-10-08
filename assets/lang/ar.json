@@ -53,7 +53,7 @@
     "add1": "العنوان 1", 
     "add2": "العنوان 2 (اختياري)", 
     "order_status": "حالة الطلب", 
-    "order_total_status": "إجمالي السعر", 
+    "order_total_price": "إجمالي السعر", 
     "order_notes": "ملاحظات" ,
     "order_date" : "تاريخ الطلب",
     "all" : "الكل",
@@ -84,5 +84,13 @@
     "image_uploded" : "تم رفع الصورة بنجاح",
     "ok" : "حسنا",
     "maintenance_btn" : "طلب صيانة",
-    "print_image_order_btn" : "طباعة صورة"
+    "print_image_order_btn" : "طباعة صورة",
+    "province" : "مقاطعة",
+    "region" : "منطقة",
+    "address" : "عنوان",
+    "order_history" : "تاريخ الطلبات",
+    "order_status_title" : "حالة الطلب",
+    "order_date_title" : "تاريخ الطلب",
+    "order_total_title" : "المبلغ الكامل",
+    "updated_at" : "وقت التعديل"
 }

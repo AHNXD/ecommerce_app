@@ -27,9 +27,9 @@ class HistoryCardItem extends StatelessWidget {
             leading: CircleAvatar(
               backgroundColor: AppColors.buttonCategoryColor,
               child: CircleAvatar(
-                  backgroundColor: order.status == "Checkout"
+                  backgroundColor: order.status == "Accept"
                       ? Colors.green
-                      : order.status == ""
+                      : order.status == "Checkout"
                           ? Colors.yellow
                           : Colors.red,
                   child: const Text("")),
@@ -38,28 +38,22 @@ class HistoryCardItem extends StatelessWidget {
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
                 "${order.firstName} ${order.lastName}"),
-            subtitle: 
-            Column(
+            subtitle: Column(
               children: [
-                OrderInfoTextWidget(
+                OrderInfoTextCardWidget(
                   title: "phone_number".tr(context),
                   body: order.phone?.toString() ?? "",
                 ),
-                OrderInfoTextWidget(
-                  title: "email".tr(context),
-                  body: order.email?.toString() ?? "",
-                ),
-                OrderInfoTextWidget(
-                  title: "location".tr(context),
-                  body:
-                      "${order.country?.toString() ?? ""},${order.city?.toString() ?? ""}",
-                ),
-                OrderInfoTextWidget(
+                OrderInfoTextCardWidget(
                   title: "order_date".tr(context),
                   body: order.orderDate?.toString() ?? "",
                 ),
-                OrderInfoTextWidget(
-                  title: "order_total_status".tr(context),
+                OrderInfoTextCardWidget(
+                  title: "order_status".tr(context),
+                  body: order.status?.toString() ?? "",
+                ),
+                OrderInfoTextCardWidget(
+                  title: "order_total_price".tr(context),
                   body: order.total?.toString() ?? "",
                 ),
               ],
@@ -67,6 +61,32 @@ class HistoryCardItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class OrderInfoTextCardWidget extends StatelessWidget {
+  const OrderInfoTextCardWidget(
+      {super.key, required this.title, required this.body});
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          "$title:",
+          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(
+          width: 8,
+        ),
+        Text(
+          body,
+          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+        ),
+      ],
     );
   }
 }
