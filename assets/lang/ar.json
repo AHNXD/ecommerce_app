@@ -82,5 +82,7 @@
     "product_name" : "اسم المنتج",
     "confirm_product" : "هل انت متأكد من معلومات المنتج؟",
     "image_uploded" : "تم رفع الصورة بنجاح",
-    "ok" : "حسنا"
+    "ok" : "حسنا",
+    "maintenance_btn" : "طلب صيانة",
+    "print_image_order_btn" : "طباعة صورة"
 }

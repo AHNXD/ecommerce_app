@@ -5,6 +5,8 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/about_us_screen.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/maintenance_order.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/print_image.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/sell_prodact.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/SharedPreferences/SharedPreferencesHelper.dart';
@@ -74,6 +76,24 @@ class DrawerWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const SellProdact()));
+                  },
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.buttonCategoryColor),
+              MyButtonWidget(
+                  text: "maintenance_btn".tr(context),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const MaintenanceScreen()));
+                  },
+                  verticalHieght: 1.h,
+                  horizontalWidth: 2.w,
+                  color: AppColors.buttonCategoryColor),
+              MyButtonWidget(
+                  text: "print_image_order_btn".tr(context),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PrintImageScreen()));
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
