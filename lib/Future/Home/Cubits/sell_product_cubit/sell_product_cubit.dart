@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/sell_product_model.dart';
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../Apis/ExceptionsHandle.dart';
@@ -16,16 +17,21 @@ class SellProductCubit extends Cubit<SellProductState> {
     emit(SellProductLoading());
     try {
       final formData = await product.toFormData();
-      Network.postDataWithFiles(url: Urls.sellProduct, data: formData)
-          .then((value) {
-        if (value.statusCode == 200 || value.statusCode == 201) {
-          emit(SellProductSuccess(msg: value.data['msg']));
-        }
-      });
+      final response = await Network.postDataWithFiles(
+          url: Urls.sellProduct, data: formData);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        emit(SellProductSuccess(msg: response.data['msg']));
+      } else {
+        emit(SellProductError(
+            error: lang == 'en'
+                ? 'Failed to upload product. Please try again.'
+                : 'فشل في رفع المنتج الرجاء المحاولة لاحقا'));
+      }
     } catch (error) {
       if (error is DioException) {
         emit(SellProductError(error: exceptionsHandle(error: error)));
       } else {
+        print(error);
         emit(SellProductError(error: error.toString()));
       }
     }

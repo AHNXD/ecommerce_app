@@ -30,8 +30,8 @@ class _SellProdactState extends State<SellProdact> {
   late final TextEditingController priceController;
   late final TextEditingController descriptionController;
   final GlobalKey<FormState> key1 = GlobalKey<FormState>();
-  File? productImage;
-  bool imageUploaded = false;
+  List<File> productImages = [];
+  bool imagesUploaded = false;
   @override
   void initState() {
     nameController = TextEditingController();
@@ -50,16 +50,17 @@ class _SellProdactState extends State<SellProdact> {
 
   Future<void> submit() async {
     if (key1.currentState!.validate()) {
-      if (imageUploaded) {
+      if (imagesUploaded && productImages.isNotEmpty) {
         final double? price = double.tryParse(priceController.text);
         if (price == null) {
-          showrMessage(
+          showMessage(
               Colors.red[400]!,
               lang == 'en'
                   ? "Please enter a valid number"
                   : "الرجاء ادخال رقم صحيح");
           return;
         }
+        final List<File> imagesCopy = List<File>.from(productImages);
         showAwesomeDialogForConfirm(
             sellProduct: SellProductModel(
                 nameController.text,
@@ -67,13 +68,13 @@ class _SellProdactState extends State<SellProdact> {
                 productNameController.text,
                 price,
                 descriptionController.text,
-                productImage));
+                imagesCopy));
       } else {
-        showrMessage(Colors.red[400]!,
+        showMessage(Colors.red[400]!,
             'please_upload_an_image_before_submitting'.tr(context));
       }
     } else {
-      showrMessage(Colors.red[400]!, 'failed_to_add_product'.tr(context));
+      showMessage(Colors.red[400]!, 'failed_to_add_product'.tr(context));
     }
   }
 
@@ -95,7 +96,7 @@ class _SellProdactState extends State<SellProdact> {
         .show();
   }
 
-  void showAwesomeDialogSuccess({required String message}) async {
+  void showAwesomeDialog({required String message}) async {
     await AwesomeDialog(
       descTextStyle: TextStyle(fontSize: 15.sp),
       btnOkText: "ok".tr(context),
@@ -109,19 +110,22 @@ class _SellProdactState extends State<SellProdact> {
     ).show();
   }
 
-  Future<void> pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      imageUploaded = true;
-      productImage = File(pickedFile.path);
-      showrMessage(Colors.green[400]!, "image_uploded".tr(context));
-    } else {
-      showrMessage(Colors.red[400]!, "image_isn't_upoalded".tr(context));
+  Future<void> pickImages() async {
+    try {
+      final List<XFile>? pickedFiles = await ImagePicker().pickMultiImage();
+      if (pickedFiles != null && pickedFiles.isNotEmpty) {
+        setState(() {
+          productImages.addAll(pickedFiles.map((xfile) => File(xfile.path)));
+          imagesUploaded = true;
+        });
+        showMessage(Colors.green[400]!, "image_uploded".tr(context));
+      }
+    } catch (e) {
+      showMessage(Colors.red[400]!, "image_isn't_upoalded".tr(context));
     }
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showrMessage(
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
       Color color, String message) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -156,9 +160,14 @@ class _SellProdactState extends State<SellProdact> {
     return BlocListener<SellProductCubit, SellProductState>(
       listener: (context, state) {
         if (state is SellProductSuccess) {
-          showAwesomeDialogSuccess(message: state.msg);
+          showAwesomeDialog(message: state.msg);
+          key1.currentState!.reset();
+          setState(() {
+            imagesUploaded = false;
+            productImages.clear();
+          });
         } else if (state is SellProductError) {
-          showrMessage(Colors.red[400]!, state.error);
+          showMessage(Colors.red[400]!, state.error);
         }
       },
       child: Scaffold(
@@ -190,7 +199,7 @@ class _SellProdactState extends State<SellProdact> {
                 priceController: priceController,
                 descriptionController: descriptionController),
             GestureDetector(
-              onTap: pickImage,
+              onTap: pickImages,
               child: Container(
                 margin: const EdgeInsets.all(25),
                 height: 75,
@@ -216,7 +225,58 @@ class _SellProdactState extends State<SellProdact> {
                 ),
               ),
             ),
-            const Spacer(),
+            if (imagesUploaded && productImages.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: productImages.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 4.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Stack(
+                      children: [
+                        Image.file(
+                          productImages[index],
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                productImages.removeAt(index);
+                                if (productImages.isEmpty) {
+                                  imagesUploaded = false;
+                                }
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.red.withOpacity(0.7),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.close,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.all(15),
               decoration: BoxDecoration(
