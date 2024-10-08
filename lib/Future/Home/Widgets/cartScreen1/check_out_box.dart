@@ -15,7 +15,7 @@ class CheckOutBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 20.h,
+      height: 25.h,
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -33,7 +33,7 @@ class CheckOutBox extends StatelessWidget {
                 "total_price".tr(context),
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -42,7 +42,7 @@ class CheckOutBox extends StatelessWidget {
                   Text(
                     "${items.length > 1 ? items.map((e) => (e.userQuantity * (e.newSellingPrice == null ? e.sellingPrice : e.newSellingPrice)!)).reduce((value1, value2) => value1 + value2) : items[0].userQuantity * (items[0].newSellingPrice == null ? items[0].sellingPrice : items[0].newSellingPrice)!}",
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -61,22 +61,25 @@ class CheckOutBox extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (b) {
-                return const CartInformation();
-              }));
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.buttonCategoryColor,
-              minimumSize: const Size(double.infinity, 55),
-            ),
-            child: Text(
-              "check_out".tr(context),
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (b) {
+                  return const CartInformation();
+                }));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.buttonCategoryColor,
+                minimumSize: const Size(double.infinity, 55),
+              ),
+              child: Text(
+                "check_out".tr(context),
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

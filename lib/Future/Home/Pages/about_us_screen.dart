@@ -3,7 +3,6 @@ import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circ
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/aboutUs_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
-import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';

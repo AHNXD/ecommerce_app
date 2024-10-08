@@ -26,7 +26,7 @@ List<Widget> productCardList(bool isHomeScreen, List<MainProduct> li) {
     l.add(
       ProductCardWidget(
         product: li[i],
-        isHomeScreen: isHomeScreen
+        isHomeScreen: isHomeScreen,
       ),
     );
   }

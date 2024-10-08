@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               child: Text(
                 message,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 14),
               ),
             ),
             duration: const Duration(seconds: 3)),
@@ -229,7 +229,7 @@ class LastestProductAndTitle extends StatelessWidget {
                       TitleCardWidget(title: name, id: id, cData: cData),
                       CarouselSliderWidget(
                         list: productCardList(true, l),
-                        height: 42.h,
+                        height: 50.h,
                       ),
                     ],
                   );

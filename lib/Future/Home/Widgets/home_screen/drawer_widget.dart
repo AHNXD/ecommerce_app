@@ -32,11 +32,13 @@ class DrawerWidget extends StatelessWidget {
       child: Drawer(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: ListView(
+            padding: EdgeInsets.zero,
             children: [
               Container(
-                height: 140.sp,
-                width: 140.sp,
+                // height: 140.sp,
+                // width: 50.sp,
+                margin: EdgeInsets.symmetric(horizontal: 15.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(width: 5),
@@ -46,7 +48,7 @@ class DrawerWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Image.asset(
                     AppImagesAssets.logoNoBg,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -107,13 +109,13 @@ class DrawerWidget extends StatelessWidget {
                             onPressed: () {},
                             verticalHieght: 1.h,
                             horizontalWidth: 2.w,
-                            color: AppColors.offersContainerColor),
+                            color: AppColors.buttonCategoryColor),
                         MyButtonWidget(
                             text: "signUp".tr(context),
                             onPressed: () {},
                             verticalHieght: 1.h,
                             horizontalWidth: 2.w,
-                            color: AppColors.offersContainerColor),
+                            color: AppColors.buttonCategoryColor),
                       ],
                     )
                   : MyButtonWidget(
@@ -121,7 +123,7 @@ class DrawerWidget extends StatelessWidget {
                       onPressed: () {},
                       verticalHieght: 1.h,
                       horizontalWidth: 2.w,
-                      color: AppColors.textTitleAppBarColor),
+                      color: AppColors.buttonCategoryColor),
               MyButtonWidget(
                   text: "language".tr(context),
                   onPressed: () async {
@@ -145,7 +147,7 @@ class DrawerWidget extends StatelessWidget {
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
-                  color: AppColors.textTitleAppBarColor),
+                  color: AppColors.buttonCategoryColor),
             ],
           ),
         ),

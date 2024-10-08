@@ -141,7 +141,7 @@ class _SellProdactState extends State<SellProdact> {
               textAlign: TextAlign.center,
             ),
           ),
-          duration: const Duration(seconds: 5)),
+          duration: const Duration(seconds: 3)),
     );
   }
 

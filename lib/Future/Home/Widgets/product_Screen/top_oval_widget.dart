@@ -44,7 +44,7 @@ class _TopOvalWidgetState extends State<TopOvalWidget> {
       child: Container(
         margin: EdgeInsets.zero,
         color: AppColors.offersContainerColor,
-        height: 35.h,
+        height: 39.h,
         child: Column(
           children: [
             BackWidget(
