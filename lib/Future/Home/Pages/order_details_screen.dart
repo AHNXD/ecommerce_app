@@ -42,46 +42,42 @@ class OrderDetailsScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Column(
-          children: [
-            OrderInfoTextWidget(
-              title: "phone_number".tr(context),
-              body: order.phone?.toString() ?? "",
-            ),
-            OrderInfoTextWidget(
-              title: "email".tr(context),
-              body: order.email?.toString() ?? "",
-            ),
-            OrderInfoTextWidget(
-              title: "location".tr(context),
-              body:
-                  "${order.country?.toString() ?? ""},${order.city?.toString() ?? ""}",
-            ),
-            OrderInfoTextWidget(
-              title: "add1".tr(context),
-              body: order.address1?.toString() ?? "",
-            ),
-            OrderInfoTextWidget(
-              title: "add2".tr(context),
-              body: order.address2?.toString() ?? "",
-            ),
-            OrderInfoTextWidget(
-              title: "order_status".tr(context),
-              body: order.status?.toString() ?? "",
-            ),
-            OrderInfoTextWidget(
-              title: "order_total_status".tr(context),
-              body: order.total?.toString() ?? "",
-            ),
-            OrderInfoTextWidget(
-              title: "order_notes".tr(context),
-              body: order.notes?.toString() ?? "",
-            ),
-            const Divider(
-              color: AppColors.borderColor,
-            ),
-            Expanded(
-              child: ListView.builder(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              OrderInfoTextWidget(
+                title: "phone_number".tr(context),
+                body: order.phone?.toString() ?? "",
+              ),
+              OrderInfoTextWidget(
+                title: "province".tr(context),
+                body: order.province?.toString() ?? "",
+              ),
+              OrderInfoTextWidget(
+                title: "region".tr(context),
+                body: order.region?.toString() ?? "",
+              ),
+              OrderInfoTextWidget(
+                title: "address".tr(context),
+                body: order.address?.toString() ?? "",
+              ),
+              OrderInfoTextWidget(
+                title: "order_status".tr(context),
+                body: order.status?.toString() ?? "",
+              ),
+              OrderInfoTextWidget(
+                title: "order_total_price".tr(context),
+                body: order.total?.toString() ?? "",
+              ),
+              OrderInfoTextWidget(
+                title: "order_notes".tr(context),
+                body: order.notes?.toString() ?? "",
+              ),
+              const Divider(
+                color: AppColors.borderColor,
+              ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: order.details?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
@@ -92,8 +88,8 @@ class OrderDetailsScreen extends StatelessWidget {
                   );
                 },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -108,19 +104,15 @@ class OrderInfoTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(children: [
-        Text(
-          "$title:",
-          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(width: 8),
-        Text(
-          body,
-          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
-        )
-      ]),
+    return ListTile(
+      title: Text(
+        "$title:",
+        style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+      ),
+      subtitle: Text(
+        body,
+        style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      ),
     );
   }
 }

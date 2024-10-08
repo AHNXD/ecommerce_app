@@ -53,7 +53,7 @@
     "add1": "Address 1",
     "add2": "Address 2 (optional)",
     "order_status": "Order Status",
-    "order_total_status": "Total Price",
+    "order_total_price": "Total Price",
     "order_notes": "Notes",
     "order_date" : "Order Date",
     "all" : "All",
@@ -84,5 +84,9 @@
     "image_uploded": "The image has been uploaded successfully",
     "ok" : "ok",
     "maintenance_btn" : "Maintenance",
-    "print_image_order_btn" : "Print Image"
+    "print_image_order_btn" : "Print Image",
+    "province" : "Province",
+    "region" : "Region",
+    "address" : "Address",
+    "updated_at" : "Updated At"
 }

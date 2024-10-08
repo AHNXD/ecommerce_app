@@ -15,6 +15,7 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<GetMyOrdersCubit>().getMyOrders();
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: Size(double.infinity, 10.h),
@@ -58,3 +59,4 @@ class HistoryScreen extends StatelessWidget {
         ));
   }
 }
+

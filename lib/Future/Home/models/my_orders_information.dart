@@ -1,25 +1,29 @@
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 
 class OrdersInformation {
-  bool status;
-  List<OrderInformationData> data;
+  bool? status;
+  List<OrderInformationData>? data;
 
-  OrdersInformation({
-    required this.status,
-    required this.data,
-  });
+  OrdersInformation({this.status, this.data});
 
-  factory OrdersInformation.fromJson(Map<String, dynamic> json) =>
-      OrdersInformation(
-        status: json["status"],
-        data: List<OrderInformationData>.from(
-            json["data"].map((x) => OrderInformationData.fromJson(x))),
-      );
+  OrdersInformation.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    if (json['data'] != null) {
+      data = <OrderInformationData>[];
+      json['data'].forEach((v) {
+        data!.add(OrderInformationData.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-        "status": status,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class OrderInformationData {
@@ -27,17 +31,15 @@ class OrderInformationData {
   String? phone;
   String? firstName;
   String? lastName;
-  String? email;
-  String? address1;
-  String? address2;
-  String? country;
-  String? city;
+  String? address;
+  String? province;
+  String? region;
   String? notes;
   String? status;
   int? total;
-  String? totalAfterDiscount;
+  int? totalAfterDiscount;
   int? userId;
-  String? couponId;
+  int? couponId;
   String? couponValue;
   String? orderDate;
   String? createdAt;
@@ -45,37 +47,33 @@ class OrderInformationData {
   List<Details>? details;
 
   OrderInformationData(
-      {required this.id,
-      required this.phone,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.address1,
-      required this.address2,
-      required this.country,
-      required this.city,
-      required this.notes,
-      required this.status,
-      required this.total,
-      required this.totalAfterDiscount,
-      required this.userId,
-      required this.couponId,
-      required this.couponValue,
-      required this.orderDate,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.details});
+      {this.id,
+      this.phone,
+      this.firstName,
+      this.lastName,
+      this.address,
+      this.province,
+      this.region,
+      this.notes,
+      this.status,
+      this.total,
+      this.totalAfterDiscount,
+      this.userId,
+      this.couponId,
+      this.couponValue,
+      this.orderDate,
+      this.createdAt,
+      this.updatedAt,
+      this.details});
 
   OrderInformationData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     phone = json['phone'];
     firstName = json['first_name'];
     lastName = json['last_name'];
-    email = json['email'];
-    address1 = json['address_1'];
-    address2 = json['address_2'];
-    country = json['country'];
-    city = json['city'];
+    address = json['address'];
+    province = json['province'];
+    region = json['region'];
     notes = json['notes'];
     status = json['status'];
     total = json['total'];
@@ -100,11 +98,9 @@ class OrderInformationData {
     data['phone'] = phone;
     data['first_name'] = firstName;
     data['last_name'] = lastName;
-    data['email'] = email;
-    data['address_1'] = address1;
-    data['address_2'] = address2;
-    data['country'] = country;
-    data['city'] = city;
+    data['address'] = address;
+    data['province'] = province;
+    data['region'] = region;
     data['notes'] = notes;
     data['status'] = status;
     data['total'] = total;
@@ -133,16 +129,16 @@ class Details {
   String? updatedAt;
   MainProduct? product;
 
-  Details({
-    this.id,
-    this.orderId,
-    this.productId,
-    this.productName,
-    this.price,
-    this.quantity,
-    this.createdAt,
-    this.updatedAt,
-  });
+  Details(
+      {this.id,
+      this.orderId,
+      this.productId,
+      this.productName,
+      this.price,
+      this.quantity,
+      this.createdAt,
+      this.updatedAt,
+      this.product});
 
   Details.fromJson(Map<String, dynamic> json) {
     id = json['id'];

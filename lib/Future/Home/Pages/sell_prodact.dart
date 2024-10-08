@@ -112,8 +112,8 @@ class _SellProdactState extends State<SellProdact> {
 
   Future<void> pickImages() async {
     try {
-      final List<XFile>? pickedFiles = await ImagePicker().pickMultiImage();
-      if (pickedFiles != null && pickedFiles.isNotEmpty) {
+      final List<XFile> pickedFiles = await ImagePicker().pickMultiImage();
+      if (pickedFiles.isNotEmpty) {
         setState(() {
           productImages.addAll(pickedFiles.map((xfile) => File(xfile.path)));
           imagesUploaded = true;
