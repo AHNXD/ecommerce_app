@@ -4,6 +4,7 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cu
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/sell_product_cubit/sell_product_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -62,7 +63,8 @@ class MyApp extends StatelessWidget {
                   PagesScreenCubit()..changedScreen(AppScreen.home, context)),
           BlocProvider(
             create: (_) => SearchProductsCubit(),
-          )
+          ),
+          BlocProvider(create: (_) => SellProductCubit())
         ],
         child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
           builder: (context, state) {

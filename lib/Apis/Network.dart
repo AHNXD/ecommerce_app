@@ -105,4 +105,20 @@ class Network {
   }) async {
     return await dio.delete(url, data: data);
   }
+
+  static Future<Response> postDataWithFiles({
+    required String url,
+    dynamic data,
+  }) async {
+    dio.options.headers = {
+      'Authorization': "Bearer ${AppSharedPreferences.getToken}",
+      "Accept": 'application/json',
+      "Accept-Language": lang,
+    };
+
+    return await dio.post(
+      url,
+      data: data,
+    );
+  }
 }

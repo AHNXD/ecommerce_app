@@ -1,4 +1,4 @@
-enum ValidationState { normal, email, password, phoneNumber }
+enum ValidationState { normal, email, password, phoneNumber, price }
 
 enum AppScreen { home, cart, history, favorite }
 

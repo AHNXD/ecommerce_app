@@ -38,6 +38,20 @@ String? validation(String? text, ValidationState v) {
             ? "Password must be at least 8 characters long"
             : "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
       }
+    case ValidationState.price:
+      if (text!.isEmpty) {
+        return lang == 'en' ? "This field is required" : "هذا الحقل مطلوب";
+      }
+      final double? price = double.tryParse(text);
+      if (price == null) {
+        return lang == 'en'
+            ? "Please enter a valid number"
+            : "الرجاء ادخال رقم صحيح";
+      } else if (price <= 0) {
+        return lang == 'en'
+            ? "Price must be greater than zero"
+            : "الرقم يجب ان يكون اكبر من الصفر";
+      }
 
       // bool hasUppercase = text.contains(RegExp(r'[A-Z]'));
       // bool hasLowercase = text.contains(RegExp(r'[a-z]'));
@@ -60,4 +74,5 @@ String? validation(String? text, ValidationState v) {
 
       return null;
   }
+  return null;
 }

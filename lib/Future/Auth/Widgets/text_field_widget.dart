@@ -9,13 +9,15 @@ class TextFieldWidget extends StatefulWidget {
       required this.isPassword,
       this.maxLine = 1,
       required this.controller,
-      this.validatorFun});
+      this.validatorFun,
+      this.keyboardType});
   final String text;
   final bool isPassword;
   final int maxLine;
   final TextEditingController controller;
   final String? Function(String?)? validatorFun;
   final Color? borderColor;
+  final TextInputType? keyboardType;
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -26,7 +28,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   void dispose() {
     // focusNode.dispose();
     // widget.controller.dispose();
-    widget.controller.clear(); 
+    widget.controller.clear();
     super.dispose();
   }
 
@@ -55,6 +57,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
       child: TextFormField(
+        keyboardType: widget.keyboardType,
         textInputAction: TextInputAction.next,
         validator: widget.validatorFun,
         controller: widget.controller,

@@ -77,6 +77,11 @@
     "image_isn't_upoalded" : "Image isn't Upoalded,Pleas try agen" ,
     "failed_to_add_product" : "Failed to add Product, please check the form",
     "please_upload_an_image_before_submitting" :"Please upload an image before submitting",
-    "change_lang" : "The language changed to English"
-
+    "change_lang" : "The language changed to English",
+    "your_name" : "Your Name",
+    "product_name" : "Product Name",
+    "confirm_product" : "Are you sure about the product information?",
+    "image_uploded": "The image has been uploaded successfully",
+    "ok" : "ok"
+    
 }

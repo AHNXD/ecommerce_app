@@ -12,16 +12,16 @@ class SellProductForm extends StatelessWidget {
   const SellProductForm({
     super.key,
     required this.key1,
-    required this.firstNameController,
-    required this.lastNameController,
+    required this.nameController,
+    required this.productNameController,
     required this.phoneController,
     required this.priceController,
     required this.descriptionController,
   });
 
   final GlobalKey<FormState> key1;
-  final TextEditingController firstNameController;
-  final TextEditingController lastNameController;
+  final TextEditingController nameController;
+  final TextEditingController productNameController;
   final PhoneController phoneController;
   final TextEditingController priceController;
   final TextEditingController descriptionController;
@@ -36,17 +36,19 @@ class SellProductForm extends StatelessWidget {
           children: [
             TextFieldWidget(
                 validatorFun: (p0) => validation(p0, ValidationState.normal),
-                text: "FN_info".tr(context),
+                text: "your_name".tr(context),
                 isPassword: false,
-                controller: firstNameController),
-            TextFieldWidget(
-                validatorFun: (p0) => validation(p0, ValidationState.normal),
-                text: "LN_info".tr(context),
-                isPassword: false,
-                controller: lastNameController),
+                controller: nameController),
             PhoneFieldWidget(controller: phoneController),
             TextFieldWidget(
                 validatorFun: (p0) => validation(p0, ValidationState.normal),
+                text: 'product_name'.tr(context),
+                isPassword: false,
+                controller: productNameController),
+            TextFieldWidget(
+                validatorFun: (p0) => validation(p0, ValidationState.price),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 text: "price_info".tr(context),
                 isPassword: false,
                 controller: priceController),
