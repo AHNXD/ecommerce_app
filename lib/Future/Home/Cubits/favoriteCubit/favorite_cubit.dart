@@ -51,10 +51,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       await Network.postData(
           url: Urls.addAndDelProductsFavorite, data: {"id": id}).then((value) {
         if (value.statusCode == 200 || value.statusCode == 201) {
-          print(value.data['fav']);
           isFave = value.data['fav'] as bool;
-          //showSuccessSnackBar(message: value.data['msg']);
-          emit(FavoriteProductSuccessfulState());
+          emit(FavoriteProductSuccessfulState(isFave: isFave));
         }
       });
     } catch (error) {
