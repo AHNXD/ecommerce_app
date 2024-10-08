@@ -1,4 +1,5 @@
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import 'package:ecommerce_app_qr/Utils/functions.dart';
 
 import '../../Cubits/cartCubit/cart.bloc.dart';
 import '/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
@@ -51,23 +52,19 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 return Align(
                   alignment: Alignment.topLeft,
                   child: IconButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        widget.product.isFavorite = await context
+                            .read<FavoriteCubit>()
+                            .addAndDelFavoriteProducts(
+                              widget.product.id!,
+                            );
                         setState(() {
-                          if (widget.product.isFavorite) {
-                            context
-                                .read<FavoriteCubit>()
-                                .addAndDelFavoriteProducts(
-                                  widget.product.id!,
-                                );
-                            widget.product.isFavorite = false;
-                          } else {
-                            context
-                                .read<FavoriteCubit>()
-                                .addAndDelFavoriteProducts(
-                                  widget.product.id!,
-                                );
-                            widget.product.isFavorite = true;
-                          }
+                          massege(
+                              context,
+                              widget.product.isFavorite
+                                  ? "added_fav".tr(context)
+                                  : "removed_fav".tr(context),
+                              Colors.green);
                         });
                       },
                       icon: Icon(

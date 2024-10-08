@@ -38,7 +38,8 @@ class HistoryCardItem extends StatelessWidget {
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
                 "${order.firstName} ${order.lastName}"),
-            subtitle: Column(
+            subtitle: 
+            Column(
               children: [
                 OrderInfoTextWidget(
                   title: "phone_number".tr(context),

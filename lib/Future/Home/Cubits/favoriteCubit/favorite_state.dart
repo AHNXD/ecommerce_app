@@ -7,7 +7,11 @@ final class FavoriteInitial extends FavoriteState {}
 
 final class FavoriteAddState extends FavoriteState {}
 
-final class FavoriteProductSuccessfulState extends FavoriteState {}
+final class FavoriteProductSuccessfulState extends FavoriteState {
+  final bool isFave;
+
+  FavoriteProductSuccessfulState({required this.isFave});
+}
 
 final class GetFavoriteProductsLoadingState extends FavoriteState {}
 

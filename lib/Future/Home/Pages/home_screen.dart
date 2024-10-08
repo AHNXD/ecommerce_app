@@ -67,7 +67,10 @@ class HomeScreen extends StatelessWidget {
                 final model = context.read<GetCatigoriesOffersCubit>();
                 if (state is GetCatigoriesOffersLoadingState) {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(),
+                    ),
                   );
                 } else if (state is GetCatigoriesOffersErrorState) {
                   return MyErrorWidget(
@@ -152,7 +155,10 @@ class LastestProductAndTitle extends StatelessWidget {
       builder: (context, catigoryState) {
         if (catigoryState is GetCatigoriesLoadingState) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ),
           );
         } else if (catigoryState is GetCatigoriesErrorState) {
           return MyErrorWidget(
@@ -166,7 +172,10 @@ class LastestProductAndTitle extends StatelessWidget {
           builder: (context, productState) {
             if (productState is GetProductsLoadingState) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ),
               );
             } else if (productState is GetProductsErrorState) {
               return MyErrorWidget(
