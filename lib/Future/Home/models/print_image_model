@@ -1,0 +1,49 @@
+import 'dart:io';
+import 'package:dio/dio.dart';
+
+class PrintImageModel {
+  String? firstName;
+  String? lastName;
+  String? phone;
+  String? province;
+  String? region;
+  String? address;
+  String? printSizeId;
+  int? quantity;
+  List<File>? images;
+
+  PrintImageModel({
+    this.firstName,
+    this.lastName,
+    this.phone,
+    this.province,
+    this.region,
+    this.address,
+    this.printSizeId,
+    this.quantity,
+    this.images,
+  });
+
+
+  Future<FormData> toFormData() async {
+    List<MultipartFile> imageFiles = [];
+    if (images != null && images!.isNotEmpty) {
+      for (var image in images!) {
+        String fileName = image.path.split('/').last;
+        imageFiles.add(await MultipartFile.fromFile(image.path, filename: fileName));
+      }
+    }
+
+    return FormData.fromMap({
+      "first_name": firstName,
+      "last_name": lastName,
+      "phone": phone,
+      "province": province,
+      "region": region,
+      "address": address,
+      "print_size_id": printSizeId ,
+      "quantity": quantity,
+      "image": imageFiles, 
+    });
+  }
+}

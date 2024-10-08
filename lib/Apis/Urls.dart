@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 class Urls {
-  static const String ip = "192.168.1.4:8000";
+  static const String ip = "192.168.1.12:8000";
 
   static const String baseUrl = "http://$ip/api/";
   static const String storageProducts = "http://$ip/uploads/products/";
@@ -38,4 +38,5 @@ class Urls {
   static const String getProductsByGategoryId =
       "${baseUrl}products/by/categoryId";
   static const String sellProduct = "${baseUrl}Sell_Order";
+  static const String printImage = "${baseUrl}Print";
 }

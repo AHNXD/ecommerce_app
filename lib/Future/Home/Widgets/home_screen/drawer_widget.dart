@@ -95,7 +95,7 @@ class DrawerWidget extends StatelessWidget {
                   text: "print_image_order_btn".tr(context),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PrintImageScreen()));
+                        builder: (context) => const PrintImage()));
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,

@@ -92,5 +92,9 @@
     "order_status_title" : "حالة الطلب",
     "order_date_title" : "تاريخ الطلب",
     "order_total_title" : "المبلغ الكامل",
-    "updated_at" : "وقت التعديل"
+    "updated_at" : "وقت التعديل",
+    "quantity" : "الكمية",
+    "print_size_id" : "طباعة الحجم ",
+    "print_img" : "طباعة الصورة",
+    "upload_img" : "ارفع الصورة"
 }

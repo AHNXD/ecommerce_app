@@ -1,10 +1,10 @@
-import 'package:ecommerce_app_qr/Future/Home/Cubits/AbouUs/about_us_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/print_image_cubit/print_image_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/sell_product_cubit/sell_product_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
@@ -15,6 +15,7 @@ import '/Future/Home/Pages/navbar_screen.dart';
 import 'Future/Home/Cubits/CompairPruductsCubit/compair_products_cubit.dart';
 import 'Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import 'Future/Home/Cubits/cartCubit/cart.bloc.dart';
+import 'Future/Home/Cubits/cubit/about_us_cubit.dart';
 import 'Future/Home/Cubits/postOrders/post_orders_cubit.dart';
 import 'Future/Home/Cubits/rangeSliderCubit/range_slider_cubit.dart';
 import '/Utils/SharedPreferences/SharedPreferencesHelper.dart';
@@ -66,7 +67,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => SearchProductsCubit(),
           ),
-          BlocProvider(create: (_) => SellProductCubit())
+          BlocProvider(create: (_) => SellProductCubit()),
+          BlocProvider(create: (_) => PrintImageCubit())
         ],
         child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
           builder: (context, state) {
