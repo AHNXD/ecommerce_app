@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/sell_product_model.dart';
 import 'package:ecommerce_app_qr/Utils/constants.dart';

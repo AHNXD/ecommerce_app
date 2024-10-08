@@ -38,5 +38,4 @@ class Urls {
   static const String getProductsByGategoryId =
       "${baseUrl}products/by/categoryId";
   static const String sellProduct = "${baseUrl}Sell_Order";
-  static const String printImage = "${baseUrl}Print";
 }

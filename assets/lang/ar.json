@@ -93,8 +93,13 @@
     "order_date_title" : "تاريخ الطلب",
     "order_total_title" : "المبلغ الكامل",
     "updated_at" : "وقت التعديل",
+
     "quantity" : "الكمية",
     "print_size_id" : "طباعة الحجم ",
     "print_img" : "طباعة الصورة",
-    "upload_img" : "ارفع الصورة"
+    "upload_img" : "ارفع الصورة",
+    "problem_info" : "المشكلة",
+    "confirm_info" : "هل انت متأكد من المعلومات المدخلة؟",
+    "error_msg" : "لفد حدث خطأ, الرجاء المحاولة مجددا"
+
 }

@@ -1,3 +1,6 @@
+import 'package:ecommerce_app_qr/Future/Home/Cubits/Maintenance/maintenance_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/aboutUs/about_us_cubit.dart';
+
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
@@ -15,7 +18,7 @@ import '/Future/Home/Pages/navbar_screen.dart';
 import 'Future/Home/Cubits/CompairPruductsCubit/compair_products_cubit.dart';
 import 'Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import 'Future/Home/Cubits/cartCubit/cart.bloc.dart';
-import 'Future/Home/Cubits/cubit/about_us_cubit.dart';
+
 import 'Future/Home/Cubits/postOrders/post_orders_cubit.dart';
 import 'Future/Home/Cubits/rangeSliderCubit/range_slider_cubit.dart';
 import '/Utils/SharedPreferences/SharedPreferencesHelper.dart';
@@ -61,6 +64,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => PostOrdersCubit()),
           BlocProvider(create: (_) => GetPorductByIdCubit()),
           BlocProvider(create: (_) => AboutUsCubit()),
+          BlocProvider(create: (_) => MaintenanceCubit()),
           BlocProvider(
               create: (_) =>
                   PagesScreenCubit()..changedScreen(AppScreen.home, context)),
