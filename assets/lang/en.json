@@ -82,6 +82,7 @@
     "product_name" : "Product Name",
     "confirm_product" : "Are you sure about the product information?",
     "image_uploded": "The image has been uploaded successfully",
-    "ok" : "ok"
-    
+    "ok" : "ok",
+    "maintenance_btn" : "Maintenance",
+    "print_image_order_btn" : "Print Image"
 }
