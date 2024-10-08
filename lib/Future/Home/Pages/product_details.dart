@@ -38,10 +38,10 @@ class _DetailPageState extends State<DetailPage> {
             child: Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 14),
             ),
           ),
-          duration: const Duration(seconds: 5)),
+          duration: const Duration(seconds: 3)),
     );
   }
 
@@ -49,7 +49,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return PopScope(
       onPopInvokedWithResult: (didPop, result) {
-        Navigator.pop(context);
+        Navigator.of(context).pop();
       },
       child: BlocListener<CartCubit, CartState>(
         listener: (context, state) {
@@ -242,30 +242,51 @@ class _DetailPageState extends State<DetailPage> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Material(
-                      color: AppColors.primaryColors,
-                      borderRadius: BorderRadius.circular(15),
-                      child: InkWell(
-                        onTap: () {
-                          context.read<CartCubit>().addToCart(widget.product);
-                        },
-                        borderRadius: BorderRadius.circular(15),
-                        child: Container(
-                          height: 65,
-                          width: double.infinity,
-                          padding: const EdgeInsets.symmetric(vertical: 21),
-                          child: Text(
-                            "add_to_cart".tr(context),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                    TextButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonCategoryColor,
+                        minimumSize: const Size(double.infinity, 55),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      onPressed: () {
+                        context.read<CartCubit>().addToCart(widget.product);
+                      },
+                      child: Text(
+                        "add_to_cart".tr(context),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
                         ),
                       ),
                     ),
+                    // Material(
+                    //   color: AppColors.primaryColors,
+                    //   borderRadius: BorderRadius.circular(15),
+                    //   child: InkWell(
+                    //     onTap: () {
+                    //       context.read<CartCubit>().addToCart(widget.product);
+                    //     },
+                    //     borderRadius: BorderRadius.circular(15),
+                    //     child: Container(
+                    //       height: 65,
+                    //       width: double.infinity,
+                    //       padding: const EdgeInsets.symmetric(vertical: 21),
+                    //       child: Text(
+                    //         "add_to_cart".tr(context),
+                    //         textAlign: TextAlign.center,
+                    //         style: const TextStyle(
+                    //           fontSize: 20,
+                    //           color: Colors.white,
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 25,
                     ),

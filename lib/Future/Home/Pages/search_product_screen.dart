@@ -1,4 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
+import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/product_card_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/enums.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
@@ -142,13 +143,18 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                   itemCount:
                       productCardList(false, getSearchProduct(context)).length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.074.h,
+                      childAspectRatio: 0.083.h,
                       crossAxisCount: 2,
                       crossAxisSpacing: 3.w,
                       mainAxisSpacing: 1.h),
                   itemBuilder: (context, index) {
-                    return productCardList(
-                        false, getSearchProduct(context))[index];
+                    return ProductCardWidget(
+                      isHomeScreen: false,
+                      product: state.products[index],
+                      addToCartPaddingButton: 3.w,
+                    );
+                    // return productCardList(
+                    //     false, getSearchProduct(context))[index];
                   },
                 );
               } else if (state is SearchProductsNotFoundfulState) {

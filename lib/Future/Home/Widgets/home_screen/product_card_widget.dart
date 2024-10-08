@@ -18,9 +18,11 @@ class ProductCardWidget extends StatefulWidget {
     super.key,
     required this.isHomeScreen,
     required this.product,
+    this.addToCartPaddingButton,
   });
   final bool isHomeScreen;
   final MainProduct product;
+  final double? addToCartPaddingButton;
 
   @override
   State<ProductCardWidget> createState() => _ProductCardWidgetState();
@@ -105,7 +107,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
             ),
             if (widget.product.newSellingPrice != null)
               SizedBox(
-                height: 4.5.h,
+                height: 5.h,
                 child: Stack(
                   children: [
                     Padding(
@@ -145,29 +147,55 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
             const SizedBox(
               height: 20,
             ),
-            Material(
-              color: AppColors.primaryColors,
-              borderRadius: BorderRadius.circular(15),
-              child: InkWell(
-                onTap: () {
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: widget.addToCartPaddingButton ?? 10.w),
+              child: TextButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.buttonCategoryColor,
+                  minimumSize: const Size(double.infinity, 55),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                onPressed: () {
                   context.read<CartCubit>().addToCart(widget.product);
                 },
-                borderRadius: BorderRadius.circular(15),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.37,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "add_to_cart".tr(context),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                child: Text(
+                  "add_to_cart".tr(context),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
               ),
             ),
+
+            // Material(
+            //   color: AppColors.primaryColors,
+            //   borderRadius: BorderRadius.circular(15),
+            //   child: InkWell(
+            //     onTap: () {
+            //       context.read<CartCubit>().addToCart(widget.product);
+            //     },
+            //     borderRadius: BorderRadius.circular(15),
+            //     child: Container(
+            //       width: MediaQuery.of(context).size.width * 0.37,
+            //       padding: const EdgeInsets.symmetric(vertical: 14),
+            //       child: Text(
+            //         "add_to_cart".tr(context),
+            //         textAlign: TextAlign.center,
+            //         style: const TextStyle(
+            //           fontSize: 17,
+            //           fontWeight: FontWeight.w600,
+            //           color: Colors.white,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             // Container(
             //   margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
             //   padding: EdgeInsets.only(right: 1.w),

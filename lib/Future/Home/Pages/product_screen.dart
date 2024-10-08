@@ -2,6 +2,7 @@ import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/product_card_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import '../Cubits/cartCubit/cart.bloc.dart';
 import '../Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import '../Cubits/searchProductByCatId/search_product_by_category_id_cubit.dart';
 import '../models/catigories_model.dart';
@@ -24,6 +25,27 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
+      String message, Color color) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          content: Container(
+            padding: EdgeInsets.symmetric(vertical: 1.h),
+            decoration: BoxDecoration(
+                color: color, borderRadius: BorderRadius.circular(2.w)),
+            margin: EdgeInsets.symmetric(horizontal: 0.1.w),
+            child: Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14),
+            ),
+          ),
+          duration: const Duration(seconds: 3)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -38,56 +60,68 @@ class _ProductScreenState extends State<ProductScreen> {
       },
       child: BlocProvider(
         create: (context) => SearchProductByCategoryIdCubit(),
-        child: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
-          body: Column(
-            children: [
-              TopOvalWidget(
-                isNotHome: widget.isNotHome,
-                firstText: widget.cData.name!,
-                parentId: widget.cData.id!,
-              ),
-              BlocBuilder<SearchProductByCategoryIdCubit,
-                  SearchProductByCategoryIdState>(
-                builder: (context, state) {
-                  if (state is SearchProductByCategoryIdError) {
-                    return MyErrorWidget(msg: state.message, onPressed: () {});
-                  } else if (state is SearchProductByCategoryIdLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is SearchProductByCategoryIdNotFound) {
-                    return Center(
-                      child: Text(
-                        "there_are_no_results_found".tr(context),
-                      ),
-                    );
-                  } else if (state is SearchProductByCategoryIdSuccess) {
-                    return Expanded(
-                      // height: 58.h,
-                      child: GridView.builder(
-                        padding: EdgeInsets.zero,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: state.products.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 0.06.h,
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 3.w,
-                            mainAxisSpacing: 1.h),
-                        itemBuilder: (context, index) {
-                          return ProductCardWidget(
-                            isHomeScreen: false,
-                            product: state.products[index],
-                          );
-                        },
-                      ),
-                    );
-                  } else {
-                    return CategoriesGrid(categoryId: widget.cData.id!);
-                  }
-                },
-              )
-            ],
+        child: BlocListener<CartCubit, CartState>(
+          listener: (context, state) {
+            if (state is AddToCartState) {
+              showMessage('add_product_done'.tr(context), Colors.green);
+            } else if (state is AlreadyInCartState) {
+              showMessage('product_in_cart'.tr(context), Colors.grey);
+            }
+          },
+          child: Scaffold(
+            backgroundColor: AppColors.backgroundColor,
+            body: Column(
+              children: [
+                TopOvalWidget(
+                  isNotHome: widget.isNotHome,
+                  firstText: widget.cData.name!,
+                  parentId: widget.cData.id!,
+                ),
+                BlocBuilder<SearchProductByCategoryIdCubit,
+                    SearchProductByCategoryIdState>(
+                  builder: (context, state) {
+                    if (state is SearchProductByCategoryIdError) {
+                      return MyErrorWidget(
+                          msg: state.message, onPressed: () {});
+                    } else if (state is SearchProductByCategoryIdLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state is SearchProductByCategoryIdNotFound) {
+                      return Center(
+                        child: Text(
+                          "there_are_no_results_found".tr(context),
+                        ),
+                      );
+                    } else if (state is SearchProductByCategoryIdSuccess) {
+                      return Expanded(
+                        // height: 58.h,
+                        child: GridView.builder(
+                          padding: EdgeInsets.zero,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: state.products.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 0.083.h,
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 3.w,
+                                  mainAxisSpacing: 1.h),
+                          itemBuilder: (context, index) {
+                            return ProductCardWidget(
+                              isHomeScreen: false,
+                              product: state.products[index],
+                              addToCartPaddingButton: 3.w,
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return CategoriesGrid(categoryId: widget.cData.id!);
+                    }
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -127,7 +161,7 @@ class CategoriesGrid extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: state.products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.06.h,
+                  childAspectRatio: 0.083.h,
                   crossAxisCount: 2,
                   crossAxisSpacing: 3.w,
                   mainAxisSpacing: 1.h),
@@ -135,6 +169,7 @@ class CategoriesGrid extends StatelessWidget {
                 return ProductCardWidget(
                   isHomeScreen: false,
                   product: state.products[index],
+                  addToCartPaddingButton: 3.w,
                 );
               },
             ),
