@@ -1,4 +1,4 @@
-import 'package:ecommerce_app_qr/Future/Home/Cubits/AbouUs/about_us_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/aboutUs/about_us_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/aboutUs_model.dart';
@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../Utils/colors.dart';
-import '../Cubits/cubit/about_us_cubit.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
