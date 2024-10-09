@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Privacy - Photo Library Usage Description --> 
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to your photo library to select product images.</string>
+	<!-- Privacy - Camera Usage Description --> 
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to your camera to take product photos.</string>
+	<!-- Privacy - Photo Library Additions Usage Description (if needed) --> 
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app requires access to your photo library to save product images.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

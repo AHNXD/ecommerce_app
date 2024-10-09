@@ -15,14 +15,14 @@ import '../Cubits/print_image_cubit/print_image_cubit.dart';
 import '../Widgets/print_image/print_image_form.dart';
 import '../models/print_image_model';
 
-class PrintImage extends StatefulWidget {
-  const PrintImage({super.key});
+class PrintImageScreen extends StatefulWidget {
+  const PrintImageScreen({super.key});
 
   @override
-  State<PrintImage> createState() => _PrintImageState();
+  State<PrintImageScreen> createState() => _PrintImageState();
 }
 
-class _PrintImageState extends State<PrintImage> {
+class _PrintImageState extends State<PrintImageScreen> {
   late final TextEditingController firstNameController;
   late final TextEditingController lastNameController;
   late final TextEditingController provinceController;

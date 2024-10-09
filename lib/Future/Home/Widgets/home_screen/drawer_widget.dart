@@ -95,12 +95,11 @@ class DrawerWidget extends StatelessWidget {
                   text: "print_image_order_btn".tr(context),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PrintImage()));
+                        builder: (context) => const PrintImageScreen()));
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
                   color: AppColors.buttonCategoryColor),
-              const Spacer(),
               !AppSharedPreferences.hasToken
                   ? Column(
                       children: [
