@@ -16,8 +16,8 @@ class MaintenanceCubit extends Cubit<MaintenanceState> {
     emit(MaintenanceLoading());
     try {
       final formData = await order.toFormData();
-      final response = await Network.postDataWithFiles(
-          url: Urls.maintenance, data: formData);
+      final response =
+          await Network.postData(url: Urls.maintenance, data: formData);
       if (response.statusCode == 200 || response.statusCode == 201) {
         emit(MaintenanceSuccess(msg: response.data['msg']));
       } else {

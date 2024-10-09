@@ -56,7 +56,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen> {
               problemCause: problemController.text,
               description: descriptionController.text));
     } else {
-      showMessage(Colors.red[400]!, 'failed_to_add_product'.tr(context));
+      showMessage(Colors.red[400]!, 'error_msg'.tr(context));
     }
   }
 

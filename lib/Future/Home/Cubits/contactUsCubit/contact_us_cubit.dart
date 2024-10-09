@@ -1,3 +1,5 @@
+import 'package:ecommerce_app_qr/Future/Home/models/contactUs_model.dart';
+import 'package:ecommerce_app_qr/Utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/ExceptionsHandle.dart';
@@ -9,28 +11,30 @@ part 'contact_us_state.dart';
 
 class ContactUsCubit extends Cubit<ContactUsState> {
   ContactUsCubit() : super(ContactUsInitial());
-  void contactUsMessageSend(
-      String name, String emailOrPhone, String message) async {
+  void contactUsMessageSend(ContactusModel order) async {
     emit(ContactUsLoadingState());
     try {
-      await Network.postData(url: Urls.contactUs, data: {
-        "name": name,
-        "email_or_phone": emailOrPhone,
-        "message": message,
-      }).then((value) {
-        if (value.statusCode == 200 || value.statusCode == 201) {
-          emit(ContactUsSuccessfulState());
-        }
-      });
+      final formData = await order.toFormData();
+      final response =
+          await Network.postData(url: Urls.contactUs, data: formData);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        emit(ContactUsSuccessfulState(msg: response.data['msg']));
+      } else {
+        emit(ContactUsErrorState(
+            error: lang == 'en'
+                ? 'There was an error, please try again.'
+                : 'حدث خطأ ما, الرجاء اعادة المحاولة.'));
+      }
     } catch (error) {
       if (error is DioException) {
         emit(
           ContactUsErrorState(
-            exceptionsHandle(error: error),
+            error: exceptionsHandle(error: error),
           ),
         );
       } else {
-        ContactUsErrorState(error.toString());
+        ContactUsErrorState(error: error.toString());
       }
     }
   }
@@ -42,18 +46,18 @@ class ContactUsCubit extends Cubit<ContactUsState> {
           url: Urls.productComplaiment,
           data: {"product_id": id, "complaint_text": text}).then((value) {
         if (value.statusCode == 200 || value.statusCode == 201) {
-          emit(ContactUsSuccessfulState());
+          emit(ContactUsSuccessfulState(msg: value.data["msg"]));
         }
       });
     } catch (error) {
       if (error is DioException) {
         emit(
           ContactUsErrorState(
-            exceptionsHandle(error: error),
+            error: exceptionsHandle(error: error),
           ),
         );
       } else {
-        ContactUsErrorState(error.toString());
+        ContactUsErrorState(error: error.toString());
       }
     }
   }
@@ -70,18 +74,18 @@ class ContactUsCubit extends Cubit<ContactUsState> {
         "status": status,
       }).then((value) {
         if (value.statusCode == 200 || value.statusCode == 201) {
-          emit(ContactUsSuccessfulState());
+          emit(ContactUsSuccessfulState(msg: value.data["msg"]));
         }
       });
     } catch (error) {
       if (error is DioException) {
         emit(
           ContactUsErrorState(
-            exceptionsHandle(error: error),
+            error: exceptionsHandle(error: error),
           ),
         );
       } else {
-        ContactUsErrorState(error.toString());
+        ContactUsErrorState(error: error.toString());
       }
     }
   }
