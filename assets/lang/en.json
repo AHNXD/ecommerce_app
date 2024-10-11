@@ -95,6 +95,7 @@
     "upload_img" : "upload the image",
     "problem_info" : "Problem",
     "confirm_info" : "Are you sure about your information?",
-    "error_msg" : "There was an error please try again"
-
+    "error_msg" : "There was an error please try again",
+    "emailOrPhone" : "Email or Phone Number",
+    "msg" : "Message" 
 }
