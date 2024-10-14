@@ -6,6 +6,7 @@ import '../Cubits/cartCubit/cart.bloc.dart';
 import '../Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import '../Cubits/searchProductByCatId/search_product_by_category_id_cubit.dart';
 import '../models/catigories_model.dart';
+import '../models/product_model.dart';
 import '/Future/Home/Widgets/product_Screen/top_oval_widget.dart';
 import '/Utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -96,24 +97,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     } else if (state is SearchProductByCategoryIdSuccess) {
                       return Expanded(
                         // height: 58.h,
-                        child: GridView.builder(
-                          padding: EdgeInsets.zero,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: state.products.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 0.083.h,
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 3.w,
-                                  mainAxisSpacing: 1.h),
-                          itemBuilder: (context, index) {
-                            return ProductCardWidget(
-                              isHomeScreen: false,
-                              product: state.products[index],
-                              addToCartPaddingButton: 3.w,
-                            );
-                          },
-                        ),
+                        child: CustomGridVeiw(products: state.products),
                       );
                     } else {
                       return CategoriesGrid(categoryId: widget.cData.id!);
@@ -156,26 +140,59 @@ class CategoriesGrid extends StatelessWidget {
         } else if (state is GetPorductByIdSuccess) {
           return Expanded(
             // height: 58.h,
-            child: GridView.builder(
-              padding: EdgeInsets.zero,
-              physics: const BouncingScrollPhysics(),
-              itemCount: state.products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.083.h,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 3.w,
-                  mainAxisSpacing: 1.h),
-              itemBuilder: (context, index) {
-                return ProductCardWidget(
-                  isHomeScreen: false,
-                  product: state.products[index],
-                  addToCartPaddingButton: 3.w,
-                );
-              },
-            ),
+            child: CustomGridVeiw(products: state.products),
           );
         }
         return const SizedBox();
+      },
+    );
+  }
+}
+
+class CustomGridVeiw extends StatelessWidget {
+  const CustomGridVeiw({super.key, required this.products});
+  final List<MainProduct> products;
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
+    int selectScreenWidth(screenWidth) {
+      if (screenWidth <= 280) {
+        return 1;
+      }
+      return 2;
+    }
+
+    double selectAspectRatio(screenWidth, screenHeight) {
+      if (screenWidth <= 280) {
+        return screenWidth / (screenHeight) * 2.3;
+      } else if (screenWidth > 280 && screenWidth < 450) {
+        return screenWidth / (screenHeight) * 1.04;
+      } else if (screenWidth >= 450 && screenWidth < 600) {
+        return screenWidth / (screenHeight) * 0.85;
+      } else if (screenWidth >= 600 && screenWidth < 900) {
+        return screenWidth / (screenHeight) * 0.55;
+      }
+      return screenWidth / (screenHeight) * 0.3;
+    }
+
+    return GridView.builder(
+      padding: EdgeInsets.zero,
+      physics: const BouncingScrollPhysics(),
+      itemCount: products.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: selectAspectRatio(screenWidth, screenHeight),
+          crossAxisCount: selectScreenWidth(screenWidth),
+          crossAxisSpacing: 3.w,
+          mainAxisSpacing: 1.h),
+      itemBuilder: (context, index) {
+        return ProductCardWidget(
+          isHomeScreen: false,
+          product: products[index],
+          addToCartPaddingButton: 3.w,
+        );
       },
     );
   }

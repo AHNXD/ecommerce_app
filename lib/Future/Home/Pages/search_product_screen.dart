@@ -1,5 +1,5 @@
+import 'package:ecommerce_app_qr/Future/Home/Pages/product_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
-import 'package:ecommerce_app_qr/Future/Home/Widgets/home_screen/product_card_widget.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/enums.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
@@ -9,8 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 import '../../../Utils/colors.dart';
-import '../../../Utils/functions.dart';
-import '../../../Utils/test_lists.dart';
 import '../Cubits/searchProductsCubit/search_products_cubit.dart';
 
 class SearchProductScreen extends StatefulWidget {
@@ -138,25 +136,26 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                 );
               }
               if (state is SearchProductsSuccessfulState) {
-                return GridView.builder(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemCount:
-                      productCardList(false, getSearchProduct(context)).length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.083.h,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 3.w,
-                      mainAxisSpacing: 1.h),
-                  itemBuilder: (context, index) {
-                    return ProductCardWidget(
-                      isHomeScreen: false,
-                      product: state.products[index],
-                      addToCartPaddingButton: 3.w,
-                    );
-                    // return productCardList(
-                    //     false, getSearchProduct(context))[index];
-                  },
-                );
+                return CustomGridVeiw(products: state.products);
+                // return GridView.builder(
+                //   physics: const AlwaysScrollableScrollPhysics(),
+                //   itemCount:
+                //       productCardList(false, getSearchProduct(context)).length,
+                //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //       childAspectRatio: 0.083.h,
+                //       crossAxisCount: 2,
+                //       crossAxisSpacing: 3.w,
+                //       mainAxisSpacing: 1.h),
+                //   itemBuilder: (context, index) {
+                //     return ProductCardWidget(
+                //       isHomeScreen: false,
+                //       product: state.products[index],
+                //       addToCartPaddingButton: 3.w,
+                //     );
+                //     // return productCardList(
+                //     //     false, getSearchProduct(context))[index];
+                //   },
+                // );
               } else if (state is SearchProductsNotFoundfulState) {
                 return Center(
                     child: Text("there_are_no_results_found".tr(context)));

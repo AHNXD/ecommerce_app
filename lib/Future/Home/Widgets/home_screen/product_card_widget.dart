@@ -93,14 +93,14 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: AppColors.textButtonColors,
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                 )),
             if (widget.product.weightMeasurement != null)
               Text(
                   "${widget.product.wight} ${widget.product.weightMeasurement!.name}",
                   style: TextStyle(
                     color: Colors.black54,
-                    fontSize: 10.sp,
+                    fontSize: 8.sp,
                   )),
             SizedBox(
               height: 1.h,
@@ -117,7 +117,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                         "${widget.product.newSellingPrice} ${"sp".tr(context)}",
                         style: TextStyle(
                             color: AppColors.textButtonColors,
-                            fontSize: 10.sp,
+                            fontSize: 9.sp,
                             fontWeight: FontWeight.w900),
                       ),
                     ),
@@ -141,7 +141,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 "${widget.product.sellingPrice} ${"sp".tr(context)}",
                 style: TextStyle(
                     color: AppColors.textButtonColors,
-                    fontSize: 10.sp,
+                    fontSize: 9.sp,
                     fontWeight: FontWeight.w900),
               ),
             const SizedBox(
@@ -149,120 +149,58 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: widget.addToCartPaddingButton ?? 10.w),
-              child: TextButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonCategoryColor,
-                  minimumSize: const Size(double.infinity, 55),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+                horizontal: widget.addToCartPaddingButton ?? 10.w,
+              ),
+              child: SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.buttonCategoryColor,
+                    minimumSize: Size(double.infinity, 6.5.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3.w),
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  context.read<CartCubit>().addToCart(widget.product);
-                },
-                child: Text(
-                  "add_to_cart".tr(context),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                  onPressed: () {
+                    context.read<CartCubit>().addToCart(widget.product);
+                  },
+                  child: Text(
+                    "add_to_cart".tr(context),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-
-            // Material(
-            //   color: AppColors.primaryColors,
-            //   borderRadius: BorderRadius.circular(15),
-            //   child: InkWell(
-            //     onTap: () {
+            // Padding(
+            //   padding: EdgeInsets.symmetric(
+            //       horizontal: widget.addToCartPaddingButton ?? 10.w),
+            //   child: TextButton(
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: AppColors.buttonCategoryColor,
+            //       minimumSize: const Size(double.infinity, 55),
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(25),
+            //       ),
+            //     ),
+            //     onPressed: () {
             //       context.read<CartCubit>().addToCart(widget.product);
             //     },
-            //     borderRadius: BorderRadius.circular(15),
-            //     child: Container(
-            //       width: MediaQuery.of(context).size.width * 0.37,
-            //       padding: const EdgeInsets.symmetric(vertical: 14),
-            //       child: Text(
-            //         "add_to_cart".tr(context),
-            //         textAlign: TextAlign.center,
-            //         style: const TextStyle(
-            //           fontSize: 17,
-            //           fontWeight: FontWeight.w600,
-            //           color: Colors.white,
-            //         ),
+            //     child: Text(
+            //       "add_to_cart".tr(context),
+            //       textAlign: TextAlign.center,
+            //       style: const TextStyle(
+            //         fontSize: 14,
+            //         fontWeight: FontWeight.w600,
+            //         color: Colors.white,
             //       ),
             //     ),
             //   ),
             // ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
-            //   padding: EdgeInsets.only(right: 1.w),
-            //   decoration: BoxDecoration(
-            //       color: AppColors.backgroundColor,
-            //       borderRadius: BorderRadius.circular(5.w)),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       // if (widget.product.userQuantity > 0)
-            //       IconButton(
-            //         icon: const Icon(
-            //           Icons.add,
-            //           color: AppColors.buttonCategoryColor,
-            //         ),
-            //         onPressed: () {
-            //           if (widget.product.userQuantity == 0) {
-            //             context.read<CartCubit>().addToCart(widget.product);
-            //           }
-            //           setState(() {
-            //             if (widget.product.userQuantity <
-            //                 widget.product.quantity!) {
-            //               widget.product.userQuantity++;
-            //             }
-            //           });
-            //         },
-            //       ),
-            //       Padding(
-            //         padding: EdgeInsets.only(
-            //           right: widget.product.userQuantity < 0 ? 0 : 1.w,
-            //         ),
-            //         child: BlocBuilder<CartCubit, CartState>(
-            //           builder: (context, state) {
-            //             return Text(
-            //               // widget.product.userQuantity == 0
-            //               //     ? "Add To Cart"
-            //               //     :
-            //               "${widget.product.userQuantity < 10 && widget.product.userQuantity != 0 ? "0" : ""}${widget.product.userQuantity}",
-            //               textAlign: TextAlign.start,
-            //               style: TextStyle(
-            //                   color: Colors.black,
-            //                   fontSize: widget.isHomeScreen ? 13.sp : 9.sp,
-            //                   fontWeight: FontWeight.w400),
-            //             );
-            //           },
-            //         ),
-            //       ),
-            //       // if (widget.product.userQuantity > 0)
-            //       IconButton(
-            //         icon: const Icon(Icons.remove,
-            //             color: AppColors.buttonCategoryColor),
-            //         onPressed: () {
-            //           setState(() {
-            //             if (widget.product.userQuantity == 1) {
-            //               context
-            //                   .read<CartCubit>()
-            //                   .removeformTheCart(widget.product);
-            //               widget.product.userQuantity--;
-            //             } else if (widget.product.userQuantity > 0) {
-            //               widget.product.userQuantity--;
-            //             }
-            //           });
-            //         },
-            //       ),
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),

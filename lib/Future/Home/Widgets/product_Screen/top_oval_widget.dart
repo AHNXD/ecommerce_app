@@ -38,13 +38,27 @@ class _TopOvalWidgetState extends State<TopOvalWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenHeight = screenSize.height;
+    final screenWidth = screenSize.width;
+    double selectHeight(screenHeight) {
+      if (screenWidth > 280 && screenWidth < 450) {
+        return screenHeight * 0.39;
+      } else if (screenWidth >= 450 && screenWidth < 600) {
+        return screenHeight * 0.6;
+      } else if (screenWidth >= 600 && screenWidth < 900) {
+        return screenHeight * 0.7;
+      }
+      return screenHeight * 0.9;
+    }
+
     return ClipPath(
       clipBehavior: Clip.hardEdge,
       clipper: CoustomClipPath(),
       child: Container(
         margin: EdgeInsets.zero,
         color: AppColors.offersContainerColor,
-        height: 39.h,
+        height: selectHeight(screenHeight),
         child: Column(
           children: [
             BackWidget(
