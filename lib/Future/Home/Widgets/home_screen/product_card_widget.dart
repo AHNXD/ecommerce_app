@@ -44,9 +44,10 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
       },
       child: Container(
         width: 70.w,
-        margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+        margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.h),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.w), color: Colors.white),
+            borderRadius: BorderRadius.circular(5.w),
+            color: const Color.fromARGB(84, 168, 240, 249)),
         child: Column(
           children: [
             BlocBuilder<FavoriteCubit, FavoriteState>(
