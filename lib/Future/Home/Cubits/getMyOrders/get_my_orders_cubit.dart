@@ -11,16 +11,16 @@ part 'get_my_orders_state.dart';
 
 class GetMyOrdersCubit extends Cubit<GetMyOrdersState> {
   GetMyOrdersCubit() : super(GetMyOrdersInitial());
-  OrdersInformation? orderInformation;
 
   void getMyOrders() async {
     emit(GetMyOrdersLoadingState());
     try {
       await Network.getData(url: Urls.getMyOrders).then((response) {
         if (response.statusCode == 200 || response.statusCode == 201) {
-          orderInformation = OrdersInformation.fromJson(response.data);
+          OrdersInformation? orderInformation =
+              OrdersInformation.fromJson(response.data);
 
-          emit(GetMyOrdersSuccessfulState());
+          emit(GetMyOrdersSuccessfulState(orderInformation: orderInformation));
         }
       });
     } catch (error) {

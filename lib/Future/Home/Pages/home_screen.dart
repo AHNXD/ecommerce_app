@@ -277,7 +277,6 @@ class LastestProductAndTitle extends StatelessWidget {
                       .read<GetCatigoriesCubit>()
                       .catigoriesModel!
                       .data!);
-              // Data not loaded yet, show loading indicator
               return const Center(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -320,7 +319,6 @@ class LastestProductAndTitle extends StatelessWidget {
                 },
               );
             } else if (state is AllProductsByAllCategoryError) {
-              // Handle error with retry or backoff strategy (not shown here)
               return MyErrorWidget(
                 msg: state.msg,
                 onPressed: () {

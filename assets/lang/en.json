@@ -99,5 +99,7 @@
     "emailOrPhone" : "Email or Phone Number",
     "msg" : "Message" ,
     "please_select_a_size": "Please select a size.",
-    "select_size" : "Please select all details"
+    "select_size" : "Please select all details",
+    "no_orders" : "There are no orders"
+
 }

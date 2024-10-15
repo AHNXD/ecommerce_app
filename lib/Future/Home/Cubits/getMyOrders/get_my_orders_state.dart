@@ -5,7 +5,11 @@ sealed class GetMyOrdersState {}
 
 final class GetMyOrdersInitial extends GetMyOrdersState {}
 
-final class GetMyOrdersSuccessfulState extends GetMyOrdersState {}
+final class GetMyOrdersSuccessfulState extends GetMyOrdersState {
+  final OrdersInformation orderInformation;
+
+  GetMyOrdersSuccessfulState({required this.orderInformation});
+}
 
 final class GetMyOrdersLoadingState extends GetMyOrdersState {}
 
