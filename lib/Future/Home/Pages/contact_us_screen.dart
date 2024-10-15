@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class ContactUsScreen extends StatefulWidget {
-  ContactUsScreen({
+  const ContactUsScreen({
     super.key,
   });
 
