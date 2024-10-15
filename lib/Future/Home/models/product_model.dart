@@ -37,26 +37,29 @@ class MainProduct {
   int? quantity;
   String? descrption;
   int userQuantity = 1;
+  String? selectedSize;
   bool isFavorite = false;
   List<Files>? files;
   WeightMeasurement? weightMeasurement;
   Category? category;
   List<Ratings>? ratings;
-
-  MainProduct(
-      {this.id,
-      this.name,
-      this.wight,
-      this.categoryId,
-      this.weightMeasurementId,
-      this.sellingPrice,
-      this.newSellingPrice,
-      this.quantity,
-      this.descrption,
-      this.files,
-      this.weightMeasurement,
-      this.category,
-      this.ratings});
+  List<String>? sizes;
+  MainProduct({
+    this.id,
+    this.name,
+    this.wight,
+    this.categoryId,
+    this.weightMeasurementId,
+    this.sellingPrice,
+    this.newSellingPrice,
+    this.quantity,
+    this.descrption,
+    this.files,
+    this.weightMeasurement,
+    this.category,
+    this.ratings,
+    this.sizes,
+  });
 
   MainProduct.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -87,6 +90,7 @@ class MainProduct {
     } else {
       ratings = null;
     }
+    sizes = json['sizes'] != null ? List<String>.from(json['sizes']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -111,6 +115,9 @@ class MainProduct {
     }
     if (ratings != null) {
       data['ratings'] = ratings!.map((v) => v.toJson()).toList();
+    }
+    if (sizes != null) {
+      data['sizes'] = sizes;
     }
     return data;
   }

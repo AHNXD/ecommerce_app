@@ -2,32 +2,24 @@ import 'package:flutter/material.dart';
 import '../../../Utils/colors.dart';
 
 class SizeSelector extends StatefulWidget {
-  const SizeSelector({super.key, required this.category});
-  final String category;
-
+  const SizeSelector(
+      {super.key,
+      this.sizes,
+      this.selectedIndex,
+      required this.onSizeSelected});
+  final List<String>? sizes;
+  final int? selectedIndex;
+  final Function(int) onSizeSelected;
   @override
   State<SizeSelector> createState() => _SizeSelectorState();
 }
 
 class _SizeSelectorState extends State<SizeSelector> {
-  int selectedIndex = -1;
-
   @override
   Widget build(BuildContext context) {
-    // Sizes for clothes
-    List<String> clothSizes = ['S', 'M', 'L', 'XL', 'XXL'];
-    // Sizes for shoes
-    List<int> shoeSizes = [39, 40, 41, 42, 44];
+    int selectedIndex = -1;
 
-    List<dynamic> sizes =
-        widget.category == 'ملابس' || widget.category == 'Clothes'
-            ? clothSizes
-            : shoeSizes;
-
-    if (widget.category == 'ملابس' ||
-        widget.category == 'أحذية' ||
-        widget.category == 'Clothes' ||
-        widget.category == 'Shoes') {
+    if (widget.sizes != null && widget.sizes!.isNotEmpty) {
       return Row(
         children: [
           const Text(
@@ -44,13 +36,14 @@ class _SizeSelectorState extends State<SizeSelector> {
               height: 50,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: sizes.length,
+                itemCount: widget.sizes!.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
                       setState(() {
                         selectedIndex = index;
                       });
+                      widget.onSizeSelected(index);
                     },
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -60,7 +53,7 @@ class _SizeSelectorState extends State<SizeSelector> {
                             ? AppColors.primaryColors
                             : Colors.grey.shade200,
                         child: Text(
-                          sizes[index].toString(),
+                          widget.sizes![index],
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

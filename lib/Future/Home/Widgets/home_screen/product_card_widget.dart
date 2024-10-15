@@ -30,6 +30,26 @@ class ProductCardWidget extends StatefulWidget {
 
 class _ProductCardWidgetState extends State<ProductCardWidget> {
   // int number = 0;
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
+      String message, Color color) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          content: Container(
+            padding: EdgeInsets.symmetric(vertical: 1.h),
+            decoration: BoxDecoration(
+                color: color, borderRadius: BorderRadius.circular(2.w)),
+            margin: EdgeInsets.symmetric(horizontal: 0.1.w),
+            child: Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14),
+            ),
+          ),
+          duration: const Duration(seconds: 3)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +183,12 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                     ),
                   ),
                   onPressed: () {
-                    context.read<CartCubit>().addToCart(widget.product);
+                    if (widget.product.sizes != null &&
+                        widget.product.sizes!.isNotEmpty) {
+                      showMessage("select_size".tr(context), Colors.red);
+                    } else {
+                      context.read<CartCubit>().addToCart(widget.product);
+                    }
                   },
                   child: Text(
                     "add_to_cart".tr(context),

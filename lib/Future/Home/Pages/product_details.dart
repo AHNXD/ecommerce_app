@@ -1,6 +1,5 @@
 import 'package:ecommerce_app_qr/Apis/Urls.dart';
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
-import 'package:ecommerce_app_qr/Future/Home/Widgets/size_selector.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/colors.dart';
@@ -24,6 +23,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  int? selectedIndex = -1;
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
       String message, Color color) {
     return ScaffoldMessenger.of(context).showSnackBar(
@@ -238,7 +238,59 @@ class _DetailPageState extends State<DetailPage> {
                     const SizedBox(
                       height: 25,
                     ),
-                    SizeSelector(category: widget.product.category!.name!),
+                    if (widget.product.sizes != null &&
+                        widget.product.sizes!.isNotEmpty)
+                      Row(
+                        children: [
+                          const Text(
+                            'Sizes: ',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: SizedBox(
+                              height: 50,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.product.sizes!.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        selectedIndex = index;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: CircleAvatar(
+                                        radius: 25,
+                                        backgroundColor: selectedIndex == index
+                                            ? AppColors.primaryColors
+                                            : Colors.grey.shade200,
+                                        child: Text(
+                                          widget.product.sizes![index],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: selectedIndex == index
+                                                ? Colors.white
+                                                : Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     const SizedBox(
                       height: 25,
                     ),
@@ -251,7 +303,18 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                       ),
                       onPressed: () {
-                        context.read<CartCubit>().addToCart(widget.product);
+                        if (widget.product.sizes != null &&
+                            widget.product.sizes!.isNotEmpty) {
+                          if (selectedIndex == -1) {
+                            showMessage("select_size".tr(context), Colors.red);
+                          } else {
+                            widget.product.selectedSize =
+                                widget.product.sizes![selectedIndex!];
+                            context.read<CartCubit>().addToCart(widget.product);
+                          }
+                        } else {
+                          context.read<CartCubit>().addToCart(widget.product);
+                        }
                       },
                       child: Text(
                         "add_to_cart".tr(context),

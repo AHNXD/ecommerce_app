@@ -1,6 +1,7 @@
 class OrderInformation {
   List<int>? productId;
   List<int>? quantity;
+  List<String>? selectedSizes;
   String? firstName;
   String? lastName;
   String? phone;
@@ -23,7 +24,8 @@ class OrderInformation {
       this.note,
       this.phone,
       this.productId,
-      this.quantity});
+      this.quantity,
+      this.selectedSizes});
 
   Map<String, dynamic> toJson() {
     return {
@@ -39,6 +41,7 @@ class OrderInformation {
       "city": city,
       "notes": note,
       "code": code,
+      "sizes": selectedSizes
     };
   }
 }
