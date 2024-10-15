@@ -49,7 +49,7 @@ class MyOrdersScreen extends StatelessWidget {
               } else {
                 return Center(
                   child: Text(
-                    "fav_body_msg".tr(context),
+                    "no_orders".tr(context),
                   ),
                 );
               }
