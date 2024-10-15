@@ -1,17 +1,15 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/cartCubit/cart.bloc.dart';
-import 'package:ecommerce_app_qr/Future/Home/Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 
-import '/Future/Home/Cubits/getProducts/get_products_cubit.dart';
+import '../Cubits/all_proudcts_by_all_cat/all_products_by_all_category_cubit.dart';
 import '../Cubits/getCatigories/get_catigories_cubit.dart';
 import '/Future/Home/Widgets/home_screen/appbar_widget.dart';
 import '/Future/Home/Widgets/home_screen/carousel_slider_widget.dart';
 import '../Widgets/home_screen/home_page_categories_button_widget.dart';
 import '/Future/Home/Widgets/home_screen/tilte_card_widget.dart';
-import '/Future/Home/models/product_model.dart';
 import '/Utils/colors.dart';
 import '/Utils/test_lists.dart';
 import 'package:flutter/material.dart';
@@ -268,12 +266,17 @@ class LastestProductAndTitle extends StatelessWidget {
             },
           );
         }
-        return BlocBuilder<GetPorductByIdCubit, GetPorductByIdState>(
+        return BlocBuilder<AllProductsByAllCategoryCubit,
+            AllProductsByAllCategoryState>(
           builder: (context, state) {
-            if (state is GetPorductByIdInitial ||
-                state is GetPorductByIdLoading) {
-              context.read<GetPorductByIdCubit>().getAllProductsByAllCategory(
-                  context.read<GetCatigoriesCubit>().catigoriesModel!.data!);
+            if (state is AllProductsByAllCategoryInitial ||
+                state is AllProductsByAllCategoryLoading) {
+              context
+                  .read<AllProductsByAllCategoryCubit>()
+                  .getAllProductsByAllCategory(context
+                      .read<GetCatigoriesCubit>()
+                      .catigoriesModel!
+                      .data!);
               // Data not loaded yet, show loading indicator
               return const Center(
                 child: Padding(
@@ -281,7 +284,7 @@ class LastestProductAndTitle extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 ),
               );
-            } else if (state is GetAllPorductByIdSuccess) {
+            } else if (state is AllProductsByAllCategorySuccess) {
               return ListView.builder(
                 shrinkWrap: true,
                 controller: controller,
@@ -316,13 +319,13 @@ class LastestProductAndTitle extends StatelessWidget {
                   );
                 },
               );
-            } else if (state is GetPorductByIdError) {
+            } else if (state is AllProductsByAllCategoryError) {
               // Handle error with retry or backoff strategy (not shown here)
               return MyErrorWidget(
                 msg: state.msg,
                 onPressed: () {
                   context
-                      .read<GetPorductByIdCubit>()
+                      .read<AllProductsByAllCategoryCubit>()
                       .getAllProductsByAllCategory(context
                           .read<GetCatigoriesCubit>()
                           .catigoriesModel!

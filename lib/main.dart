@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/Maintenance/maintenance_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/aboutUs/about_us_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/all_proudcts_by_all_cat/all_products_by_all_category_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/contactUsCubit/contact_us_cubit.dart';
 
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
@@ -74,7 +75,8 @@ class MyApp extends StatelessWidget {
             create: (_) => SearchProductsCubit(),
           ),
           BlocProvider(create: (_) => SellProductCubit()),
-          BlocProvider(create: (_) => PrintImageCubit())
+          BlocProvider(create: (_) => PrintImageCubit()),
+          BlocProvider(create: (_) => AllProductsByAllCategoryCubit())
         ],
         child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
           builder: (context, state) {
