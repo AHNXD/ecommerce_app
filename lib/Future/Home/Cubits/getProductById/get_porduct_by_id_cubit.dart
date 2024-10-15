@@ -37,7 +37,8 @@ class GetPorductByIdCubit extends Cubit<GetPorductByIdState> {
       List<List<MainProduct>> allProducts = [];
       for (int i = 0; i < catigories.length; i++) {
         await Network.getData(
-                url: "${Urls.getProductsByGategoryId}/${catigories[i].id}")
+                url:
+                    "${Urls.getProductsByGategoryId}/${catigories[i].id}?per_page=5&page=1")
             .then((response) {
           ProductsModel products = ProductsModel.fromJson(response.data);
           allProducts.add(products.data!);
