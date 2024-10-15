@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
 import 'package:meta/meta.dart';
 
@@ -37,8 +36,7 @@ class GetPorductByIdCubit extends Cubit<GetPorductByIdState> {
       List<List<MainProduct>> allProducts = [];
       for (int i = 0; i < catigories.length; i++) {
         await Network.getData(
-                url:
-                    "${Urls.getProductsByGategoryId}/${catigories[i].id}?per_page=5&page=1")
+                url: "${Urls.getProductsByGategoryId}/${catigories[i].id}")
             .then((response) {
           ProductsModel products = ProductsModel.fromJson(response.data);
           allProducts.add(products.data!);
