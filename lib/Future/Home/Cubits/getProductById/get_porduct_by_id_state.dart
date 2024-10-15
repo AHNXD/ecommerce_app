@@ -11,6 +11,12 @@ final class GetPorductByIdSuccess extends GetPorductByIdState {
   GetPorductByIdSuccess({required this.products});
 }
 
+final class GetAllPorductByIdSuccess extends GetPorductByIdState {
+  final List<List<MainProduct>> allProducts;
+
+  GetAllPorductByIdSuccess({required this.allProducts});
+}
+
 final class GetPorductByIdLoading extends GetPorductByIdState {}
 
 final class GetPorductByIdError extends GetPorductByIdState {

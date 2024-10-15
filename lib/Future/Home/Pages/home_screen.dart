@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_qr/Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/cartCubit/cart.bloc.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/catigories_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
@@ -143,6 +144,105 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// class LastestProductAndTitle extends StatelessWidget {
+//   const LastestProductAndTitle({
+//     super.key,
+//     required this.controller,
+//   });
+//   final ScrollController controller;
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<GetCatigoriesCubit, GetCatigoriesState>(
+//       builder: (context, catigoryState) {
+//         if (catigoryState is GetCatigoriesLoadingState) {
+//           return const Center(
+//             child: Padding(
+//               padding: EdgeInsets.all(8.0),
+//               child: CircularProgressIndicator(),
+//             ),
+//           );
+//         } else if (catigoryState is GetCatigoriesErrorState) {
+//           return MyErrorWidget(
+//             msg: catigoryState.msg,
+//             onPressed: () {
+//               context.read<GetCatigoriesCubit>().getCatigories();
+//             },
+//           );
+//         }
+//         return BlocBuilder<GetProductsCubit, GetProductsState>(
+//           builder: (context, productState) {
+//             if (productState is GetProductsLoadingState) {
+//               return const Center(
+//                 child: Padding(
+//                   padding: EdgeInsets.all(8.0),
+//                   child: CircularProgressIndicator(),
+//                 ),
+//               );
+//             } else if (productState is GetProductsErrorState) {
+//               return MyErrorWidget(
+//                 msg: productState.msg,
+//                 onPressed: () {
+//                   context.read<GetProductsCubit>().getProducts();
+//                 },
+//               );
+//             } else {
+//               return ListView.builder(
+//                 shrinkWrap: true,
+//                 controller: controller,
+//                 itemCount: context
+//                     .read<GetCatigoriesCubit>()
+//                     .catigoriesModel!
+//                     .data!
+//                     .length,
+//                 itemBuilder: (BuildContext context, int index) {
+//                   String name = context
+//                       .read<GetCatigoriesCubit>()
+//                       .catigoriesModel!
+//                       .data![index]
+//                       .name!;
+//                   int id = context
+//                       .read<GetCatigoriesCubit>()
+//                       .catigoriesModel!
+//                       .data![index]
+//                       .id!;
+//                   CatigoriesData cData = context
+//                       .read<GetCatigoriesCubit>()
+//                       .catigoriesModel!
+//                       .data![index];
+//                   int len =
+//                       context.read<GetProductsCubit>().model!.data!.length;
+//                   List<MainProduct> l = <MainProduct>[];
+//                   for (int i = 0; i < len; i++) {
+//                     MainProduct m =
+//                         context.read<GetProductsCubit>().model!.data![i];
+//                     if (m.categoryId ==
+//                         context
+//                             .read<GetCatigoriesCubit>()
+//                             .catigoriesModel!
+//                             .data![index]
+//                             .id) {
+//                       l.add(m);
+//                     }
+//                   }
+
+//                   return Column(
+//                     children: [
+//                       TitleCardWidget(title: name, id: id, cData: cData),
+//                       CarouselSliderWidget(
+//                         list: productCardList(true, l),
+//                         height: 50.h,
+//                       ),
+//                     ],
+//                   );
+//                 },
+//               );
+//             }
+//           },
+//         );
+//       },
+//     );
+//   }
+// }
 class LastestProductAndTitle extends StatelessWidget {
   const LastestProductAndTitle({
     super.key,
@@ -168,23 +268,20 @@ class LastestProductAndTitle extends StatelessWidget {
             },
           );
         }
-        return BlocBuilder<GetProductsCubit, GetProductsState>(
-          builder: (context, productState) {
-            if (productState is GetProductsLoadingState) {
+        return BlocBuilder<GetPorductByIdCubit, GetPorductByIdState>(
+          builder: (context, state) {
+            if (state is GetPorductByIdInitial ||
+                state is GetPorductByIdLoading) {
+              context.read<GetPorductByIdCubit>().getAllProductsByAllCategory(
+                  context.read<GetCatigoriesCubit>().catigoriesModel!.data!);
+              // Data not loaded yet, show loading indicator
               return const Center(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: CircularProgressIndicator(),
                 ),
               );
-            } else if (productState is GetProductsErrorState) {
-              return MyErrorWidget(
-                msg: productState.msg,
-                onPressed: () {
-                  context.read<GetProductsCubit>().getProducts();
-                },
-              );
-            } else {
+            } else if (state is GetAllPorductByIdSuccess) {
               return ListView.builder(
                 shrinkWrap: true,
                 controller: controller,
@@ -208,36 +305,106 @@ class LastestProductAndTitle extends StatelessWidget {
                       .read<GetCatigoriesCubit>()
                       .catigoriesModel!
                       .data![index];
-                  int len =
-                      context.read<GetProductsCubit>().model!.data!.length;
-                  List<MainProduct> l = <MainProduct>[];
-                  for (int i = 0; i < len; i++) {
-                    MainProduct m =
-                        context.read<GetProductsCubit>().model!.data![i];
-                    if (m.categoryId ==
-                        context
-                            .read<GetCatigoriesCubit>()
-                            .catigoriesModel!
-                            .data![index]
-                            .id) {
-                      l.add(m);
-                    }
-                  }
-
                   return Column(
                     children: [
                       TitleCardWidget(title: name, id: id, cData: cData),
                       CarouselSliderWidget(
-                        list: productCardList(true, l),
+                        list: productCardList(true, state.allProducts[index]),
                         height: 50.h,
                       ),
                     ],
                   );
                 },
               );
+            } else if (state is GetPorductByIdError) {
+              // Handle error with retry or backoff strategy (not shown here)
+              return MyErrorWidget(
+                msg: state.msg,
+                onPressed: () {
+                  context
+                      .read<GetPorductByIdCubit>()
+                      .getAllProductsByAllCategory(context
+                          .read<GetCatigoriesCubit>()
+                          .catigoriesModel!
+                          .data!);
+                },
+              );
+            } else {
+              return const Text('Unexpected state');
             }
           },
         );
+
+        // return BlocBuilder<GetProductsCubit, GetProductsState>(
+        //   builder: (context, productState) {
+        //     if (productState is GetProductsLoadingState) {
+        //       return const Center(
+        //         child: Padding(
+        //           padding: EdgeInsets.all(8.0),
+        //           child: CircularProgressIndicator(),
+        //         ),
+        //       );
+        //     } else if (productState is GetProductsErrorState) {
+        //       return MyErrorWidget(
+        //         msg: productState.msg,
+        //         onPressed: () {
+        //           context.read<GetProductsCubit>().getProducts();
+        //         },
+        //       );
+        //     } else {
+        //       return ListView.builder(
+        //         shrinkWrap: true,
+        //         controller: controller,
+        //         itemCount: context
+        //             .read<GetCatigoriesCubit>()
+        //             .catigoriesModel!
+        //             .data!
+        //             .length,
+        //         itemBuilder: (BuildContext context, int index) {
+        //           String name = context
+        //               .read<GetCatigoriesCubit>()
+        //               .catigoriesModel!
+        //               .data![index]
+        //               .name!;
+        //           int id = context
+        //               .read<GetCatigoriesCubit>()
+        //               .catigoriesModel!
+        //               .data![index]
+        //               .id!;
+        //           CatigoriesData cData = context
+        //               .read<GetCatigoriesCubit>()
+        //               .catigoriesModel!
+        //               .data![index];
+        //           int len =
+        //               context.read<GetProductsCubit>().model!.data!.length;
+        //           List<MainProduct> l = <MainProduct>[];
+        //           for (int i = 0; i < len; i++) {
+        //             MainProduct m =
+        //                 context.read<GetProductsCubit>().model!.data![i];
+        //             if (m.categoryId ==
+        //                 context
+        //                     .read<GetCatigoriesCubit>()
+        //                     .catigoriesModel!
+        //                     .data![index]
+        //                     .id) {
+        //               l.add(m);
+        //             }
+        //           }
+
+        //           return Column(
+        //             children: [
+        //               TitleCardWidget(title: name, id: id, cData: cData),
+        //               CarouselSliderWidget(
+        //                 list: productCardList(true, l),
+        //                 height: 50.h,
+        //               ),
+        //             ],
+        //           );
+        //         },
+        //       );
+        //     }
+        //   },
+        // );
       },
     );
   }
