@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 class PrintImageModel {
@@ -10,7 +11,7 @@ class PrintImageModel {
   String? address;
   String? printSizeId;
   int? quantity;
-  List<File>? images;
+  File? image;
 
   PrintImageModel({
     this.firstName,
@@ -21,17 +22,14 @@ class PrintImageModel {
     this.address,
     this.printSizeId,
     this.quantity,
-    this.images,
+    this.image,
   });
 
-
   Future<FormData> toFormData() async {
-    List<MultipartFile> imageFiles = [];
-    if (images != null && images!.isNotEmpty) {
-      for (var image in images!) {
-        String fileName = image.path.split('/').last;
-        imageFiles.add(await MultipartFile.fromFile(image.path, filename: fileName));
-      }
+    MultipartFile? imageFile;
+    if (image != null) {
+      String fileName = image!.path.split('/').last;
+      imageFile = await MultipartFile.fromFile(image!.path, filename: fileName);
     }
 
     return FormData.fromMap({
@@ -41,9 +39,9 @@ class PrintImageModel {
       "province": province,
       "region": region,
       "address": address,
-      "print_size_id": printSizeId ,
+      "print_size_id": printSizeId,
       "quantity": quantity,
-      "image": imageFiles, 
+      "image": imageFile,
     });
   }
 }

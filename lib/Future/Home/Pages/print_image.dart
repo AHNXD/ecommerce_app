@@ -13,7 +13,7 @@ import '../../../Utils/colors.dart';
 import '../../../Utils/constants.dart';
 import '../Cubits/print_image_cubit/print_image_cubit.dart';
 import '../Widgets/print_image/print_image_form.dart';
-import '../models/print_image_model';
+import '../models/print_image_model.dart';
 
 class PrintImageScreen extends StatefulWidget {
   const PrintImageScreen({super.key});
@@ -33,8 +33,8 @@ class _PrintImageState extends State<PrintImageScreen> {
   late final TextEditingController quantityController;
   late final PhoneController phoneController;
   final GlobalKey<FormState> key1 = GlobalKey<FormState>();
-  List<File> productImages = [];
-  bool imagesUploaded = false;
+  File? productImage;
+  bool imageUploaded = false;
   @override
   void initState() {
     firstNameController = TextEditingController();
@@ -55,7 +55,7 @@ class _PrintImageState extends State<PrintImageScreen> {
 
   Future<void> submit() async {
     if (key1.currentState!.validate()) {
-      if (imagesUploaded && productImages.isNotEmpty) {
+      if (imageUploaded && productImage != null) {
         final int? quantity = int.tryParse(quantityController.text);
         if (quantity == null) {
           showMessage(
@@ -66,7 +66,6 @@ class _PrintImageState extends State<PrintImageScreen> {
           return;
         }
 
-        final List<File> imagesCopy = List<File>.from(productImages);
         final PrintImageModel printOrder = PrintImageModel(
           firstName: firstNameController.text,
           lastName: lastNameController.text,
@@ -77,7 +76,7 @@ class _PrintImageState extends State<PrintImageScreen> {
           address: addressController.text,
           printSizeId: printSizeIdController.text,
           quantity: quantity,
-          images: imagesCopy,
+          image: productImage,
         );
 
         context.read<PrintImageCubit>().sendPrintImageOrder(printOrder);
@@ -104,13 +103,15 @@ class _PrintImageState extends State<PrintImageScreen> {
     ).show();
   }
 
-  Future<void> pickImages() async {
+  Future<void> pickImage() async {
     try {
-      final List<XFile> pickedFiles = await ImagePicker().pickMultiImage();
-      if (pickedFiles.isNotEmpty) {
+      final XFile? pickedFile = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
+      if (pickedFile != null) {
         setState(() {
-          productImages.addAll(pickedFiles.map((xfile) => File(xfile.path)));
-          imagesUploaded = true;
+          productImage = File(pickedFile.path);
+          imageUploaded = true;
         });
         showMessage(Colors.green[400]!, "image_uploded".tr(context));
       }
@@ -160,8 +161,12 @@ class _PrintImageState extends State<PrintImageScreen> {
           showAwesomeDialog(message: state.msg);
           key1.currentState!.reset();
           setState(() {
-            imagesUploaded = false;
-            productImages.clear();
+            imageUploaded = false;
+            productImage = null;
+          });
+
+          setState(() {
+            imageUploaded = false;
           });
         } else if (state is PrintImageError) {
           showMessage(Colors.red[400]!, state.error);
@@ -198,9 +203,10 @@ class _PrintImageState extends State<PrintImageScreen> {
               provinceController: provinceController,
               quantityController: quantityController,
               regionController: regionController,
+              sizeIdList: const [1, 2, 3],
             ),
             GestureDetector(
-              onTap: pickImages,
+              onTap: pickImage,
               child: Container(
                 margin: const EdgeInsets.all(25),
                 height: 75,
@@ -226,55 +232,45 @@ class _PrintImageState extends State<PrintImageScreen> {
                 ),
               ),
             ),
-            if (imagesUploaded && productImages.isNotEmpty)
+            if (imageUploaded && productImage != null)
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 2.w),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: productImages.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 4.0,
-                  ),
-                  itemBuilder: (context, index) {
-                    return Stack(
-                      children: [
-                        Image.file(
-                          productImages[index],
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity,
-                        ),
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                productImages.removeAt(index);
-                                if (productImages.isEmpty) {
-                                  imagesUploaded = false;
-                                }
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.red.withOpacity(0.7),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.close,
-                                size: 20,
-                                color: Colors.white,
-                              ),
-                            ),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
+                          image: DecorationImage(
+                              image: FileImage(productImage!),
+                              fit: BoxFit.cover)),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            productImage = null;
+                            imageUploaded = false;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red.withOpacity(0.7),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.close,
+                            size: 20,
+                            color: Colors.white,
                           ),
                         ),
-                      ],
-                    );
-                  },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             const SizedBox(height: 20),

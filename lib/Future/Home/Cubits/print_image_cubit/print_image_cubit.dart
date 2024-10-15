@@ -7,7 +7,7 @@ import '../../../../Apis/ExceptionsHandle.dart';
 import '../../../../Apis/Network.dart';
 import '../../../../Apis/Urls.dart';
 import '../../../../Utils/constants.dart';
-import '../../models/print_image_model';
+import '../../models/print_image_model.dart';
 
 part 'print_image_state.dart';
 

@@ -20,6 +20,7 @@ class PrintImageForm extends StatelessWidget {
     required this.addressController,
     required this.printSizeIdController,
     required this.quantityController,
+    required this.sizeIdList,
   });
 
   final TextEditingController firstNameController;
@@ -32,6 +33,7 @@ class PrintImageForm extends StatelessWidget {
   final TextEditingController quantityController;
   final PhoneController phoneController;
   final GlobalKey<FormState> key1;
+  final List<int> sizeIdList;
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +78,34 @@ class PrintImageForm extends StatelessWidget {
                   const TextInputType.numberWithOptions(decimal: true),
               controller: quantityController,
             ),
-            TextFieldWidget(
-              validatorFun: (p0) => validation(p0, ValidationState.normal),
-              text: "print_size_id".tr(context),
-              isPassword: false,
-              controller: printSizeIdController,
+            SizedBox(height: 2.h),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                labelText: "print_size_id".tr(context),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              value: printSizeIdController.text.isNotEmpty
+                  ? printSizeIdController.text
+                  : null,
+              items: sizeIdList.map((int sizeId) {
+                return DropdownMenuItem<String>(
+                  value: sizeId.toString(),
+                  child: Text(sizeId.toString()),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                if (newValue != null) {
+                  printSizeIdController.text = newValue;
+                }
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "please_select_a_size".tr(context);
+                }
+                return null;
+              },
             ),
           ],
         ),

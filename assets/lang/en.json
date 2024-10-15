@@ -90,12 +90,13 @@
     "address" : "Address",
     "updated_at" : "Updated At",
     "quantity" : "quantity",
-    "print_size_id" : "print size id ",
+    "print_size_id" : "print size",
     "print_img" : "print the image",
     "upload_img" : "upload the image",
     "problem_info" : "Problem",
     "confirm_info" : "Are you sure about your information?",
     "error_msg" : "There was an error please try again",
     "emailOrPhone" : "Email or Phone Number",
-    "msg" : "Message" 
+    "msg" : "Message" ,
+    "please_select_a_size": "Please select a size."
 }
