@@ -36,10 +36,23 @@ class MyOrdersScreen extends StatelessWidget {
         ),
         body: BlocBuilder<GetMyOrdersCubit, GetMyOrdersState>(
           builder: (context, state) {
-            if (state is GetMyOrdersLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+            if (state is GetMyOrdersSuccessfulState) {
+              List<OrderInformationData> myOrders =
+                  state.orderInformation.data ?? [];
+              if (myOrders.isNotEmpty) {
+                return ListView.builder(
+                  itemCount: myOrders.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return HistoryCardItem(order: myOrders[index]);
+                  },
+                );
+              } else {
+                return Center(
+                  child: Text(
+                    "fav_body_msg".tr(context),
+                  ),
+                );
+              }
             } else if (state is GetMyOrdersErrorState) {
               return MyErrorWidget(
                   msg: state.msg,
@@ -47,13 +60,8 @@ class MyOrdersScreen extends StatelessWidget {
                     context.read<GetMyOrdersCubit>().getMyOrders();
                   });
             }
-            List<OrderInformationData> myOrders =
-                context.read<GetMyOrdersCubit>().orderInformation?.data ?? [];
-            return ListView.builder(
-              itemCount: myOrders.length,
-              itemBuilder: (BuildContext context, int index) {
-                return HistoryCardItem(order: myOrders[index]);
-              },
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           },
         ));

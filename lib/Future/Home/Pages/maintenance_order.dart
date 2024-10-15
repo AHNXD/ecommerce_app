@@ -151,6 +151,13 @@ class _MaintenanceScreenState extends State<MaintenanceScreen> {
         },
         child: ListView(
           children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.h),
+              child: Text(
+                "sell_product_hint".tr(context),
+                style: TextStyle(fontSize: 12.sp, color: Colors.black),
+              ),
+            ),
             MaintenaceForm(
                 key1: key1,
                 FNController: FNController,
