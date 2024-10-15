@@ -59,7 +59,7 @@ class DrawerWidget extends StatelessWidget {
                   text: "contact_us".tr(context),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ContactUsScreen()));
+                        builder: (context) => const ContactUsScreen()));
                   },
                   verticalHieght: 1.h,
                   horizontalWidth: 2.w,
