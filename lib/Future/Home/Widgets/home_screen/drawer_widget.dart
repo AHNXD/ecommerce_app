@@ -21,6 +21,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Cubits/cartCubit/cart.bloc.dart';
+import '../../Cubits/get_print_sizes_cubit/get_print_sizes_cubit.dart';
 import '../../Pages/contact_us_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -138,7 +139,7 @@ class DrawerWidget extends StatelessWidget {
                     context.read<FavoriteCubit>().getProductsFavorite();
                     context.read<GetMyOrdersCubit>().getMyOrders();
                     context.read<CartCubit>().refreshCartOnLanguageChange();
-
+                    context.read<GetPrintSizesCubit>().getPrintSizes();
                     await Future.delayed(const Duration(milliseconds: 500), () {
                       Navigator.pop(context);
                       massege(context, "change_lang".tr(context), Colors.green);
