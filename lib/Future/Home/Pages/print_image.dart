@@ -11,6 +11,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../Utils/colors.dart';
 import '../../../Utils/constants.dart';
+
 import '../Cubits/print_image_cubit/print_image_cubit.dart';
 import '../Widgets/print_image/print_image_form.dart';
 import '../models/print_image_model.dart';
@@ -49,7 +50,6 @@ class _PrintImageState extends State<PrintImageScreen> {
     quantityController = TextEditingController();
 
     printSizeIdController = TextEditingController();
-
     super.initState();
   }
 
@@ -164,10 +164,6 @@ class _PrintImageState extends State<PrintImageScreen> {
             imageUploaded = false;
             productImage = null;
           });
-
-          setState(() {
-            imageUploaded = false;
-          });
         } else if (state is PrintImageError) {
           showMessage(Colors.red[400]!, state.error);
         }
@@ -203,7 +199,6 @@ class _PrintImageState extends State<PrintImageScreen> {
               provinceController: provinceController,
               quantityController: quantityController,
               regionController: regionController,
-              sizeIdList: const [1, 2, 3],
             ),
             GestureDetector(
               onTap: pickImage,

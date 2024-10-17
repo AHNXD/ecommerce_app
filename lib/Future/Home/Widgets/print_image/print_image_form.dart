@@ -1,5 +1,7 @@
+import 'package:ecommerce_app_qr/Future/Home/Cubits/get_print_sizes_cubit/get_print_sizes_cubit.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,7 +22,6 @@ class PrintImageForm extends StatelessWidget {
     required this.addressController,
     required this.printSizeIdController,
     required this.quantityController,
-    required this.sizeIdList,
   });
 
   final TextEditingController firstNameController;
@@ -33,7 +34,6 @@ class PrintImageForm extends StatelessWidget {
   final TextEditingController quantityController;
   final PhoneController phoneController;
   final GlobalKey<FormState> key1;
-  final List<int> sizeIdList;
 
   @override
   Widget build(BuildContext context) {
@@ -79,37 +79,68 @@ class PrintImageForm extends StatelessWidget {
               controller: quantityController,
             ),
             SizedBox(height: 2.h),
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                labelText: "print_size_id".tr(context),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              value: printSizeIdController.text.isNotEmpty
-                  ? printSizeIdController.text
-                  : null,
-              items: sizeIdList.map((int sizeId) {
-                return DropdownMenuItem<String>(
-                  value: sizeId.toString(),
-                  child: Text(sizeId.toString()),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  printSizeIdController.text = newValue;
+            BlocBuilder<GetPrintSizesCubit, GetPrintSizesState>(
+              builder: (context, state) {
+                List<int> sizeIdList = [];
+                if (state is GetPrintSizesSuccess) {
+                  state.printSizes
+                      .map((size) => sizeIdList.add(size.id!))
+                      .toList();
+                  return CustomDropDownWidget(
+                      printSizeIdController: printSizeIdController,
+                      sizeIdList: sizeIdList);
                 }
-              },
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "please_select_a_size".tr(context);
-                }
-                return null;
+                return CustomDropDownWidget(
+                    printSizeIdController: printSizeIdController,
+                    sizeIdList: sizeIdList);
               },
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomDropDownWidget extends StatelessWidget {
+  const CustomDropDownWidget({
+    super.key,
+    required this.printSizeIdController,
+    required this.sizeIdList,
+  });
+
+  final TextEditingController printSizeIdController;
+  final List<int> sizeIdList;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        labelText: "print_size_id".tr(context),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      value: printSizeIdController.text.isNotEmpty
+          ? printSizeIdController.text
+          : null,
+      items: sizeIdList.map((int sizeId) {
+        return DropdownMenuItem<String>(
+          value: sizeId.toString(),
+          child: Text(sizeId.toString()),
+        );
+      }).toList(),
+      onChanged: (String? newValue) {
+        if (newValue != null) {
+          printSizeIdController.text = newValue;
+        }
+      },
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "please_select_a_size".tr(context);
+        }
+        return null;
+      },
     );
   }
 }

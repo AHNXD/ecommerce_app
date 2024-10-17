@@ -8,6 +8,7 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProductById/get_porduct_by_id_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getProducts/get_products_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/get_print_sizes_cubit/get_print_sizes_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/locale/locale_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/print_image_cubit/print_image_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/sell_product_cubit/sell_product_cubit.dart';
@@ -76,7 +77,8 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(create: (_) => SellProductCubit()),
           BlocProvider(create: (_) => PrintImageCubit()),
-          BlocProvider(create: (_) => AllProductsByAllCategoryCubit())
+          BlocProvider(create: (_) => AllProductsByAllCategoryCubit()),
+          BlocProvider(create: (_) => GetPrintSizesCubit()..getPrintSizes())
         ],
         child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
           builder: (context, state) {
