@@ -40,7 +40,7 @@ class CheckOutBox extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "${items.length > 1 ? items.map((e) => (e.userQuantity * (e.newSellingPrice == null ? e.sellingPrice : e.newSellingPrice)!)).reduce((value1, value2) => value1 + value2) : items[0].userQuantity * (items[0].newSellingPrice == null ? items[0].sellingPrice : items[0].newSellingPrice)!}",
+                    "${items.length > 1 ? items.map((e) => (e.userQuantity * (e.newSellingPrice == null ? e.sellingPrice : double.tryParse(e.newSellingPrice!))!)).reduce((value1, value2) => value1 + value2) : items[0].userQuantity * (items[0].newSellingPrice == null ? items[0].sellingPrice : double.tryParse(items[0].newSellingPrice!))!}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

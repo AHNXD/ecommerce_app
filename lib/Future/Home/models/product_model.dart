@@ -40,7 +40,7 @@ class MainProduct {
   int? categoryId;
   int? weightMeasurementId;
   int? sellingPrice;
-  int? newSellingPrice;
+  String? newSellingPrice;
   int? quantity;
   String? descrption;
   int userQuantity = 1;

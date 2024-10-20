@@ -36,8 +36,8 @@ class OrderInformationData {
   String? region;
   String? notes;
   String? status;
-  int? total;
-  int? totalAfterDiscount;
+  String? total;
+  String? totalAfterDiscount;
   int? userId;
   int? couponId;
   String? couponValue;
@@ -74,13 +74,22 @@ class OrderInformationData {
     address = json['address'];
     province = json['province'];
     region = json['region'];
-    notes = json['notes'];
+    if (notes != null) {
+      notes = json['notes'];
+    }
     status = json['status'];
     total = json['total'];
+
     totalAfterDiscount = json['total_after_discount'];
     userId = json['user_id'];
-    couponId = json['coupon_id'];
-    couponValue = json['coupon_value'];
+
+    if (couponId != null) {
+      couponId = json['coupon_id'];
+    }
+    if (couponValue != null) {
+      couponValue = json['coupon_value'];
+    }
+
     orderDate = json['order_date'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -123,12 +132,12 @@ class Details {
   int? orderId;
   int? productId;
   String? productName;
-  int? price;
+  String? price;
   int? quantity;
   String? createdAt;
   String? updatedAt;
   MainProduct? product;
-
+  String? size;
   Details(
       {this.id,
       this.orderId,
@@ -138,14 +147,17 @@ class Details {
       this.quantity,
       this.createdAt,
       this.updatedAt,
-      this.product});
+      this.product,
+      this.size});
 
   Details.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     orderId = json['order_id'];
+    size = json['size'];
     productId = json['product_id'];
     productName = json['product_name'];
-    price = json['price'];
+    price =
+        (json['price'] is String) ? int.tryParse(json['price']) : json['price'];
     quantity = json['quantity'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

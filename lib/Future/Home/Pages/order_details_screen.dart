@@ -84,7 +84,9 @@ class OrderDetailsScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: OrderTileWidget(
-                        product: order.details![index].product!),
+                      size: order.details![index].size,
+                      product: order.details![index].product!,
+                    ),
                   );
                 },
               ),

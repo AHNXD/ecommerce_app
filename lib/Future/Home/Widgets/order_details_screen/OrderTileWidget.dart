@@ -8,9 +8,11 @@ import '../cached_network_image.dart';
 
 class OrderTileWidget extends StatelessWidget {
   final MainProduct product;
+  final String? size;
   const OrderTileWidget({
     super.key,
     required this.product,
+    required this.size,
   });
 
   @override
@@ -53,6 +55,16 @@ class OrderTileWidget extends StatelessWidget {
                   color: Colors.grey.shade400,
                 ),
               ),
+              const SizedBox(height: 10),
+              if (size != null && size!.isNotEmpty)
+                Text(
+                  "size: $size",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey.shade400,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               const SizedBox(height: 10),
               Text(
                 "${product.newSellingPrice != null ? product.newSellingPrice : product.sellingPrice} Sp",
