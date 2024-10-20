@@ -1,5 +1,5 @@
 import 'package:ecommerce_app_qr/Future/Home/models/product_model.dart';
- 
+
 class FavoriteModel {
   bool? status;
   List<Data>? data;

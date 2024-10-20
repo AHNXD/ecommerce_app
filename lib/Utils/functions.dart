@@ -153,6 +153,14 @@ List<int> getListOfProductsQuantity(BuildContext context) {
   return quantity;
 }
 
+List<String?> getListOfProductsSizes(BuildContext context) {
+  List<String?> sizes = <String?>[];
+  context.read<CartCubit>().pcw.forEach((product) {
+    sizes.add(product.selectedSize);
+  });
+  return sizes;
+}
+
 void showAwesomeDialogForAskCode(
     {required BuildContext context,
     required OrderInformation order,

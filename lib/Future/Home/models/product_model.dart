@@ -3,8 +3,9 @@
 class ProductsModel {
   bool? status;
   List<MainProduct>? data;
+  Pagination? pagination;
 
-  ProductsModel({this.status, this.data});
+  ProductsModel({this.status, this.data, this.pagination});
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -14,6 +15,9 @@ class ProductsModel {
         data!.add(MainProduct.fromJson(v));
       });
     }
+    if (json['pagination'] != null) {
+      pagination = Pagination.fromJson(json['pagination']);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -21,6 +25,9 @@ class ProductsModel {
     data['status'] = status;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    if (this.pagination != null) {
+      data['pagination'] = this.pagination!.toJson();
     }
     return data;
   }
@@ -219,6 +226,42 @@ class Ratings {
   }
 }
 
+class Pagination {
+  int? total;
+  int? current_page;
+  int? last_page;
+  int? per_page;
+  int? from;
+  int? to;
+
+  Pagination(
+      {this.total,
+      this.current_page,
+      this.last_page,
+      this.per_page,
+      this.from,
+      this.to});
+
+  Pagination.fromJson(Map<String, dynamic> json) {
+    total = json['total'];
+    current_page = json['current_page'];
+    last_page = json['last_page'];
+    per_page = json['per_page'];
+    from = json['from'];
+    to = json['to'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['total'] = total;
+    data['current_page'] = current_page;
+    data['last_page'] = last_page;
+    data['per_page'] = per_page;
+    data['from'] = from;
+    data['to'] = to;
+    return data;
+  }
+}
 
 
 

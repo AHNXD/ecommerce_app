@@ -1,7 +1,7 @@
 class OrderInformation {
   List<int>? productId;
   List<int>? quantity;
-  List<String>? selectedSizes;
+  List<String?>? selectedSizes;
   String? firstName;
   String? lastName;
   String? phone;

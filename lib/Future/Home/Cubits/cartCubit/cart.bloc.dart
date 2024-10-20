@@ -28,8 +28,8 @@ class CartCubit extends Cubit<CartState> {
       List<int> productIds = pcw.map((product) => product.id!).toList();
       List<int> quantities =
           pcw.map((product) => product.userQuantity).toList();
-      List<String> selectedSizs =
-          pcw.map((product) => product.selectedSize ?? "").toList();
+      List<String?> selectedSizs =
+          pcw.map((product) => product.selectedSize).toList();
       List<MainProduct> updatedProducts = await Future.wait(
         productIds.map((id) => getProductById(id)).toList(),
       );

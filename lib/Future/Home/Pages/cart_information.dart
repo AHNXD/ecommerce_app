@@ -229,7 +229,9 @@ class _CartInformationState extends State<CartInformation> {
                                             "00${phoneController.value.countryCode}${phoneController.value.nsn}",
                                         productId: getListOfProductsId(context),
                                         quantity:
-                                            getListOfProductsQuantity(context)),
+                                            getListOfProductsQuantity(context),
+                                        selectedSizes:
+                                            getListOfProductsSizes(context)),
                                     codeController: codeController);
                               }
                             },
