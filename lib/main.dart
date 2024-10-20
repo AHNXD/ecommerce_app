@@ -2,7 +2,6 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/Maintenance/maintenance_cubi
 import 'package:ecommerce_app_qr/Future/Home/Cubits/aboutUs/about_us_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/all_proudcts_by_all_cat/all_products_by_all_category_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/contactUsCubit/contact_us_cubit.dart';
-
 import 'package:ecommerce_app_qr/Future/Home/Cubits/favoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getCatigories/get_catigories_cubit.dart';
 import 'package:ecommerce_app_qr/Future/Home/Cubits/getMyOrders/get_my_orders_cubit.dart';
@@ -21,7 +20,6 @@ import '/Future/Home/Pages/navbar_screen.dart';
 import 'Future/Home/Cubits/CompairPruductsCubit/compair_products_cubit.dart';
 import 'Future/Home/Cubits/GetCatigoriesOffers/get_catigories_offers_cubit.dart';
 import 'Future/Home/Cubits/cartCubit/cart.bloc.dart';
-
 import 'Future/Home/Cubits/postOrders/post_orders_cubit.dart';
 import 'Future/Home/Cubits/rangeSliderCubit/range_slider_cubit.dart';
 import '/Utils/SharedPreferences/SharedPreferencesHelper.dart';
