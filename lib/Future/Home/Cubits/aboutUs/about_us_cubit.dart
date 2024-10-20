@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app_qr/Apis/ExceptionsHandle.dart';
 import 'package:ecommerce_app_qr/Apis/Network.dart';
 import 'package:ecommerce_app_qr/Apis/Urls.dart';
+import 'package:ecommerce_app_qr/Future/Home/models/links_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/aboutUs_model.dart';
 import 'package:meta/meta.dart';
@@ -14,11 +15,16 @@ class AboutUsCubit extends Cubit<AboutUsState> {
   void getAboutUsInfo() async {
     emit(GetAboutUsLoadingState());
     try {
-      await Network.getData(url: Urls.getabout).then((response) {
+      await Network.getData(url: Urls.getabout).then((response) async {
         if (response.statusCode == 200 || response.statusCode == 201) {
           AboutUsModel aboutUs = AboutUsModel.fromJson(response.data["data"]);
 
-          emit(GetAboutUsSuccessfulState(aboutUs: aboutUs));
+          await Network.getData(url: Urls.getLinks).then((response) {
+            if (response.statusCode == 200 || response.statusCode == 201) {
+              Links links = Links.fromJson(response.data);
+              emit(GetAboutUsSuccessfulState(aboutUs: aboutUs, links: links));
+            }
+          });
         }
       });
     } catch (error) {

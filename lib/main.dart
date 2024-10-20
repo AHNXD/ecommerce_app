@@ -37,7 +37,7 @@ void main() async {
   await AppSharedPreferences.init();
   await Network.init();
   AppSharedPreferences.saveToken(
-      "90|RliJhmW7pmhrBH5tfFwPCMFCR5aPpCMBV40SgJ0vd4ba327c");
+      "92|qD6lInYIN9yiSvGa02y3oqoUCJ8foifCyRE6dJ8953f9e67e");
   debugPrint("token is ${AppSharedPreferences.getToken}");
 
   runApp(const MyApp());

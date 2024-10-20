@@ -14,6 +14,7 @@ final class GetAboutUsErrorState extends AboutUsState {
 
 final class GetAboutUsSuccessfulState extends AboutUsState {
   final AboutUsModel aboutUs;
+  final Links links;
 
-  GetAboutUsSuccessfulState({required this.aboutUs});
+  GetAboutUsSuccessfulState({required this.aboutUs, required this.links});
 }

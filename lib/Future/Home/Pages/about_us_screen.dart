@@ -2,7 +2,9 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/aboutUs/about_us_cubit.dart'
 import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circle_avatar_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/aboutUs_model.dart';
+import 'package:ecommerce_app_qr/Future/Home/models/links_model.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
+import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -39,9 +41,7 @@ class AboutUsScreen extends StatelessWidget {
       body: SafeArea(child: BlocBuilder<AboutUsCubit, AboutUsState>(
         builder: (context, state) {
           if (state is GetAboutUsSuccessfulState) {
-            return AboutUsWidget(
-              aboutUs: state.aboutUs,
-            );
+            return AboutUsWidget(aboutUs: state.aboutUs, links: state.links);
           } else if (state is GetAboutUsErrorState) {
             return MyErrorWidget(
                 msg: state.msg,
@@ -61,15 +61,16 @@ class AboutUsScreen extends StatelessWidget {
 
 class AboutUsWidget extends StatelessWidget {
   final AboutUsModel aboutUs;
-  const AboutUsWidget({super.key, required this.aboutUs});
+  final Links links;
+  const AboutUsWidget({super.key, required this.aboutUs, required this.links});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
-        LogoCircleAvatarWidget(
-          top: 2.h,
-          bottom: 2.h,
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Image.asset(AppImagesAssets.logoNoBg),
         ),
         Center(
           child: Text(
@@ -101,9 +102,18 @@ class AboutUsWidget extends StatelessWidget {
           ),
         ),
         //const Divider(),
-        const Spacer(),
+        ListView.builder(
+          itemCount: links.data!.length ?? 0,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+                title: Text(links.data![index].name ?? ""),
+                subtitle: Text(links.data![index].link ?? ""));
+          },
+        ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.w),
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 16),
           child: RichText(
             text: TextSpan(
               text: "phone_number".tr(context),
@@ -124,7 +134,6 @@ class AboutUsWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        const Spacer(),
         Padding(
           padding: EdgeInsets.only(bottom: 3.h),
           child: Column(

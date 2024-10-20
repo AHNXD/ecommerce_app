@@ -41,4 +41,5 @@ class Urls {
   static const String printImage = "${baseUrl}Print";
   static const String maintenance = "${baseUrl}Maintenance";
   static const String getPrintSizes = "${baseUrl}PrintSizes";
+  static const String getLinks = "${baseUrl}links";
 }
