@@ -3,6 +3,8 @@ import 'package:ecommerce_app_qr/Future/Home/Widgets/Contact_Us_Screen/logo_circ
 import 'package:ecommerce_app_qr/Future/Home/Widgets/error_widget.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/aboutUs_model.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/links_model.dart';
+import 'package:ecommerce_app_qr/Utils/functions.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:ecommerce_app_qr/Utils/images.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../Utils/colors.dart';
+
+final List<IconData> icons = [Icons.facebook, Icons.message, Icons.pin_drop];
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -63,6 +67,17 @@ class AboutUsWidget extends StatelessWidget {
   final AboutUsModel aboutUs;
   final Links links;
   const AboutUsWidget({super.key, required this.aboutUs, required this.links});
+  void _launchUrl(String url, BuildContext context) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      massege(context, "unknown_error".tr(context), Colors.red);
+    }
+  }
+
+  IconData _getIconData(int index) {
+    return icons[index];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,19 +116,9 @@ class AboutUsWidget extends StatelessWidget {
             ),
           ),
         ),
-        //const Divider(),
-        ListView.builder(
-          itemCount: links.data!.length ?? 0,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-                title: Text(links.data![index].name ?? ""),
-                subtitle: Text(links.data![index].link ?? ""));
-          },
-        ),
+
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 8),
           child: RichText(
             text: TextSpan(
               text: "phone_number".tr(context),
@@ -132,6 +137,35 @@ class AboutUsWidget extends StatelessWidget {
                   fontSize: 15.sp),
             ),
             textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(
+          height: 60,
+          child: Center(
+            child: ListView.builder(
+              itemCount: links.data!.length ?? 0,
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                final link = links.data?[index].link;
+                final iconData = _getIconData(index);
+
+                return IconButton(
+                    onPressed: () {
+                      if (link != null) {
+                        _launchUrl(link, context);
+                      } else {
+                        massege(
+                            context, "unknown_error".tr(context), Colors.red);
+                      }
+                    },
+                    icon: Icon(
+                      iconData,
+                      size: 32.0,
+                      color: AppColors.primaryColors,
+                    ));
+              },
+            ),
           ),
         ),
         Padding(
