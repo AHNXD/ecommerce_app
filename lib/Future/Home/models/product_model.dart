@@ -66,6 +66,7 @@ class MainProduct {
     this.category,
     this.ratings,
     this.sizes,
+    this.selectedSize,
   });
 
   MainProduct.fromJson(Map<String, dynamic> json) {

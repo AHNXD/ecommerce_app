@@ -14,11 +14,43 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(EmptyCartState());
   List<MainProduct> pcw = <MainProduct>[];
   void addToCart(MainProduct p) {
-    if (pcw.any((element) =>
-        element.id == p.id && element.selectedSize == p.selectedSize)) {
+    if (pcw.any((element) => element.id == p.id)) {
       emit(AlreadyInCartState());
     } else {
       pcw.add(p);
+      emit(AddToCartState());
+    }
+  }
+
+  void addToCartWithSize(MainProduct p, String size) {
+    bool productWithSameSize = false;
+    for (var product in pcw) {
+      if (product.id == p.id && product.selectedSize == size) {
+        productWithSameSize = true;
+        emit(AlreadyInCartState());
+        break;
+      }
+    }
+    if (!productWithSameSize) {
+      MainProduct newProduct = MainProduct(
+        id: p.id,
+        name: p.name,
+        category: p.category,
+        categoryId: p.categoryId,
+        descrption: p.descrption,
+        files: p.files,
+        newSellingPrice: p.newSellingPrice,
+        quantity: p.quantity,
+        ratings: p.ratings,
+        sellingPrice: p.sellingPrice,
+        sizes: p.sizes,
+        selectedSize: size,
+        weightMeasurement: p.weightMeasurement,
+        weightMeasurementId: p.weightMeasurementId,
+        wight: p.wight,
+      );
+
+      pcw.add(newProduct);
       emit(AddToCartState());
     }
   }

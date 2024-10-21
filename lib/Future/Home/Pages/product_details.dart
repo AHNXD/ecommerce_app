@@ -262,8 +262,8 @@ class _DetailPageState extends State<DetailPage> {
                                     onTap: () {
                                       setState(() {
                                         selectedIndex = index;
-                                        widget.product.selectedSize =
-                                            widget.product.sizes![index];
+                                        // widget.product.selectedSize =
+                                        //     widget.product.sizes![index];
                                       });
                                     },
                                     child: Container(
@@ -310,9 +310,9 @@ class _DetailPageState extends State<DetailPage> {
                           if (selectedIndex == -1) {
                             showMessage("select_size".tr(context), Colors.red);
                           } else {
-                            widget.product.selectedSize =
-                                widget.product.sizes![selectedIndex!];
-                            context.read<CartCubit>().addToCart(widget.product);
+                            context.read<CartCubit>().addToCartWithSize(
+                                widget.product,
+                                widget.product.sizes![selectedIndex!]);
                           }
                         } else {
                           context.read<CartCubit>().addToCart(widget.product);
