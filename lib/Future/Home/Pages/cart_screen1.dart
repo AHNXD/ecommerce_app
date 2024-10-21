@@ -92,7 +92,7 @@ class CartListViewItem extends StatelessWidget {
               itemCount: l.length,
               itemBuilder: (context, index) => CartTile(
                 deleteProduct: () {
-                  context.read<CartCubit>().pcw[index].userQuantity = 0;
+                  context.read<CartCubit>().pcw[index].userQuantity = 1;
                   context.read<CartCubit>().removeformTheCart(l[index]);
                 },
                 product: l[index],

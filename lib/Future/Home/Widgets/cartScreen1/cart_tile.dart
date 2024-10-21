@@ -33,8 +33,8 @@ class CartTile extends StatelessWidget {
         }));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 1.h),
-        padding: EdgeInsets.all(2.h),
+        margin: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+        padding: EdgeInsets.all(1.h),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -47,34 +47,38 @@ class CartTile extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                // Product Image
-                MyCachedNetworkImage(
-                  height: 10.h,
-                  width: 30.w,
-                  imageUrl: product.files![0].path != null
-                      ? Urls.storageProducts + product.files![0].name!
-                      : product.files![0].name!,
-                  // height: 10.h,
-                ),
-                SizedBox(height: 1.h),
-                QauntityButton(
-                    onRemove: onRemove, product: product, onAdd: onAdd),
-              ],
+            MyCachedNetworkImage(
+              height: 25.h,
+              width: 45.w,
+              imageUrl: product.files![0].path != null
+                  ? Urls.storageProducts + product.files![0].name!
+                  : product.files![0].name!,
             ),
-            SizedBox(width: 3.w),
-            PrudoctDaitlesCart(product: product),
-            IconButton(
-              onPressed: deleteProduct,
-              icon: const Icon(
-                Ionicons.trash_outline,
-                color: Colors.red,
-                size: 20,
-              ),
+            SizedBox(height: 2.h),
+            PrudoctDaitlesCart(
+              product: product,
+            ),
+            SizedBox(height: 2.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                QauntityButton(
+                  onRemove: onRemove,
+                  product: product,
+                  onAdd: onAdd,
+                ),
+                IconButton(
+                  onPressed: deleteProduct,
+                  icon: const Icon(
+                    Ionicons.trash_outline,
+                    color: Colors.red,
+                    size: 20,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
