@@ -56,7 +56,7 @@ class OrderTileWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              if (size != null && size!.isNotEmpty)
+              if (size != "NULL" && size!.isNotEmpty)
                 Text(
                   "size: $size",
                   style: TextStyle(
