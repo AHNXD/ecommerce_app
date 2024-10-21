@@ -30,6 +30,16 @@ class PrudoctDaitlesCart extends StatelessWidget {
             color: Colors.grey.shade600,
           ),
         ),
+        if (product.selectedSize != null &&
+            product.selectedSize != "NULL" &&
+            product.selectedSize!.isNotEmpty)
+          Text(
+            "size: ${product.selectedSize}",
+            style: TextStyle(
+              fontSize: 12.sp,
+              color: Colors.grey.shade600,
+            ),
+          ),
         SizedBox(height: 2.h),
         Text(
           "${product.newSellingPrice != null ? double.tryParse(product.newSellingPrice!)! * product.userQuantity : product.sellingPrice! * product.userQuantity} Sp",

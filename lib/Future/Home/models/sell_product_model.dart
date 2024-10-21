@@ -8,24 +8,21 @@ class SellProductModel {
   String? phone;
   String? productDescription;
   double? price;
-  List<File>? images;
+  File? image;
   SellProductModel(
     this.name,
     this.phone,
     this.productName,
     this.price,
     this.productDescription,
-    this.images,
+    this.image,
   );
 
   Future<FormData> toFormData() async {
-    List<MultipartFile> imageFiles = [];
-    if (images != null && images!.isNotEmpty) {
-      for (var image in images!) {
-        String fileName = image.path.split('/').last;
-        imageFiles
-            .add(await MultipartFile.fromFile(image.path, filename: fileName));
-      }
+    MultipartFile? imageFile;
+    if (image != null) {
+      String fileName = image!.path.split('/').last;
+      imageFile = await MultipartFile.fromFile(image!.path, filename: fileName);
     }
 
     return FormData.fromMap({
@@ -34,7 +31,7 @@ class SellProductModel {
       "product_name": productName,
       "description": productDescription,
       "price": price,
-      "image": imageFiles,
+      "image": imageFile,
     });
   }
 }
