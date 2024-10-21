@@ -19,7 +19,12 @@ class CartScreen1 extends StatefulWidget {
 class _CartScreenState extends State<CartScreen1> {
   @override
   Widget build(BuildContext context) {
+    final ScrollController scrollController = ScrollController();
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 85.0),
+        child: ScrollToTopButton(scrollController: scrollController),
+      ),
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 10.h),
@@ -45,9 +50,15 @@ class _CartScreenState extends State<CartScreen1> {
               child: Text("empty_cart".tr(context)),
             );
           } else if (state is CartRefreshState) {
-            return CartListViewItem(l: state.loadedporduct);
+            return CartListViewItem(
+              l: state.loadedporduct,
+              scrollController: scrollController,
+            );
           } else if (state is RemvoeFromCartState) {
-            return CartListViewItem(l: state.porducts);
+            return CartListViewItem(
+              l: state.porducts,
+              scrollController: scrollController,
+            );
           } else if (state is CartLoadingState) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -58,7 +69,10 @@ class _CartScreenState extends State<CartScreen1> {
                 onPressed:
                     context.read<CartCubit>().refreshCartOnLanguageChange);
           } else {
-            return CartListViewItem(l: l);
+            return CartListViewItem(
+              l: l,
+              scrollController: scrollController,
+            );
           }
         },
       ),
@@ -70,24 +84,27 @@ class CartListViewItem extends StatelessWidget {
   const CartListViewItem({
     super.key,
     required this.l,
+    required this.scrollController,
   });
 
   final List<MainProduct> l;
-
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          CheckOutBox(
-            items: context.read<CartCubit>().pcw,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: ListView.builder(
+    return SingleChildScrollView(
+      controller: scrollController,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
+        child: Column(
+          children: [
+            CheckOutBox(
+              items: context.read<CartCubit>().pcw,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: l.length,
               itemBuilder: (context, index) => CartTile(
@@ -108,8 +125,35 @@ class CartListViewItem extends StatelessWidget {
                 },
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ScrollToTopButton extends StatelessWidget {
+  final ScrollController scrollController;
+
+  const ScrollToTopButton({super.key, required this.scrollController});
+
+  void _scrollToTop() {
+    scrollController.animateTo(
+      0.0,
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: AppColors.navBarColor,
+      onPressed: _scrollToTop,
+      tooltip: 'Scroll to Top',
+      child: const Icon(
+        Icons.arrow_upward,
+        color: Colors.black,
       ),
     );
   }
