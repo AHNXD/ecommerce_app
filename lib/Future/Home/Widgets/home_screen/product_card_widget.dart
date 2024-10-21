@@ -133,7 +133,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsets.only(right: 17.w, top: 2.h, left: 4.w),
+                          EdgeInsets.only(right: 17.w, top: 2.6.h, left: 4.w),
                       child: Text(
                         "${widget.product.newSellingPrice} ${"sp".tr(context)}",
                         style: TextStyle(

@@ -3,7 +3,6 @@ import 'package:ecommerce_app_qr/Future/Home/Cubits/pages_cubit/pages_cubit.dart
 import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
-import 'package:restart_app/restart_app.dart';
 import '/Future/Auth/Widgets/my_button_widget.dart';
 import '/Future/Auth/Widgets/phone_field_widget.dart';
 import '/Future/Auth/Widgets/text_field_widget.dart';
@@ -134,10 +133,8 @@ class _CartInformationState extends State<CartInformation> {
               );
             });
           } else if (state is PostOrdersErrorState) {
-            showSuccessSnackBar(
-                message: "Error");
+            showSuccessSnackBar(message: "Error");
             Future.delayed(const Duration(seconds: 2)).then((onValue) {
-            
               context
                   .read<PagesScreenCubit>()
                   .changedScreen(AppScreen.home, context);

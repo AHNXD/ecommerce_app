@@ -77,14 +77,18 @@ class OrderInfoTextCardWidget extends StatelessWidget {
       children: [
         Text(
           "$title:",
-          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
         ),
         const SizedBox(
           width: 8,
         ),
         Text(
           body,
-          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500),
         ),
       ],
     );

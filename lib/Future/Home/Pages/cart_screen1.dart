@@ -93,6 +93,7 @@ class CartListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       controller: scrollController,
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
         child: Column(

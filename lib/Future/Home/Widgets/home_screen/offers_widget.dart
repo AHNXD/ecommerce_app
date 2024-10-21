@@ -13,17 +13,18 @@ class OffersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 1.w),
       padding: EdgeInsets.symmetric(horizontal: 2.w),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.w),
-          color: AppColors.offersContainerColor),
-      child: Row(
+          color: AppColors.navBarColor),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MyCachedNetworkImage(
-            width: 30.w, height: 15.h,
+            width: 45.w, height: 20.h,
             imageUrl: data.category!.files!.first.path == null
                 ? data.category!.files!.first.name!
                 : Urls.storageCategories + data.category!.files!.first.name!,
@@ -38,12 +39,12 @@ class OffersWidget extends StatelessWidget {
             children: [
               Text(
                 "What do you wating for",
-                style: TextStyle(color: Colors.white38, fontSize: 7.sp),
+                style: TextStyle(color: Colors.black, fontSize: 8.sp),
               ),
               Text(
                 "30% off on your\n First Purchase",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold),
               ),
