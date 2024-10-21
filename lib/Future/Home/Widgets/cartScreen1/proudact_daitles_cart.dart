@@ -34,7 +34,7 @@ class PrudoctDaitlesCart extends StatelessWidget {
           ),
           SizedBox(height: 2.h),
           Text(
-            "${product.newSellingPrice != null ? product.newSellingPrice! * product.userQuantity : product.sellingPrice! * product.userQuantity} Sp",
+            "${product.newSellingPrice != null ? double.tryParse(product.newSellingPrice!)! * product.userQuantity : product.sellingPrice! * product.userQuantity} Sp",
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,

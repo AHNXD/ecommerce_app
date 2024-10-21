@@ -262,6 +262,8 @@ class _DetailPageState extends State<DetailPage> {
                                     onTap: () {
                                       setState(() {
                                         selectedIndex = index;
+                                        widget.product.selectedSize =
+                                            widget.product.sizes![index];
                                       });
                                     },
                                     child: Container(

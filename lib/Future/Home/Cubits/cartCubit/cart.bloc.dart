@@ -14,7 +14,8 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(EmptyCartState());
   List<MainProduct> pcw = <MainProduct>[];
   void addToCart(MainProduct p) {
-    if (pcw.any((element) => element.id == p.id)) {
+    if (pcw.any((element) =>
+        element.id == p.id && element.selectedSize == p.selectedSize)) {
       emit(AlreadyInCartState());
     } else {
       pcw.add(p);

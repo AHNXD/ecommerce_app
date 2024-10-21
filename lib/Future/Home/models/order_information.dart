@@ -6,16 +6,14 @@ class OrderInformation {
   String? lastName;
   String? phone;
   String? email;
-  String? address1;
-  String? address2;
+  String? address;
   String? country;
   String? city;
   String? note;
   String? code;
   OrderInformation(
-      {this.address1,
+      {this.address,
       this.code,
-      this.address2,
       this.city,
       this.country,
       this.email,
@@ -29,18 +27,17 @@ class OrderInformation {
 
   Map<String, dynamic> toJson() {
     return {
-      "product_id": productId,
-      "qty": quantity,
       "first_name": firstName,
       "last_name": lastName,
       "phone": phone,
       "email": email,
-      "address_1": address1,
-      "address_2": address2,
-      "country": country,
-      "city": city,
+      "province": country,
+      "region": city,
+      "address": address,
       "notes": note,
       "code": code,
+      "product_id": productId,
+      "qty": quantity,
       "sizes": selectedSizes
     };
   }
