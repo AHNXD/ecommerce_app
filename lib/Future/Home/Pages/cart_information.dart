@@ -1,3 +1,6 @@
+import 'package:ecommerce_app_qr/Future/Home/Cubits/cartCubit/cart.bloc.dart';
+import 'package:ecommerce_app_qr/Future/Home/Cubits/pages_cubit/pages_cubit.dart';
+import 'package:ecommerce_app_qr/Future/Home/Pages/navbar_screen.dart';
 import 'package:ecommerce_app_qr/Future/Home/models/order_information.dart';
 import 'package:ecommerce_app_qr/Utils/app_localizations.dart';
 import 'package:restart_app/restart_app.dart';
@@ -116,21 +119,36 @@ class _CartInformationState extends State<CartInformation> {
           if (state is PostOrdersSuccessfulState) {
             showSuccessSnackBar(
                 message: "the_order_was_send_successfully".tr(context));
-            Future.delayed(const Duration(seconds: 4)).then((onValue) {
-              // context.read<CartCubit>().pcw = [];
-              // context
-              //     .read<PagesScreenCubit>()
-              //     .changedScreen(AppScreen.home, context);
-              // getAllApiInMainPage(context);
-              // Navigator.pushAndRemoveUntil(
-              //   context,
-              //   MaterialPageRoute(builder: (builder) {
-              //     return const NavBarPage();
-              //   }),
-              //   (route) => false,
-
-              // );
-              Restart.restartApp();
+            Future.delayed(const Duration(seconds: 2)).then((onValue) {
+              context.read<CartCubit>().pcw = [];
+              context
+                  .read<PagesScreenCubit>()
+                  .changedScreen(AppScreen.home, context);
+              getAllApiInMainPage(context);
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (builder) {
+                  return const NavBarPage();
+                }),
+                (route) => false,
+              );
+            });
+          } else if (state is PostOrdersErrorState) {
+            showSuccessSnackBar(
+                message: "Error");
+            Future.delayed(const Duration(seconds: 2)).then((onValue) {
+            
+              context
+                  .read<PagesScreenCubit>()
+                  .changedScreen(AppScreen.home, context);
+              getAllApiInMainPage(context);
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (builder) {
+                  return const NavBarPage();
+                }),
+                (route) => false,
+              );
             });
           }
         },
@@ -182,13 +200,9 @@ class _CartInformationState extends State<CartInformation> {
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
-                            text: "add1".tr(context),
+                            text: "address".tr(context),
                             isPassword: false,
                             controller: address1Controller),
-                        TextFieldWidget(
-                            text: "add2".tr(context),
-                            isPassword: false,
-                            controller: address2Controller),
                         TextFieldWidget(
                             validatorFun: (p0) =>
                                 validation(p0, ValidationState.normal),
@@ -213,10 +227,7 @@ class _CartInformationState extends State<CartInformation> {
                                     context: context,
                                     order: OrderInformation(
                                         code: codeController.text.trim(),
-                                        address1:
-                                            address1Controller.text.trim(),
-                                        address2:
-                                            address2Controller.text.trim(),
+                                        address: address1Controller.text.trim(),
                                         city: cityController.text,
                                         country: countryController.text,
                                         email: emailController.text.trim(),

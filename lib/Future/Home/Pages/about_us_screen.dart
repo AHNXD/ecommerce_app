@@ -80,11 +80,15 @@ class AboutUsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Image.asset(AppImagesAssets.logoNoBg),
+          child: Image.asset(
+            AppImagesAssets.logoNoBg,
+            height: 220,
+            width: 220,
+          ),
         ),
         Center(
           child: Text(
@@ -96,7 +100,6 @@ class AboutUsWidget extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        //const Divider(),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3.w),
@@ -115,7 +118,7 @@ class AboutUsWidget extends StatelessWidget {
             ),
           ),
         ),
-
+        const Spacer(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 8),
           child: RichText(
@@ -138,6 +141,7 @@ class AboutUsWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
+        const Spacer(),
         SizedBox(
           height: 60,
           child: Center(
