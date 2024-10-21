@@ -13,37 +13,34 @@ class PrudoctDaitlesCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            product.name!,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
-            ),
+    return Column(
+      children: [
+        Text(
+          product.name!,
+          style: TextStyle(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.bold,
           ),
-          SizedBox(height: 1.h),
-          Text(
-            product.category!.name!,
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: Colors.grey.shade600,
-            ),
+        ),
+        SizedBox(height: 1.h),
+        Text(
+          product.category!.name!,
+          style: TextStyle(
+            fontSize: 12.sp,
+            color: Colors.grey.shade600,
           ),
-          SizedBox(height: 2.h),
-          Text(
-            "${product.newSellingPrice != null ? double.tryParse(product.newSellingPrice!)! * product.userQuantity : product.sellingPrice! * product.userQuantity} Sp",
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 10.sp,
-              fontWeight: FontWeight.bold,
-            ),
+        ),
+        SizedBox(height: 2.h),
+        Text(
+          "${product.newSellingPrice != null ? double.tryParse(product.newSellingPrice!)! * product.userQuantity : product.sellingPrice! * product.userQuantity} Sp",
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 10.sp,
+            fontWeight: FontWeight.bold,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
